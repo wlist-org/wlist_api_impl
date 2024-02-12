@@ -1,5 +1,6 @@
 package com.xuxiaocheng.wlist.api.core.files.beans;
 
+import java.io.Serializable;
 import java.time.ZonedDateTime;
 
 /**
@@ -12,5 +13,7 @@ import java.time.ZonedDateTime;
  * @param createTime the time of creation
  * @param updateTime the time of update
  */
-public record FileInformation(long id, long parentId, String name, boolean isDirectory, long size, ZonedDateTime createTime, ZonedDateTime updateTime) {
+public record FileInformation(long id, long parentId, String name, boolean isDirectory, long size,
+                              ZonedDateTime createTime, ZonedDateTime updateTime)
+        implements Serializable {
 }

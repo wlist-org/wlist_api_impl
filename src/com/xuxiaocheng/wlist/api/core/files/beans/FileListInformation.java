@@ -1,5 +1,6 @@
 package com.xuxiaocheng.wlist.api.core.files.beans;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -8,5 +9,5 @@ import java.util.List;
  * @param filtered the number of files after filtering ({@link com.xuxiaocheng.wlist.api.core.files.options.Filter}).
  * @param files the information list
  */
-public record FileListInformation(long total, long filtered, List<FileInformation> files) {
+public record FileListInformation(long total, long filtered, List<FileInformation> files) implements Serializable {
 }

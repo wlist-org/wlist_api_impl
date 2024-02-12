@@ -14,14 +14,13 @@ import java.util.concurrent.CompletableFuture;
  */
 public enum File {;
     /**
-     * List the files in directory
-     * @param client the core client
-     * @param token the core token
-     * @param directory the location of the directory
-     * @param options the options for the list operation
+     * List the files in directory.
+     * @param client the core client.
+     * @param token the core token.
+     * @param directory the location of the directory. {@code assert directory.isDirectory;}
+     * @param options the options for the list operation.
      * @return a future, with the list result or the refresh confirmation.
      */
     public static CompletableFuture<Either<FileListInformation, RefreshConfirmation>> list(final CoreClient client, final String token, final FileLocation directory, final ListFileOptions options) { return Main.future(); }
-
-
+    
 }
