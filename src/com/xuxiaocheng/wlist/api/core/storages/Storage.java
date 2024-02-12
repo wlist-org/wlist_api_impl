@@ -2,6 +2,7 @@ package com.xuxiaocheng.wlist.api.core.storages;
 
 import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
+import com.xuxiaocheng.wlist.api.core.storages.configs.LanzouConfig;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -31,11 +32,4 @@ public enum Storage {;
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.IncorrectStorageAccountException
      */
     public static CompletableFuture<Void> addLanzou(final CoreClient client, final String token, final String storage, final LanzouConfig config) { return Main.future(); }
-    /**
-     * The storage config, whose type is Lanzou
-     * @param phoneNumber login phone number
-     * @param password login password
-     * @param rootDirectoryId root directory id (default -1)
-     */
-    public record LanzouConfig(String phoneNumber, String password, long rootDirectoryId) { }
 }
