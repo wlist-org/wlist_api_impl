@@ -7,9 +7,13 @@ public final class Main {
         super();
     }
 
+    public static RuntimeException stub() {
+        return new RuntimeException("Stub!");
+    }
+
     public static <T> CompletableFuture<T> future() {
         final CompletableFuture<T> future = new CompletableFuture<>();
-        future.completeExceptionally(new RuntimeException("Stub!"));
+        future.completeExceptionally(Main.stub());
         return future;
     }
 }

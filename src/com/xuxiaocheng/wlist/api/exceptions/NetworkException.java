@@ -6,7 +6,7 @@ import java.io.Serial;
 /**
  * A special exception from internal exception for network error.
  */
-public class NetworkException extends IOException {
+public class NetworkException extends InternalException {
     @Serial
     private static final long serialVersionUID = 8568583877107316060L;
 
