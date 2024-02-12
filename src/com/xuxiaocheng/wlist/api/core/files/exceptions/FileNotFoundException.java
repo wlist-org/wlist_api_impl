@@ -24,4 +24,9 @@ public class FileNotFoundException extends RuntimeException {
     public FileLocation getLocation() {
         return this.location;
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
