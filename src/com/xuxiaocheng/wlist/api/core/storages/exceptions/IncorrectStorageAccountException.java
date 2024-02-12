@@ -10,6 +10,9 @@ public class IncorrectStorageAccountException extends InvalidStorageConfigExcept
     @Serial
     private static final long serialVersionUID = 378567523489688490L;
 
+    /**
+     * Internal constructor.
+     */
     public IncorrectStorageAccountException() {
         super("password");
     }

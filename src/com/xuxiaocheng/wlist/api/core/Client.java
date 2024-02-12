@@ -4,6 +4,9 @@ import com.xuxiaocheng.wlist.api.Main;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * The core client API.
+ */
 public enum Client {;
     /**
      * Connect to the core server ({@link com.xuxiaocheng.wlist.api.core.Server#start(int)}).

@@ -1,9 +1,12 @@
-package com.xuxiaocheng.wlist.api.user;
+package com.xuxiaocheng.wlist.api.web;
 
 import com.xuxiaocheng.wlist.api.Main;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * The web login API.
+ */
 public enum Login {;
     /**
      * Register as a visitor.
@@ -19,7 +22,7 @@ public enum Login {;
      * @param userId the user's id.
      * @param password the user's password.
      * @return a future, with the token (expire in 30 minutes).
-     * @see com.xuxiaocheng.wlist.api.user.exceptions.PasswordNotMatchedException
+     * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
      */
     public static CompletableFuture<String> login(final long userId, final String password) { return Main.future(); }
 

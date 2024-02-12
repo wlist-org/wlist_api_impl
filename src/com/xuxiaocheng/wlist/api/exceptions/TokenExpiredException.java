@@ -9,6 +9,9 @@ public class TokenExpiredException extends Exception {
     @Serial
     private static final long serialVersionUID = -2137962029079296659L;
 
+    /**
+     * Internal constructor.
+     */
     public TokenExpiredException() {
         super();
     }

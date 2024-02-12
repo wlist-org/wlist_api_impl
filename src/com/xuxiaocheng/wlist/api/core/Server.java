@@ -2,6 +2,9 @@ package com.xuxiaocheng.wlist.api.core;
 
 import com.xuxiaocheng.wlist.api.Main;
 
+/**
+ * The core server API.
+ */
 public enum Server {;
     /**
      * Start a core server.

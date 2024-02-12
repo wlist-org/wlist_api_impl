@@ -1,9 +1,12 @@
-package com.xuxiaocheng.wlist.api.user;
+package com.xuxiaocheng.wlist.api.web;
 
 import com.xuxiaocheng.wlist.api.Main;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * The web user API.
+ */
 public enum User {;
     /**
      * Reset the user's password.
@@ -13,7 +16,7 @@ public enum User {;
      * @return a future.
      * @see com.xuxiaocheng.wlist.api.exceptions.TokenExpiredException
      * @see com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException
-     * @see com.xuxiaocheng.wlist.api.user.exceptions.PasswordNotMatchedException
+     * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
      */
     public static CompletableFuture<Void> resetPassword(final String token, final String old, final String password) { return Main.future(); }
 
