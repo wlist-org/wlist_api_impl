@@ -2,8 +2,6 @@ package com.xuxiaocheng.wlist.api.core;
 
 import com.xuxiaocheng.wlist.api.Main;
 
-import java.util.concurrent.CompletableFuture;
-
 public enum Server {;
     /**
      * Start a core server.

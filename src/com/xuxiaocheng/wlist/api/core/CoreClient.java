@@ -1,9 +1,10 @@
 package com.xuxiaocheng.wlist.api.core;
 
-import com.xuxiaocheng.wlist.api.Main;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CoreClient implements AutoCloseable {
-    private final long ptr;
+    public final long ptr;
+    protected AtomicBoolean closed = new AtomicBoolean(false);
 
     public CoreClient(final long ptr) {
         super();
@@ -12,13 +13,15 @@ public class CoreClient implements AutoCloseable {
 
     @Override
     public void close() {
-        throw Main.stub(); // TODO
+        if (this.closed.compareAndSet(false, true))
+            Client.close(this);
     }
 
     @Override
     public String toString() {
         return "CoreClient{" +
                 "ptr=" + this.ptr +
+                ", closed=" + this.closed +
                 '}';
     }
 }
