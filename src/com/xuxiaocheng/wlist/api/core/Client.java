@@ -31,4 +31,11 @@ public enum Client {;
      * @return a future, with the core token. (expire in 1 hour.)
      */
     public static CompletableFuture<String> login(final CoreClient client, final String username, final String password) { return Main.future(); }
+
+    /**
+     * Refresh the token. (But the old token can still be used.)
+     * @param token the core token.
+     * @return a future, with a new core token.
+     */
+    public static CompletableFuture<String> refresh(final String token) { return Main.future(); }
 }
