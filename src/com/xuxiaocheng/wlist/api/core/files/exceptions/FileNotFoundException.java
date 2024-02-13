@@ -5,12 +5,15 @@ import com.xuxiaocheng.wlist.api.core.files.FileLocation;
 import java.io.Serial;
 
 /**
- * Thrown if the file/directory not found.
+ * Thrown if the file/directory does not exist.
  */
 public class FileNotFoundException extends RuntimeException {
     @Serial
     private static final long serialVersionUID = 2735411178138322925L;
 
+    /**
+     * The location which not found.
+     */
     protected final FileLocation location;
 
     /**
@@ -21,12 +24,11 @@ public class FileNotFoundException extends RuntimeException {
         this.location = location;
     }
 
+    /**
+     * Get the location not found.
+     * @return the location which not found.
+     */
     public FileLocation getLocation() {
         return this.location;
-    }
-
-    @Override
-    public String toString() {
-        return super.toString();
     }
 }

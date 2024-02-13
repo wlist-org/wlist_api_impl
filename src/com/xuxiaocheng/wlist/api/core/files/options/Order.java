@@ -15,7 +15,7 @@ public enum Order {
     Name,
 
     /**
-     * true/false. true is ahead of false.
+     * true/false. 'true' is ahead of 'false'.
      */
     Directory,
 

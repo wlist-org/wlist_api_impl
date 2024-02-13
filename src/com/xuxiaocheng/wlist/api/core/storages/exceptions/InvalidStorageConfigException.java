@@ -11,7 +11,7 @@ public class InvalidStorageConfigException extends RuntimeException {
 
     /**
      * Internal constructor.
-     * @param field the field that is invalid
+     * @param field the field that is invalid.
      */
     public InvalidStorageConfigException(final String field) {
         super(field);
@@ -19,7 +19,7 @@ public class InvalidStorageConfigException extends RuntimeException {
 
     /**
      * Get the field.
-     * @return the field name
+     * @return the field name.
      */
     public String getField() {
         return this.getMessage();

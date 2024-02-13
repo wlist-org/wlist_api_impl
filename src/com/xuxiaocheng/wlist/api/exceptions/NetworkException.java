@@ -1,6 +1,5 @@
 package com.xuxiaocheng.wlist.api.exceptions;
 
-import java.io.IOException;
 import java.io.Serial;
 
 /**
@@ -12,7 +11,7 @@ public class NetworkException extends InternalException {
 
     /**
      * Internal constructor.
-     * @param message error message
+     * @param message error message.
      */
     public NetworkException(final String message) {
         super(message);
