@@ -15,7 +15,7 @@ public class CoreClient implements AutoCloseable {
     /**
      * A flag indicates whether this client is closed.
      */
-    protected AtomicBoolean closed = new AtomicBoolean(false);
+    protected final AtomicBoolean closed = new AtomicBoolean(false);
 
     /**
      * The internal constructor.
