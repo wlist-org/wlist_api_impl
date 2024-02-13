@@ -17,7 +17,7 @@ public enum Storage {;
      * @param storage the name of the storage to remove.
      * @return a future.
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageNotFoundException
-     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageInLockedException
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageInLockException
      */
     public static CompletableFuture<Void> remove(final CoreClient client, final String token, final String storage) { return Main.future(); }
 

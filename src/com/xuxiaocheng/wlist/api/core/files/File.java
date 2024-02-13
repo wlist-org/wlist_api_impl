@@ -34,4 +34,16 @@ public enum File {;
      * @return a future, with the optional file/directory information.
      */
     public static CompletableFuture<Optional<FileInformation>> get(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
+
+    /**
+     * Trash the file/directory.
+     * @param client the core client.
+     * @param token the core token.
+     * @param file the location of the file/directory
+     * @return a future.
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.ComplexOperationException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileInLockException
+     */
+    public static CompletableFuture<Void> trash(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
 }

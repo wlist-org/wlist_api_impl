@@ -5,7 +5,7 @@ import java.io.Serial;
 /**
  * Thrown if the storage is locked.
  */
-public class StorageInLockedException extends RuntimeException {
+public class StorageInLockException extends RuntimeException {
     @Serial
     private static final long serialVersionUID = -4737443365855387892L;
 
@@ -13,7 +13,7 @@ public class StorageInLockedException extends RuntimeException {
      * Internal constructor.
      * @param message error message.
      */
-    public StorageInLockedException(final String message) {
+    public StorageInLockException(final String message) {
         super(message);
     }
 }
