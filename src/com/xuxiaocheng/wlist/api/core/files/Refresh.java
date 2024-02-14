@@ -2,6 +2,7 @@ package com.xuxiaocheng.wlist.api.core.files;
 
 import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
+import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.tokens.RefreshToken;
 
 import java.util.concurrent.CompletableFuture;
@@ -19,7 +20,7 @@ public enum Refresh {;
      * @return a future, with the refresh token.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      */
-    public static CompletableFuture<RefreshToken> refresh(final CoreClient client, final String token, final FileLocation directory) { return Main.future(); }
+    public static CompletableFuture<RefreshConfirmation> refresh(final CoreClient client, final String token, final FileLocation directory) { return Main.future(); }
 
     /**
      * Cancel a refresh.

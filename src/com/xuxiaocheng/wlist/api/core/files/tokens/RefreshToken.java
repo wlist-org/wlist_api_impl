@@ -3,8 +3,8 @@ package com.xuxiaocheng.wlist.api.core.files.tokens;
 import java.io.Serializable;
 
 /**
- * The confirmation to refresh a directory.
- * @param id the confirmation id.
+ * The refresh token.
+ * @param token internal token.
  */
-public record RefreshToken(String id) implements Serializable {
+public record RefreshToken(String token) implements Serializable {
 }

@@ -4,6 +4,7 @@ import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.beans.FileInformation;
 import com.xuxiaocheng.wlist.api.core.files.beans.FileListInformation;
+import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.tokens.RefreshToken;
 import com.xuxiaocheng.wlist.api.core.files.options.ListFileOptions;
 import io.jbock.util.Either;
@@ -24,7 +25,7 @@ public enum File {;
      * @return a future, with the list result or the refresh token.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      */
-    public static CompletableFuture<Either<FileListInformation, RefreshToken>> list(final CoreClient client, final String token, final FileLocation directory, final ListFileOptions options) { return Main.future(); }
+    public static CompletableFuture<Either<FileListInformation, RefreshConfirmation>> list(final CoreClient client, final String token, final FileLocation directory, final ListFileOptions options) { return Main.future(); }
 
     /**
      * Get the file/directory information.
