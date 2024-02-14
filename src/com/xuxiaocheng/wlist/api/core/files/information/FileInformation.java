@@ -1,4 +1,4 @@
-package com.xuxiaocheng.wlist.api.core.files.beans;
+package com.xuxiaocheng.wlist.api.core.files.information;
 
 import java.io.Serializable;
 import java.time.ZonedDateTime;

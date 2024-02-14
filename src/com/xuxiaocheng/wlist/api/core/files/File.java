@@ -2,8 +2,8 @@ package com.xuxiaocheng.wlist.api.core.files;
 
 import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
-import com.xuxiaocheng.wlist.api.core.files.beans.FileInformation;
-import com.xuxiaocheng.wlist.api.core.files.beans.FileListInformation;
+import com.xuxiaocheng.wlist.api.core.files.information.FileInformation;
+import com.xuxiaocheng.wlist.api.core.files.information.FileListInformation;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.options.ListFileOptions;
 import io.jbock.util.Either;
