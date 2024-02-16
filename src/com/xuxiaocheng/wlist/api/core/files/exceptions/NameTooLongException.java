@@ -42,7 +42,7 @@ public class NameTooLongException extends RuntimeException {
 
     /**
      * Get the too long name.
-     * @return the too long name
+     * @return the too long name.
      */
     public String getName() {
         return this.name;
