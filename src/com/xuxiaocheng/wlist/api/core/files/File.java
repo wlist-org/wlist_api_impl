@@ -5,6 +5,7 @@ import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.information.FileInformation;
 import com.xuxiaocheng.wlist.api.core.files.information.FileListInformation;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
+import com.xuxiaocheng.wlist.api.core.files.options.Duplicate;
 import com.xuxiaocheng.wlist.api.core.files.options.ListFileOptions;
 import io.jbock.util.Either;
 
@@ -46,4 +47,15 @@ public enum File {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileInLockException
      */
     public static CompletableFuture<Void> trash(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
+
+    /**
+     * Create a new empty directory.
+     * @param client the core client.
+     * @param token the core token.
+     * @param parent the parent directory.
+     * @param name the name of new directory.
+     * @param duplicate duplication policy of the new directory.
+     * @return a future, with the information of the new directory.
+     */
+    public static CompletableFuture<FileInformation> mkdir(final CoreClient client, final String token, final FileLocation parent, final String name, final Duplicate duplicate) { return Main.future(); }
 }

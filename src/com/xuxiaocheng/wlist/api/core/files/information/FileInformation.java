@@ -12,7 +12,7 @@ import java.time.ZonedDateTime;
  * @param size the file/directory size. (-1 means unknown.)
  * @param createTime creation time.
  * @param updateTime update time.
- * @param optionalMd5 the optional(<b>nullable</b>) md5. (This is a lowercase string with a length of 32.)
+ * @param optionalMd5 the optional(<b>nullable</b>) md5. (This is a lowercase string with a length of 32.) (For directory, it's always null.)
  */
 public record FileInformation(long id, long parentId, String name, boolean isDirectory, long size,
                               ZonedDateTime createTime, ZonedDateTime updateTime,
