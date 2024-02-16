@@ -50,6 +50,19 @@ public enum File {;
     public static CompletableFuture<Void> trash(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
 
     /**
+     * Check the file/directory name in valid.
+     * @param client the core client.
+     * @param token the core token.
+     * @param storage the target storage.
+     * @param name the file/directory name.
+     * @see com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.NameTooLongException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.InvalidFilenameException
+     */
+    public static void checkName(final CoreClient client, final String token, final String storage, final String name) { throw Main.stub(); }
+
+    /**
      * Create a new empty directory.
      * @param client the core client.
      * @param token the core token.
