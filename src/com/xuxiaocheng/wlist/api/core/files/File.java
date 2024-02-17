@@ -67,7 +67,7 @@ public enum File {;
      * @param client the core client.
      * @param token the core token.
      * @param parent the parent directory.
-     * @param name the name of new directory.
+     * @param name the name of the new directory.
      * @param duplicate duplication policy of the new directory.
      * @return a future, with the information of the new directory.
      * @see com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException

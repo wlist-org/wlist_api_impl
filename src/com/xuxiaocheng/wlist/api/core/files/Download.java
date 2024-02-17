@@ -50,7 +50,7 @@ public enum Download {;
      * This method will start downloading from the {@code start} byte
      * and try to fill the {@code buffer} as much as possible.
      * <p>The behavior of this method is similar to sending a GET request containing a range header.</p>
-     * <p>You can call {@code buffer.position()} to get the downloading progress.</p>
+     * <p>You can call {@code buffer.position()} to get the downloading progress. (Not real-time, but at a small interval. Maybe hundreds to thousands of bytes)</p>
      * @param client the core client.
      * @param token the download token.
      * @param id the download chunk id.
@@ -62,6 +62,8 @@ public enum Download {;
 
     /**
      * Finish a download.
+     * This method is similar to call {@link com.xuxiaocheng.wlist.api.core.files.Download#cancel(com.xuxiaocheng.wlist.api.core.CoreClient, com.xuxiaocheng.wlist.api.core.files.tokens.DownloadToken)},
+     * but different in log.
      * @param client the core client.
      * @param token the download token.
      * @return a future.

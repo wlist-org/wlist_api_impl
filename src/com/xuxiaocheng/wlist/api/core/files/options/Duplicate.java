@@ -1,7 +1,7 @@
 package com.xuxiaocheng.wlist.api.core.files.options;
 
 /**
- * The policy when uploading a file/creating a directory that already exists.
+ * The policy when uploading a file/creating a directory that already exists with the same name.
  */
 public enum Duplicate {
     /**
