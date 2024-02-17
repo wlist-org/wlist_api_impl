@@ -45,7 +45,7 @@ public enum File {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.ComplexOperationException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileInLockException
-     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.ReadOnlyStorageException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
     public static CompletableFuture<Void> trash(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
 
@@ -57,8 +57,8 @@ public enum File {;
      * @param name the file/directory name.
      * @see com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
-     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.NameTooLongException
-     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.InvalidFilenameException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.NameTooLongException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException
      */
     public static void checkName(final CoreClient client, final String token, final String storage, final String name) { throw Main.stub(); }
 
@@ -72,9 +72,9 @@ public enum File {;
      * @return a future, with the information of the new directory.
      * @see com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
-     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.NameTooLongException
-     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.InvalidFilenameException
-     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.ReadOnlyStorageException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.NameTooLongException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
     public static CompletableFuture<FileInformation> mkdir(final CoreClient client, final String token, final FileLocation parent, final String name, final Duplicate duplicate) { return Main.future(); }
 }

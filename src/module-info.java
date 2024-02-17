@@ -14,6 +14,7 @@ module com.xuxiaocheng.wlist.api {
     exports com.xuxiaocheng.wlist.api.core.storages.configs;
     exports com.xuxiaocheng.wlist.api.core.files;
     exports com.xuxiaocheng.wlist.api.core.files.exceptions;
+    exports com.xuxiaocheng.wlist.api.core.files.exceptions.limitations;
     exports com.xuxiaocheng.wlist.api.core.files.options;
     exports com.xuxiaocheng.wlist.api.core.files.confirmations;
     exports com.xuxiaocheng.wlist.api.core.files.tokens;

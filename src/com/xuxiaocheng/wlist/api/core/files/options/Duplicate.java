@@ -17,7 +17,7 @@ public enum Duplicate {
     /**
      * Keep the old file/directory. Add a suffix to the new file/directory name.
      * The suffix may be "\u0020\u0028\u0031\u0029", "\u0020\u0028\u0032\u0029", "\uff08\u0031\uff09", etc.
-     * <p>This may throw {@link com.xuxiaocheng.wlist.api.core.files.exceptions.NameTooLongException} even if the original name is short enough, because the suffix has been added.</p>
+     * <p>This may throw {@link com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.NameTooLongException} even if the original name is short enough, because the suffix has been added.</p>
      */
     Rename,
 

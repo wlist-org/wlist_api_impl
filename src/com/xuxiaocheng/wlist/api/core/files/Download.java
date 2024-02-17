@@ -23,6 +23,7 @@ public enum Download {;
      * @param to the last byte index of the entire file. (For entire file, you can pass {@link java.lang.Long#MAX_VALUE}.)
      * @return a future, with the download confirmation.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.FlowNotEnoughException
      * @see java.lang.IllegalArgumentException
      */
     public static CompletableFuture<DownloadConfirmation> request(final CoreClient client, final String token, final FileLocation file, final long from, final long to) { return Main.future(); }
