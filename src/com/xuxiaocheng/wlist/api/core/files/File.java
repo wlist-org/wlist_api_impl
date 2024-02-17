@@ -60,7 +60,7 @@ public enum File {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.NameTooLongException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException
      */
-    public static void checkName(final CoreClient client, final String token, final String storage, final String name) { throw Main.stub(); }
+    public static CompletableFuture<Void> checkName(final CoreClient client, final String token, final String storage, final String name) { throw Main.stub(); }
 
     /**
      * Create a new empty directory.

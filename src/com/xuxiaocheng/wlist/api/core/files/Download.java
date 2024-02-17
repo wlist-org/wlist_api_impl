@@ -66,7 +66,5 @@ public enum Download {;
      * @param token the download token.
      * @return a future.
      */
-    public static CompletableFuture<Void> finish(final CoreClient client, final DownloadToken token) {
-        return Download.cancel(client, token);
-    }
+    public static CompletableFuture<Void> finish(final CoreClient client, final DownloadToken token) { return Main.future(); }
 }
