@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
  */
 public enum Download {;
     /**
-     * Download the file.
+     * Request to download the file.
      * Note the download token will lock the file until it is canceled/finished.
      * @param client the core client.
      * @param token the core token.
@@ -25,7 +25,7 @@ public enum Download {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      * @see java.lang.IllegalArgumentException
      */
-    public static CompletableFuture<DownloadConfirmation> download(final CoreClient client, final String token, final FileLocation file, final long from, final long to) { return Main.future(); }
+    public static CompletableFuture<DownloadConfirmation> request(final CoreClient client, final String token, final FileLocation file, final long from, final long to) { return Main.future(); }
 
     /**
      * Cancel a download.
@@ -44,7 +44,7 @@ public enum Download {;
     public static CompletableFuture<DownloadInformation> confirm(final CoreClient client, final DownloadToken token) { return Main.future(); }
 
     /**
-     * Real method to download the file.
+     * Download the file chunk.
      * Note that the buffer needn't be large enough to contain the entire chunk.
      * This method will start downloading from the {@code start} byte
      * and try to fill the {@code buffer} as much as possible.
@@ -57,7 +57,7 @@ public enum Download {;
      * @param start the start position to download of the <b>chunk</b>.
      * @return a future.
      */
-    public static CompletableFuture<Void> chunk(final CoreClient client, final DownloadToken token, final int id, final ByteBuffer buffer, final long start) { return Main.future(); }
+    public static CompletableFuture<Void> download(final CoreClient client, final DownloadToken token, final int id, final ByteBuffer buffer, final long start) { return Main.future(); }
 
     /**
      * Finish a download.
