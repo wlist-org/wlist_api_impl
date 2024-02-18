@@ -12,9 +12,9 @@ public class NameTooLongException extends RuntimeException {
     private static final long serialVersionUID = 6260690462739069062L;
 
     /**
-     * The name of the backend storage.
+     * the id of the backend storage.
      */
-    protected final String storage;
+    protected final long storage;
 
     /**
      * The name which is too long. (May added suffix.)
@@ -23,20 +23,20 @@ public class NameTooLongException extends RuntimeException {
 
     /**
      * Internal constructor.
-     * @param storage the name of the backend storage.
+     * @param storage the id of the backend storage.
      * @param name the too long name.
      */
-    public NameTooLongException(final String storage, final String name) {
+    public NameTooLongException(final long storage, final String name) {
         super(name + " (storage: " + storage + ")");
         this.storage = storage;
         this.name = name;
     }
 
     /**
-     * Get the name of the backend storage.
-     * @return the name of the backend storage.
+     * Get the id of the backend storage.
+     * @return the id of the backend storage.
      */
-    public String getStorage() {
+    public long getStorage() {
         return this.storage;
     }
 

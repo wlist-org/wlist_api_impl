@@ -10,24 +10,24 @@ public class ReadOnlyStorageException extends RuntimeException {
     private static final long serialVersionUID = -5809318309571708372L;
 
     /**
-     * The name of the backend storage.
+     * the id of the backend storage.
      */
-    protected final String storage;
+    protected final long storage;
 
     /**
      * Internal constructor.
-     * @param storage the name of the backend storage.
+     * @param storage the id of the backend storage.
      */
-    public ReadOnlyStorageException(final String storage) {
+    public ReadOnlyStorageException(final long storage) {
         super(storage);
         this.storage = storage;
     }
 
     /**
-     * Get the name of the backend storage.
-     * @return the name of the backend storage.
+     * Get the id of the backend storage.
+     * @return the id of the backend storage.
      */
-    public String getStorage() {
+    public long getStorage() {
         return this.storage;
     }
 }

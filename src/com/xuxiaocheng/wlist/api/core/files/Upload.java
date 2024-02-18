@@ -74,7 +74,7 @@ public enum Upload {;
      * @param client the core client.
      * @param token the upload token.
      * @return a future, with the information of the new file.
-     * @see com.xuxiaocheng.wlist.api.core.files.information.UploadChunkIncompleteException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.UploadChunkIncompleteException
      */
     public static CompletableFuture<FileInformation> finish(final CoreClient client, final UploadToken token) { return Main.future(); }
 }

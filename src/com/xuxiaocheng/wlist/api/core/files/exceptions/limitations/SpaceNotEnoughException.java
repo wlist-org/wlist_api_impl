@@ -10,9 +10,9 @@ public class SpaceNotEnoughException extends RuntimeException {
     private static final long serialVersionUID = 1307043806506563612L;
 
     /**
-     * The name of the backend storage.
+     * the id of the backend storage.
      */
-    protected final String storage;
+    protected final long storage;
 
     /**
      * The required space.
@@ -26,11 +26,11 @@ public class SpaceNotEnoughException extends RuntimeException {
 
     /**
      * Internal constructor.
-     * @param storage the name of the backend storage.
+     * @param storage the id of the backend storage.
      * @param require the required space.
      * @param remaining the remaining space.
      */
-    public SpaceNotEnoughException(final String storage, final long require, final long remaining) {
+    public SpaceNotEnoughException(final long storage, final long require, final long remaining) {
         super(storage + ": space " + require + (remaining == -1 ? " not enough" : " > " + remaining));
         assert remaining == -1 || require > remaining;
         this.storage = storage;
@@ -39,10 +39,10 @@ public class SpaceNotEnoughException extends RuntimeException {
     }
 
     /**
-     * Get the name of the backend storage.
-     * @return the name of the backend storage.
+     * Get the id of the backend storage.
+     * @return the id of the backend storage.
      */
-    public String getStorage() {
+    public long getStorage() {
         return this.storage;
     }
 

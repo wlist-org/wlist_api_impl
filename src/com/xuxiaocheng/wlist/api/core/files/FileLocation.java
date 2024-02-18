@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 /**
  * A record that locates a file/directory.
- * @param storage the storage.
+ * @param storage the id of the storage.
  * @param fileId the file/directory id.
  * @param isDirectory true if the location is a directory.
  */
-public record FileLocation(String storage, long fileId, boolean isDirectory) implements Serializable {
+public record FileLocation(long storage, long fileId, boolean isDirectory) implements Serializable {
 }

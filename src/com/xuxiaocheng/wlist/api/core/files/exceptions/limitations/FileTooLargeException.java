@@ -10,9 +10,9 @@ public class FileTooLargeException extends RuntimeException {
     private static final long serialVersionUID = -8726792675627293257L;
 
     /**
-     * The name of the backend storage.
+     * The id of the backend storage.
      */
-    protected final String storage;
+    protected final long storage;
 
     /**
      * The required filesize.
@@ -26,11 +26,11 @@ public class FileTooLargeException extends RuntimeException {
 
     /**
      * Internal constructor.
-     * @param storage the name of the backend storage.
+     * @param storage the id of the backend storage.
      * @param require the required filesize.
      * @param limitation the limitation.
      */
-    public FileTooLargeException(final String storage, final long require, final long limitation) {
+    public FileTooLargeException(final long storage, final long require, final long limitation) {
         super(storage + ": file " + require + (limitation == -1 ? " too large" : " > " + limitation));
         assert limitation == -1 || require > limitation;
         this.storage = storage;
@@ -39,10 +39,10 @@ public class FileTooLargeException extends RuntimeException {
     }
 
     /**
-     * Get the name of the backend storage.
-     * @return the name of the backend storage.
+     * Get the id of the backend storage.
+     * @return the id of the backend storage.
      */
-    public String getStorage() {
+    public long getStorage() {
         return this.storage;
     }
 

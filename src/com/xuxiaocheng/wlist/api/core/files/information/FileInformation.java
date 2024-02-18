@@ -6,7 +6,7 @@ import java.time.ZonedDateTime;
 /**
  * The information of a file/directory.
  * @param id the file/directory id.
- * @param parentId the parent directory id.
+ * @param parentId the parent directory id. (For root directory, it equals to id.)
  * @param name the file/directory name.
  * @param isDirectory whether a directory or a file.
  * @param size the file/directory size. (-1 means unknown.)

@@ -11,9 +11,9 @@ public class IllegalSuffixException extends RuntimeException {
     private static final long serialVersionUID = 5220280065799661837L;
 
     /**
-     * The name of the backend storage.
+     * The id of the backend storage.
      */
-    protected final String storage;
+    protected final long storage;
 
     /**
      * The suffix that is not allowed. (Without the dot.)
@@ -22,20 +22,20 @@ public class IllegalSuffixException extends RuntimeException {
 
     /**
      * Internal constructor.
-     * @param storage the name of the backend storage.
+     * @param storage the id of the backend storage.
      * @param suffix the suffix that is not allowed.
      */
-    public IllegalSuffixException(final String storage, final String suffix) {
+    public IllegalSuffixException(final long storage, final String suffix) {
         super(storage + ": Illegal suffix: " + suffix);
         this.storage = storage;
         this.suffix = suffix;
     }
 
     /**
-     * Get the name of the backend storage.
-     * @return the name of the backend storage.
+     * Get the id of the backend storage.
+     * @return the id of the backend storage.
      */
-    public String getStorage() {
+    public long getStorage() {
         return this.storage;
     }
 
