@@ -78,4 +78,55 @@ public enum File {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
     public static CompletableFuture<FileInformation> mkdir(final CoreClient client, final String token, final FileLocation parent, final String name, final Duplicate duplicate) { return Main.future(); }
+
+    /**
+     * Copy the source file/directory to the target directory
+     * @param client the core client.
+     * @param token the core token.
+     * @param source the source file/directory.
+     * @param target the target directory. ({@code assert target.isDirectory();})
+     * @param name the copied file/directory name.
+     * @param duplicate duplication policy of the new file/directory.
+     * @return a future, with the information of the new file/directory.
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.ComplexOperationException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.SpaceNotEnoughException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.FlowNotEnoughException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.FileTooLargeException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.NameTooLongException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.IllegalSuffixException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
+     */
+    public static CompletableFuture<FileInformation> copy(final CoreClient client, final String token, final FileLocation source, final FileLocation target, final String name, final Duplicate duplicate) { return Main.future(); }
+
+    /**
+     * Move the source file/directory to the target directory.
+     * @param client the core client.
+     * @param token the core token.
+     * @param source the source file/directory.
+     * @param target the target directory. ({@code assert target.isDirectory();})
+     * @param duplicate duplication policy of the new file/directory.
+     * @return a future, with the information of the new file/directory.
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.ComplexOperationException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.SpaceNotEnoughException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.FlowNotEnoughException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.FileTooLargeException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.NameTooLongException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
+     */
+    public static CompletableFuture<FileInformation> move(final CoreClient client, final String token, final FileLocation source, final FileLocation target, final Duplicate duplicate) { return Main.future(); }
+
+    /**
+     * Rename the source file/directory.
+     * @param client the core client.
+     * @param token the core token.
+     * @param file the file/directory you want to rename.
+     * @param name the new name.
+     * @param duplicate duplication policy of the new file/directory.
+     * @return a future, with the information of the new file/directory.
+     */
+    public static CompletableFuture<FileInformation> rename(final CoreClient client, final String token, final FileLocation file, final String name, final Duplicate duplicate) { return Main.future(); }
 }
