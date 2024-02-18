@@ -127,6 +127,12 @@ public enum File {;
      * @param name the new name.
      * @param duplicate duplication policy of the new file/directory.
      * @return a future, with the information of the new file/directory.
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.ComplexOperationException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.NameTooLongException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.IllegalSuffixException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
     public static CompletableFuture<FileInformation> rename(final CoreClient client, final String token, final FileLocation file, final String name, final Duplicate duplicate) { return Main.future(); }
 }
