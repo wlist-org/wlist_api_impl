@@ -32,6 +32,7 @@ public enum Upload {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.FileTooLargeException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.NameTooLongException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.IllegalSuffixException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
     public static CompletableFuture<UploadConfirmation> request(final CoreClient client, final String token, final FileLocation parent, final String name, final String md5, final Duplicate duplicate) { return Main.future(); }
