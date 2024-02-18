@@ -2,6 +2,7 @@ package com.xuxiaocheng.wlist.api.core.files;
 
 import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
+import com.xuxiaocheng.wlist.api.core.files.information.FileDetailsInformation;
 import com.xuxiaocheng.wlist.api.core.files.information.FileInformation;
 import com.xuxiaocheng.wlist.api.core.files.information.FileListInformation;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
@@ -34,7 +35,7 @@ public enum File {;
      * @param file the location of the file/directory
      * @return a future, with the optional file/directory information.
      */
-    public static CompletableFuture<Optional<FileInformation>> get(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
+    public static CompletableFuture<Optional<FileDetailsInformation>> get(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
 
     /**
      * Trash the file/directory.
