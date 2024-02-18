@@ -8,7 +8,7 @@ import com.xuxiaocheng.wlist.api.core.storages.configs.LanzouConfig;
 /**
  * The core lanzou storage API.
  */
-public enum Lanzou implements StorageType { Instance;
+public enum Lanzou implements StorageType {/** The instance. */ Instance;
 
     /**
      * Add a lanzou storage.

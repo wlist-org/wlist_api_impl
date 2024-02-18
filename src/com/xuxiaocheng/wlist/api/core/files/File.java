@@ -51,7 +51,8 @@ public enum File {;
     public static NetworkFuture<Void> trash(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
 
     /**
-     * Check the file/directory name in valid.
+     * Check the file/directory name is valid.
+     * Note that this method only provides fast filtering, and some cases may not be covered.
      * @param client the core client.
      * @param token the core token.
      * @param storage the target storage.
@@ -61,6 +62,7 @@ public enum File {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.NameTooLongException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.IllegalSuffixException
+     * @return a future, normal completion means the name may be valid.
      */
     public static NetworkFuture<Void> checkName(final CoreClient client, final String token, final String storage, final String name) { throw Main.stub(); }
 

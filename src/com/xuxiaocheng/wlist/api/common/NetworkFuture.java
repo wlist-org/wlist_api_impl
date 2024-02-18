@@ -9,7 +9,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * A wrapper for CompletableFuture for better management.
  * @param <T> the result type.
  */
-public class NetworkFuture<T> extends CompletableFuture<T> implements AutoCloseable {
+public final class NetworkFuture<T> extends CompletableFuture<T> implements AutoCloseable {
     /**
      * Create a new NetworkFuture.
      * @return the new instance.
@@ -19,11 +19,11 @@ public class NetworkFuture<T> extends CompletableFuture<T> implements AutoClosea
         return new NetworkFuture<>();
     }
 
-    protected NetworkFuture() {
+    private NetworkFuture() {
         super();
     }
 
-    protected final AtomicBoolean closed = new AtomicBoolean(false);
+    private final AtomicBoolean closed = new AtomicBoolean(false);
 
     @Override
     public void close() {
