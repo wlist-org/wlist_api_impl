@@ -24,7 +24,7 @@ public final class Main {
      * @return the stub future.
      */
     public static <T> NetworkFuture<T> future() {
-        final NetworkFuture<T> future = new NetworkFuture<>();
+        final NetworkFuture<T> future = NetworkFuture.create();
         future.completeExceptionally(Main.stub());
         return future;
     }
