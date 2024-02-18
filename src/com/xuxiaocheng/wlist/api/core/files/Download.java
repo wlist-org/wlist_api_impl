@@ -1,13 +1,13 @@
 package com.xuxiaocheng.wlist.api.core.files;
 
 import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.DownloadConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.information.DownloadInformation;
 import com.xuxiaocheng.wlist.api.core.files.tokens.DownloadToken;
 
 import java.nio.ByteBuffer;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * The core download API.
@@ -26,7 +26,7 @@ public enum Download {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.FlowNotEnoughException
      * @see java.lang.IllegalArgumentException
      */
-    public static CompletableFuture<DownloadConfirmation> request(final CoreClient client, final String token, final FileLocation file, final long from, final long to) { return Main.future(); }
+    public static NetworkFuture<DownloadConfirmation> request(final CoreClient client, final String token, final FileLocation file, final long from, final long to) { return Main.future(); }
 
     /**
      * Cancel a download.
@@ -34,7 +34,7 @@ public enum Download {;
      * @param token the download token.
      * @return a future.
      */
-    public static CompletableFuture<Void> cancel(final CoreClient client, final DownloadToken token) { return Main.future(); }
+    public static NetworkFuture<Void> cancel(final CoreClient client, final DownloadToken token) { return Main.future(); }
 
     /**
      * Confirm a download.
@@ -42,7 +42,7 @@ public enum Download {;
      * @param token the download token.
      * @return a future, with the download information.
      */
-    public static CompletableFuture<DownloadInformation> confirm(final CoreClient client, final DownloadToken token) { return Main.future(); }
+    public static NetworkFuture<DownloadInformation> confirm(final CoreClient client, final DownloadToken token) { return Main.future(); }
 
     /**
      * Download the file chunk.
@@ -58,7 +58,7 @@ public enum Download {;
      * @param start the start position to download of the <b>chunk</b>.
      * @return a future.
      */
-    public static CompletableFuture<Void> download(final CoreClient client, final DownloadToken token, final int id, final ByteBuffer buffer, final long start) { return Main.future(); }
+    public static NetworkFuture<Void> download(final CoreClient client, final DownloadToken token, final int id, final ByteBuffer buffer, final long start) { return Main.future(); }
 
     /**
      * Finish a download.
@@ -68,5 +68,5 @@ public enum Download {;
      * @param token the download token.
      * @return a future.
      */
-    public static CompletableFuture<Void> finish(final CoreClient client, final DownloadToken token) { return Main.future(); }
+    public static NetworkFuture<Void> finish(final CoreClient client, final DownloadToken token) { return Main.future(); }
 }

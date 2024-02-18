@@ -1,8 +1,7 @@
 package com.xuxiaocheng.wlist.api.web;
 
 import com.xuxiaocheng.wlist.api.Main;
-
-import java.util.concurrent.CompletableFuture;
+import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 
 /**
  * The web user API.
@@ -18,7 +17,7 @@ public enum User {;
      * @see com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
      */
-    public static CompletableFuture<Void> resetPassword(final String token, final String old, final String password) { return Main.future(); }
+    public static NetworkFuture<Void> resetPassword(final String token, final String old, final String password) { return Main.future(); }
 
     /**
      * Get the user's nickname.
@@ -26,7 +25,7 @@ public enum User {;
      * @return a future, with the user's nickname.
      * @see com.xuxiaocheng.wlist.api.exceptions.TokenExpiredException
      */
-    public static CompletableFuture<String> getNickname(final String token) { return Main.future(); }
+    public static NetworkFuture<String> getNickname(final String token) { return Main.future(); }
 
     /**
      * Set the user's nickname.
@@ -36,5 +35,5 @@ public enum User {;
      * @see com.xuxiaocheng.wlist.api.exceptions.TokenExpiredException
      * @see com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException
      */
-    public static CompletableFuture<Void> setNickname(final String token, final String nickname) { return Main.future(); }
+    public static NetworkFuture<Void> setNickname(final String token, final String nickname) { return Main.future(); }
 }

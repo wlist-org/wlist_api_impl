@@ -1,8 +1,7 @@
 package com.xuxiaocheng.wlist.api.web;
 
 import com.xuxiaocheng.wlist.api.Main;
-
-import java.util.concurrent.CompletableFuture;
+import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 
 /**
  * The web login API.
@@ -15,7 +14,7 @@ public enum Login {;
      * @return a future, with the user's id.
      * @see com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException
      */
-    public static CompletableFuture<Long> register(final String deviceId, final String password) { return Main.future(); }
+    public static NetworkFuture<Long> register(final String deviceId, final String password) { return Main.future(); }
 
     /**
      * Login.
@@ -24,7 +23,7 @@ public enum Login {;
      * @return a future, with the token. (expire in 30 minutes.)
      * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
      */
-    public static CompletableFuture<String> login(final long userId, final String password) { return Main.future(); }
+    public static NetworkFuture<String> login(final long userId, final String password) { return Main.future(); }
 
     /**
      * Refresh the token. (Then the old token cannot be used.)
@@ -32,5 +31,5 @@ public enum Login {;
      * @return a future, with a new token.
      * @see com.xuxiaocheng.wlist.api.exceptions.TokenExpiredException
      */
-    public static CompletableFuture<String> refresh(final String token) { return Main.future(); }
+    public static NetworkFuture<String> refresh(final String token) { return Main.future(); }
 }

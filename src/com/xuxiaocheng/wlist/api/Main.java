@@ -1,6 +1,6 @@
 package com.xuxiaocheng.wlist.api;
 
-import java.util.concurrent.CompletableFuture;
+import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 
 /**
  * Stub function.
@@ -23,8 +23,8 @@ public final class Main {
      * @param <T> the generic type.
      * @return the stub future.
      */
-    public static <T> CompletableFuture<T> future() {
-        final CompletableFuture<T> future = new CompletableFuture<>();
+    public static <T> NetworkFuture<T> future() {
+        final NetworkFuture<T> future = new NetworkFuture<>();
         future.completeExceptionally(Main.stub());
         return future;
     }

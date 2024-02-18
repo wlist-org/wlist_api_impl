@@ -1,6 +1,7 @@
 package com.xuxiaocheng.wlist.api.core.files;
 
 import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.information.FileDetailsInformation;
 import com.xuxiaocheng.wlist.api.core.files.information.FileInformation;
@@ -11,7 +12,6 @@ import com.xuxiaocheng.wlist.api.core.files.options.ListFileOptions;
 import io.jbock.util.Either;
 
 import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * The core file API.
@@ -26,7 +26,7 @@ public enum File {;
      * @return a future, with the list result or the refresh token.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      */
-    public static CompletableFuture<Either<FileListInformation, RefreshConfirmation>> list(final CoreClient client, final String token, final FileLocation directory, final ListFileOptions options) { return Main.future(); }
+    public static NetworkFuture<Either<FileListInformation, RefreshConfirmation>> list(final CoreClient client, final String token, final FileLocation directory, final ListFileOptions options) { return Main.future(); }
 
     /**
      * Get the file/directory information.
@@ -35,7 +35,7 @@ public enum File {;
      * @param file the location of the file/directory
      * @return a future, with the optional file/directory information.
      */
-    public static CompletableFuture<Optional<FileDetailsInformation>> get(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
+    public static NetworkFuture<Optional<FileDetailsInformation>> get(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
 
     /**
      * Trash the file/directory.
@@ -48,7 +48,7 @@ public enum File {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileInLockException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static CompletableFuture<Void> trash(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
+    public static NetworkFuture<Void> trash(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
 
     /**
      * Check the file/directory name in valid.
@@ -62,7 +62,7 @@ public enum File {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.IllegalSuffixException
      */
-    public static CompletableFuture<Void> checkName(final CoreClient client, final String token, final String storage, final String name) { throw Main.stub(); }
+    public static NetworkFuture<Void> checkName(final CoreClient client, final String token, final String storage, final String name) { throw Main.stub(); }
 
     /**
      * Create a new empty directory.
@@ -78,7 +78,7 @@ public enum File {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static CompletableFuture<FileInformation> mkdir(final CoreClient client, final String token, final FileLocation parent, final String name, final Duplicate duplicate) { return Main.future(); }
+    public static NetworkFuture<FileInformation> mkdir(final CoreClient client, final String token, final FileLocation parent, final String name, final Duplicate duplicate) { return Main.future(); }
 
     /**
      * Copy the source file/directory to the target directory
@@ -99,7 +99,7 @@ public enum File {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.IllegalSuffixException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static CompletableFuture<FileInformation> copy(final CoreClient client, final String token, final FileLocation source, final FileLocation target, final String name, final Duplicate duplicate) { return Main.future(); }
+    public static NetworkFuture<FileInformation> copy(final CoreClient client, final String token, final FileLocation source, final FileLocation target, final String name, final Duplicate duplicate) { return Main.future(); }
 
     /**
      * Move the source file/directory to the target directory.
@@ -118,7 +118,7 @@ public enum File {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static CompletableFuture<FileInformation> move(final CoreClient client, final String token, final FileLocation source, final FileLocation target, final Duplicate duplicate) { return Main.future(); }
+    public static NetworkFuture<FileInformation> move(final CoreClient client, final String token, final FileLocation source, final FileLocation target, final Duplicate duplicate) { return Main.future(); }
 
     /**
      * Rename the source file/directory.
@@ -135,5 +135,5 @@ public enum File {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.IllegalSuffixException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static CompletableFuture<FileInformation> rename(final CoreClient client, final String token, final FileLocation file, final String name, final Duplicate duplicate) { return Main.future(); }
+    public static NetworkFuture<FileInformation> rename(final CoreClient client, final String token, final FileLocation file, final String name, final Duplicate duplicate) { return Main.future(); }
 }

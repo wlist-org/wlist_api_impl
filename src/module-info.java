@@ -7,6 +7,7 @@ module com.xuxiaocheng.wlist.api {
 
     exports com.xuxiaocheng.wlist.api;
     exports com.xuxiaocheng.wlist.api.exceptions;
+    exports com.xuxiaocheng.wlist.api.common;
     exports com.xuxiaocheng.wlist.api.core;
     exports com.xuxiaocheng.wlist.api.core.exceptions;
     exports com.xuxiaocheng.wlist.api.core.storages;

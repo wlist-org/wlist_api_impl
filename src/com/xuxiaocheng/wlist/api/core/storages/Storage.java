@@ -1,10 +1,9 @@
 package com.xuxiaocheng.wlist.api.core.storages;
 
 import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.storages.information.StorageInformation;
-
-import java.util.concurrent.CompletableFuture;
 
 /**
  * The core storage API.
@@ -17,7 +16,7 @@ public enum Storage {;
      * @param storage the id of the storage.
      * @return a future, with the information of the storage.
      */
-    public static CompletableFuture<StorageInformation> get(final CoreClient client, final String token, final long storage) { return Main.future(); }
+    public static NetworkFuture<StorageInformation> get(final CoreClient client, final String token, final long storage) { return Main.future(); }
 
     /**
      * Remove a storage.
@@ -28,5 +27,5 @@ public enum Storage {;
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageNotFoundException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageInLockException
      */
-    public static CompletableFuture<Void> remove(final CoreClient client, final String token, final long storage) { return Main.future(); }
+    public static NetworkFuture<Void> remove(final CoreClient client, final String token, final long storage) { return Main.future(); }
 }
