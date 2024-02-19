@@ -1,5 +1,7 @@
 package com.xuxiaocheng.wlist.api.core.files.information;
 
+import com.xuxiaocheng.wlist.api.Main;
+
 import java.io.Serializable;
 import java.time.ZonedDateTime;
 
@@ -15,5 +17,7 @@ import java.time.ZonedDateTime;
  */
 public record FileInformation(long id, long parentId, String name, boolean isDirectory, long size,
                               ZonedDateTime createTime, ZonedDateTime updateTime)
-        implements Serializable {
+        implements Serializable, AutoCloseable {
+    @Override
+    public void close() { throw Main.stub(); }
 }
