@@ -2,6 +2,7 @@ package com.xuxiaocheng.wlist.api.core.files;
 
 import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.NetworkFuture;
+import com.xuxiaocheng.wlist.api.common.either.Either;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.information.FileDetailsInformation;
 import com.xuxiaocheng.wlist.api.core.files.information.FileInformation;
@@ -9,7 +10,6 @@ import com.xuxiaocheng.wlist.api.core.files.information.FileListInformation;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.options.Duplicate;
 import com.xuxiaocheng.wlist.api.core.files.options.ListFileOptions;
-import io.jbock.util.Either;
 
 import java.util.Optional;
 
