@@ -27,9 +27,10 @@ public enum Storage {;
      * @param client the core client.
      * @param token the core token.
      * @param storage the id of the storage.
+     * @param check true indicates the server should recheck the storage is available.
      * @return a future, with the optional information of the storage.
      */
-    public static NetworkFuture<Optional<StorageInformation>> get(final CoreClient client, final String token, final long storage) { return Main.future(); }
+    public static NetworkFuture<Optional<StorageInformation>> get(final CoreClient client, final String token, final long storage, final boolean check) { return Main.future(); }
 
     /**
      * Remove a storage.

@@ -32,10 +32,11 @@ public enum File {;
      * Get the file/directory information.
      * @param client the core client.
      * @param token the core token.
-     * @param file the location of the file/directory
+     * @param file the location of the file/directory.
+     * @param check true indicates the server should refresh the file information.
      * @return a future, with the optional file/directory information.
      */
-    public static NetworkFuture<Optional<FileDetailsInformation>> get(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
+    public static NetworkFuture<Optional<FileDetailsInformation>> get(final CoreClient client, final String token, final FileLocation file, final boolean check) { return Main.future(); }
 
     /**
      * Trash the file/directory.
