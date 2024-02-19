@@ -42,4 +42,31 @@ public enum Storage {;
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageInLockException
      */
     public static NetworkFuture<Void> remove(final CoreClient client, final String token, final long storage) { return Main.future(); }
+
+    /**
+     * Rename a storage.
+     * @param client the core client.
+     * @param token the core token.
+     * @param storage the id of the storage to rename.
+     * @param name the new name of the storage.
+     * @return a future.
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageNotFoundException
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageExistsException
+     */
+    public static NetworkFuture<Void> rename(final CoreClient client, final String token, final long storage, final String name) { return Main.future(); }
+
+    /**
+     * Set a storage as readonly/writable.
+     * For shared, if {@code readonly} is false, it will throw {@link com.xuxiaocheng.wlist.api.core.storages.exceptions.MismatchStorageTypeException}.
+     * Note that if the storage is already readonly/writable, it will be normally completed with no-effort.
+     * @param client the core client.
+     * @param token the core token.
+     * @param storage the id of the storage to set.
+     * @param readonly true means set to readonly, false means set to writable.
+     * @return a future.
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageNotFoundException
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageInLockException
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.MismatchStorageTypeException
+     */
+    public static NetworkFuture<Void> setReadonly(final CoreClient client, final String token, final long storage, final boolean readonly) { return Main.future(); }
 }

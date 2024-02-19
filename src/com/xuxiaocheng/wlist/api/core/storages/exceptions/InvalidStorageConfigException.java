@@ -10,18 +10,24 @@ public class InvalidStorageConfigException extends RuntimeException {
     private static final long serialVersionUID = -320110429948047601L;
 
     /**
+     * The field that is invalid.
+     */
+    protected final String field;
+
+    /**
      * Internal constructor.
      * @param field the field that is invalid.
      */
     public InvalidStorageConfigException(final String field) {
-        super(field);
+        super("Invalid: " + field);
+        this.field = field;
     }
 
     /**
-     * Get the field.
+     * Get the field name that is invalid.
      * @return the field name.
      */
     public String getField() {
-        return this.getMessage();
+        return this.field;
     }
 }
