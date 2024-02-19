@@ -16,12 +16,14 @@ public enum Login {;
      */
     public static NetworkFuture<Long> register(final String deviceId, final String password) { return Main.future(); }
 
+
     /**
      * Login.
      * @param userId the user's id.
      * @param password the user's password.
      * @return a future, with the token. (expire in 30 minutes.)
      * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
+     * @see com.xuxiaocheng.wlist.api.exceptions.UnavailableApiVersionException
      */
     public static NetworkFuture<String> login(final long userId, final String password) { return Main.future(); }
 
