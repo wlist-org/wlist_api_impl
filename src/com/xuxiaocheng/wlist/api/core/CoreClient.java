@@ -10,7 +10,7 @@ public class CoreClient implements AutoCloseable {
     /**
      * An internal pointer.
      */
-    public final long ptr;
+    protected final long ptr;
 
     /**
      * A flag indicates whether this client is closed.

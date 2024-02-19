@@ -10,10 +10,20 @@ public enum Server {;
      * Start a core server.
      * Won't block the caller thread.
      * @param defaultPort the port to listen on. (0 means random.)
+     * @param token the web user token.
      * @return the real port the server listening on. (On 'localhost:$port'.)
      * @throws com.xuxiaocheng.wlist.api.core.exceptions.MultiInstanceException if called this method twice.
+     * @throws com.xuxiaocheng.wlist.api.exceptions.TokenExpiredException if the token is expired or invalid.
      */
-    public static int start(final int defaultPort) { throw Main.stub(); }
+    public static int start(final int defaultPort, final String token) { throw Main.stub(); }
+
+    /**
+     * Reset the web user token.
+     * This method must be called after calling {@link com.xuxiaocheng.wlist.api.web.Login#refresh(String)}.
+     * @param newToken the new web user token.
+     * @throws com.xuxiaocheng.wlist.api.exceptions.TokenExpiredException if the token is expired or invalid.
+     */
+    public static void resetToken(final String newToken) { throw Main.stub(); }
 
     /**
      * Stop the core server.
