@@ -9,7 +9,6 @@ import com.xuxiaocheng.wlist.api.core.storages.configs.LanzouConfig;
  * The core lanzou storage API.
  */
 public enum Lanzou implements StorageType {/** The instance. */ Instance;
-
     /**
      * Add a lanzou storage.
      * @param client the core client.
@@ -22,4 +21,14 @@ public enum Lanzou implements StorageType {/** The instance. */ Instance;
      * @see com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException
      */
     public static NetworkFuture<Void> add(final CoreClient client, final String token, final String storage, final LanzouConfig config) { return Main.future(); }
+
+    @Override
+    public boolean isPrivate() {
+        return true;
+    }
+
+    @Override
+    public boolean isShared() {
+        return false;
+    }
 }

@@ -1,7 +1,7 @@
-package com.xuxiaocheng.wlist.api.core.files.options;
+package com.xuxiaocheng.wlist.api.core.storages.options;
 
 /**
- * The order direction for file/directory.
+ * The order direction for storage.
  */
 public enum Direction {
     /**
