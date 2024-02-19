@@ -12,7 +12,7 @@ public final class Marks {
     /**
      * This flag will be true in a non-stub environment.
      */
-    public static final boolean WITH_IMPL = false;
+    public static final boolean WITH_IMPL = true;
 
     private static native String getCommonImplVersion();
     /**
