@@ -12,7 +12,6 @@ import java.io.Serializable;
  * @param totalDirectories the count of the directories that is known in this directory. (This means that this value may increase.)
  */
 public record RefreshProgress(long loadedFiles, long loadedDirectories,
-                              long totalFiles, long totalDirectories) implements Serializable, AutoCloseable {
-    @Override
-    public void close() { throw Main.stub(); }
+                              long totalFiles, long totalDirectories)
+        implements Serializable, Recyclable {
 }

@@ -1,6 +1,6 @@
 package com.xuxiaocheng.wlist.api.core.storages.information;
 
-import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.common.Recyclable;
 import com.xuxiaocheng.wlist.api.core.storages.types.StorageType;
 
 import java.io.Serializable;
@@ -17,7 +17,6 @@ import java.time.ZonedDateTime;
  * @param updateTime update time.
  */
 public record StorageInformation(long id, String name, boolean readOnly, StorageType type, long size,
-                                 ZonedDateTime createTime, ZonedDateTime updateTime) implements Serializable, AutoCloseable {
-    @Override
-    public void close() { throw Main.stub(); }
+                                 ZonedDateTime createTime, ZonedDateTime updateTime)
+        implements Serializable, Recyclable {
 }

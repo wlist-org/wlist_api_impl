@@ -1,5 +1,6 @@
 package com.xuxiaocheng.wlist.api.core.broadcast;
 
+import com.xuxiaocheng.wlist.api.common.Recyclable;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 
 /**
@@ -7,9 +8,5 @@ import com.xuxiaocheng.wlist.api.core.CoreClient;
  * @param client internal client.
  * @param token internal token.
  */
-public record BroadcastClient(CoreClient client, String token) implements AutoCloseable {
-    @Override
-    public void close() {
-        this.client.close();
-    }
+public record BroadcastClient(CoreClient client, String token) implements Recyclable {
 }

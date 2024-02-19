@@ -1,6 +1,6 @@
 package com.xuxiaocheng.wlist.api.core.files.information;
 
-import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.common.Recyclable;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,7 +11,5 @@ import java.util.List;
  * @param filtered the number of files after filtering. (see {@link com.xuxiaocheng.wlist.api.core.files.options.Filter}).
  * @param files the information list.
  */
-public record FileListInformation(long total, long filtered, List<FileInformation> files) implements Serializable, AutoCloseable {
-    @Override
-    public void close() { throw Main.stub(); }
+public record FileListInformation(long total, long filtered, List<FileInformation> files) implements Serializable, Recyclable {
 }

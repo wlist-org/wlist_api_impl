@@ -1,7 +1,5 @@
 package com.xuxiaocheng.wlist.api.common;
 
-import com.xuxiaocheng.wlist.api.Main;
-
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -9,7 +7,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * A wrapper for CompletableFuture for better management.
  * @param <T> the result type.
  */
-public final class NetworkFuture<T> extends CompletableFuture<T> implements AutoCloseable {
+public final class NetworkFuture<T> extends CompletableFuture<T> implements Recyclable {
     /**
      * Create a new NetworkFuture.
      * @return the new instance.
@@ -31,10 +29,6 @@ public final class NetworkFuture<T> extends CompletableFuture<T> implements Auto
             this.cancel(true);
         if (this.closed.compareAndSet(false, true))
             this.recycle();
-    }
-
-    private void recycle() {
-        throw Main.stub();
     }
 
     @Override

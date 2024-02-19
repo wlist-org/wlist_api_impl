@@ -1,6 +1,6 @@
 package com.xuxiaocheng.wlist.api.core.storages.information;
 
-import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.common.Recyclable;
 
 import java.io.Serializable;
 import java.util.List;
@@ -11,7 +11,5 @@ import java.util.List;
  * @param filtered the number of storages after filtering. (see {@link com.xuxiaocheng.wlist.api.core.storages.options.Filter}).
  * @param storages the information list.
  */
-public record StorageListInformation(long total, long filtered, List<StorageInformation> storages) implements Serializable, AutoCloseable {
-    @Override
-    public void close() { throw Main.stub(); }
+public record StorageListInformation(long total, long filtered, List<StorageInformation> storages) implements Serializable, Recyclable {
 }
