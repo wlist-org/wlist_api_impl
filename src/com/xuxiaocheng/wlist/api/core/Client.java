@@ -8,7 +8,7 @@ import com.xuxiaocheng.wlist.api.common.NetworkFuture;
  */
 public enum Client {;
     /**
-     * Connect to the core server ({@link com.xuxiaocheng.wlist.api.core.Server#start(int)}).
+     * Connect to the core server ({@link com.xuxiaocheng.wlist.api.core.Server#start(int, String)}).
      * @param host the host of server.
      * @param port the port of server.
      * @return a future, with a client instance.

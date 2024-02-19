@@ -3,7 +3,7 @@ package com.xuxiaocheng.wlist.api.core.exceptions;
 import java.io.Serial;
 
 /**
- * Thrown if called {@link com.xuxiaocheng.wlist.api.core.Server#start(int)} twice.
+ * Thrown if called {@link com.xuxiaocheng.wlist.api.core.Server#start(int, String)} twice.
  */
 public class MultiInstanceException extends RuntimeException {
     @Serial

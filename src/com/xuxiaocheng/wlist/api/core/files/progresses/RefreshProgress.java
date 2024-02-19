@@ -1,6 +1,6 @@
 package com.xuxiaocheng.wlist.api.core.files.progresses;
 
-import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.common.Recyclable;
 
 import java.io.Serializable;
 
