@@ -10,4 +10,5 @@
 
 ### Project ###
 !/src
+!/tests
 !/doc.bat
