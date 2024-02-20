@@ -17,6 +17,12 @@ public enum Client {;
     public static NetworkFuture<CoreClient> connect(final String host, final int port) { return Main.future(); }
 
     /**
+     * Check whether this client is available.
+     * @return true if it is available to continue use.
+     */
+    public static boolean isAvailable(final CoreClient client) { throw Main.stub(); }
+    
+    /**
      * Close the client.
      * @param client the core client.
      */
