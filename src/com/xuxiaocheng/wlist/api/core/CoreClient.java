@@ -26,6 +26,16 @@ public class CoreClient implements AutoCloseable {
         this.ptr = ptr;
     }
 
+    /**
+     * Check whether this client is available.
+     * @return true if it is available to continue use.
+     */
+    public boolean isAvailable() {
+        if (this.closed.get())
+            return false;
+        return Client.isAvailable(this);
+    }
+
     @Override
     public void close() {
         if (this.closed.compareAndSet(false, true))

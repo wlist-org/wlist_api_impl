@@ -6,6 +6,7 @@
 
 ### Git ###
 !/.gitignore
+!/CHANGELOG.md
 
 ### Project ###
 !/src
