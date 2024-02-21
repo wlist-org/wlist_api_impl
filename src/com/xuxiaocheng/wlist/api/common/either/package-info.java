@@ -3,4 +3,8 @@
  * But provide another implementation of {@code Either}.
  * <p>MIT LICENSE: https://github.com/jbock-java/either/blob/main/LICENSE</p>
  */
+@Stable(since = "1.0.0", module = StableModule.Common)
 package com.xuxiaocheng.wlist.api.common.either;
+
+import com.xuxiaocheng.wlist.api.common.Stable;
+import com.xuxiaocheng.wlist.api.common.StableModule;
