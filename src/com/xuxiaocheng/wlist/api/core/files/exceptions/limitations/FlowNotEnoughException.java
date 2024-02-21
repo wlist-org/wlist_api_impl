@@ -30,7 +30,7 @@ public class FlowNotEnoughException extends RuntimeException {
      * @param require the required flow.
      * @param remaining the remaining flow.
      */
-    public FlowNotEnoughException(final long storage, final long require, final long remaining) {
+    private FlowNotEnoughException(final long storage, final long require, final long remaining) {
         super(storage + ": flow " + require + (remaining == -1 ? " not enough" : " > " + remaining));
         assert remaining == -1 || require > remaining;
         this.storage = storage;

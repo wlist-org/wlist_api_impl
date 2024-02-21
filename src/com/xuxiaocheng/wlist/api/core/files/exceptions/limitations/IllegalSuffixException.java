@@ -25,7 +25,7 @@ public class IllegalSuffixException extends RuntimeException {
      * @param storage the id of the backend storage.
      * @param suffix the suffix that is not allowed.
      */
-    public IllegalSuffixException(final long storage, final String suffix) {
+    private IllegalSuffixException(final long storage, final String suffix) {
         super(storage + ": Illegal suffix: " + suffix);
         this.storage = storage;
         this.suffix = suffix;

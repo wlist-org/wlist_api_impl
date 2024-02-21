@@ -26,7 +26,7 @@ public class NameTooLongException extends RuntimeException {
      * @param storage the id of the backend storage.
      * @param name the too long name.
      */
-    public NameTooLongException(final long storage, final String name) {
+    private NameTooLongException(final long storage, final String name) {
         super(name + " (storage: " + storage + ")");
         this.storage = storage;
         this.name = name;

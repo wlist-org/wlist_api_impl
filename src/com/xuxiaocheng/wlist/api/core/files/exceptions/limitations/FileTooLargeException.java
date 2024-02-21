@@ -30,7 +30,7 @@ public class FileTooLargeException extends RuntimeException {
      * @param require the required filesize.
      * @param limitation the limitation.
      */
-    public FileTooLargeException(final long storage, final long require, final long limitation) {
+    private FileTooLargeException(final long storage, final long require, final long limitation) {
         super(storage + ": file " + require + (limitation == -1 ? " too large" : " > " + limitation));
         assert limitation == -1 || require > limitation;
         this.storage = storage;

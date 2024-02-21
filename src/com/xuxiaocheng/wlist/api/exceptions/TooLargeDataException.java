@@ -12,7 +12,7 @@ public class TooLargeDataException extends Exception {
     /**
      * Internal constructor.
      */
-    public TooLargeDataException() {
+    private TooLargeDataException() {
         super();
     }
 }

@@ -13,7 +13,7 @@ public class ComplexOperationException extends Exception {
     /**
      * Internal constructor.
      */
-    public ComplexOperationException() {
+    private ComplexOperationException() {
         super();
     }
 }

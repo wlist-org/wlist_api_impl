@@ -13,7 +13,7 @@ public class UploadChunkIncompleteException extends RuntimeException {
     /**
      * Internal constructor.
      */
-    public UploadChunkIncompleteException() {
+    private UploadChunkIncompleteException() {
         super();
     }
 }
