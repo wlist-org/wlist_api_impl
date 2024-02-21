@@ -16,6 +16,7 @@ public enum User {;
      * @see com.xuxiaocheng.wlist.api.exceptions.TokenExpiredException
      * @see com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
+     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
     public static NetworkFuture<Void> resetPassword(final String token, final String old, final String password) { return Main.future(); }
 
@@ -24,6 +25,7 @@ public enum User {;
      * @param token the token.
      * @return a future, with the user's nickname.
      * @see com.xuxiaocheng.wlist.api.exceptions.TokenExpiredException
+     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
     public static NetworkFuture<String> getNickname(final String token) { return Main.future(); }
 
@@ -34,6 +36,7 @@ public enum User {;
      * @return a future.
      * @see com.xuxiaocheng.wlist.api.exceptions.TokenExpiredException
      * @see com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException
+     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
     public static NetworkFuture<Void> setNickname(final String token, final String nickname) { return Main.future(); }
 }

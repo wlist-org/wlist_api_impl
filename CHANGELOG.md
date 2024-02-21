@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+* 添加命中频控异常
+
 ## [1.0.1] - 2024-2-20
 
 ### Added

@@ -13,6 +13,7 @@ public enum Login {;
      * @param password the user's password.
      * @return a future, with the user's id.
      * @see com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException
+     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
     public static NetworkFuture<Long> register(final String deviceId, final String password) { return Main.future(); }
 
@@ -22,8 +23,9 @@ public enum Login {;
      * @param userId the user's id.
      * @param password the user's password.
      * @return a future, with the token. (expire in 30 minutes.)
-     * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
      * @see com.xuxiaocheng.wlist.api.exceptions.UnavailableApiVersionException
+     * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
+     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
     public static NetworkFuture<String> login(final long userId, final String password) { return Main.future(); }
 
@@ -33,6 +35,7 @@ public enum Login {;
      * @param token the token.
      * @return a future, with a new token.
      * @see com.xuxiaocheng.wlist.api.exceptions.TokenExpiredException
+     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
     public static NetworkFuture<String> refresh(final String token) { return Main.future(); }
 }
