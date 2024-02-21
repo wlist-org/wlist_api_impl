@@ -27,7 +27,7 @@ public enum Login {;
      * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
-    public static NetworkFuture<String> login(final long userId, final String password) { return Main.future(); }
+    public static native NetworkFuture<String> login(final long userId, final String password);
 
     /**
      * Refresh the token. (Then the old token cannot be used.)
