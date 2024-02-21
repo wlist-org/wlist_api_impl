@@ -10,5 +10,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" scope="TEST" name="junit.jupiter" level="project" />
+    <orderEntry type="library" scope="TEST" name="openjdk.jmh.core" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="openjdk.jmh.generator.annprocess" level="project" />
   </component>
 </module>
