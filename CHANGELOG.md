@@ -7,9 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2024-2-21
+
 ### Added
 
 * 添加命中频控异常
+* 添加关闭 native 线程接口
+* 添加检查更新接口
+
+### Changed
+
+* 将所有内部构造器接口改为 private/protected
 
 ## [1.0.1] - 2024-2-20
 
