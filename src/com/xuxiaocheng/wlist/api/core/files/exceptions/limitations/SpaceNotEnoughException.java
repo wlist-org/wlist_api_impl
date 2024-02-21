@@ -30,7 +30,7 @@ public class SpaceNotEnoughException extends RuntimeException {
      * @param require the required space.
      * @param remaining the remaining space.
      */
-    public SpaceNotEnoughException(final long storage, final long require, final long remaining) {
+    private SpaceNotEnoughException(final long storage, final long require, final long remaining) {
         super(storage + ": space " + require + (remaining == -1 ? " not enough" : " > " + remaining));
         assert remaining == -1 || require > remaining;
         this.storage = storage;

@@ -13,7 +13,7 @@ public class MatchFrequencyControlException extends RuntimeException {
     /**
      * Internal constructor.
      */
-    public MatchFrequencyControlException() {
+    private MatchFrequencyControlException() {
         super();
     }
 }

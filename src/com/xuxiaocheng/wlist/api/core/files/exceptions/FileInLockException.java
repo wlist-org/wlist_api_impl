@@ -21,7 +21,7 @@ public class FileInLockException extends RuntimeException {
      * @param location the location of the locked file/directory.
      * @param message error message.
      */
-    public FileInLockException(final FileLocation location, final String message) {
+    private FileInLockException(final FileLocation location, final String message) {
         super(location.toString() + ": " + message);
         this.location = location;
     }

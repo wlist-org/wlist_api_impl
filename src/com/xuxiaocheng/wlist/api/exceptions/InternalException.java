@@ -13,7 +13,7 @@ public class InternalException extends RuntimeException {
      * Internal constructor.
      * @param message error message.
      */
-    public InternalException(final String message) {
+    protected InternalException(final String message) {
         super(message);
     }
 }

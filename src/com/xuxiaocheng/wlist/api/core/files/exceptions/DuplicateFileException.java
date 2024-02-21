@@ -26,7 +26,7 @@ public class DuplicateFileException extends RuntimeException {
      * @param parent the parent directory.
      * @param name the duplicate filename.
      */
-    public DuplicateFileException(final FileLocation parent, final String name) {
+    private DuplicateFileException(final FileLocation parent, final String name) {
         super(parent + "/" + name);
         this.parent = parent;
         this.name = name;

@@ -13,7 +13,7 @@ public class IncorrectStorageAccountException extends InvalidStorageConfigExcept
     /**
      * Internal constructor.
      */
-    public IncorrectStorageAccountException() {
+    private IncorrectStorageAccountException() {
         super("password");
     }
 }

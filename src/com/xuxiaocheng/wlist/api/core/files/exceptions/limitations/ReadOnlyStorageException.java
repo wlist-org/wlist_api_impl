@@ -18,7 +18,7 @@ public class ReadOnlyStorageException extends RuntimeException {
      * Internal constructor.
      * @param storage the id of the backend storage.
      */
-    public ReadOnlyStorageException(final long storage) {
+    private ReadOnlyStorageException(final long storage) {
         super("Readonly storage: " + storage);
         this.storage = storage;
     }

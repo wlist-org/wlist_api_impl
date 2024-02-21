@@ -13,7 +13,7 @@ public class TokenExpiredException extends RuntimeException {
     /**
      * Internal constructor.
      */
-    public TokenExpiredException() {
+    private TokenExpiredException() {
         super();
     }
 }

@@ -21,7 +21,7 @@ public class CoreClient implements AutoCloseable {
      * The internal constructor.
      * @param ptr internal pointer.
      */
-    public CoreClient(final long ptr) {
+    private CoreClient(final long ptr) {
         super();
         this.ptr = ptr;
     }

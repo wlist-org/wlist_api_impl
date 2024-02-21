@@ -12,7 +12,7 @@ public class MismatchStorageTypeException extends RuntimeException {
     /**
      * Internal constructor.
      */
-    public MismatchStorageTypeException() {
+    private MismatchStorageTypeException() {
         super();
     }
 }

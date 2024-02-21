@@ -12,7 +12,7 @@ public class MultiInstanceException extends RuntimeException {
     /**
      * Internal constructor.
      */
-    public MultiInstanceException() {
+    private MultiInstanceException() {
         super();
     }
 }

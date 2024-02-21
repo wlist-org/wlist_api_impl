@@ -30,7 +30,7 @@ public class InvalidFilenameException extends RuntimeException {
      * @param name the name which contains the invalid code point.
      * @param optionalCodePoint the optional invalid code point.
      */
-    public InvalidFilenameException(final long storage, final String name, final Integer optionalCodePoint) {
+    private InvalidFilenameException(final long storage, final String name, final Integer optionalCodePoint) {
         super(name + " (storage: " + storage + ", codePoint: " + optionalCodePoint + ")");
         this.storage = storage;
         this.name = name;

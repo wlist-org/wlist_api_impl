@@ -18,7 +18,7 @@ public class InvalidStorageConfigException extends RuntimeException {
      * Internal constructor.
      * @param field the field that is invalid.
      */
-    public InvalidStorageConfigException(final String field) {
+    protected InvalidStorageConfigException(final String field) {
         super("Invalid: " + field);
         this.field = field;
     }

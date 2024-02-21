@@ -12,7 +12,7 @@ public class StorageExistsException extends RuntimeException {
     /**
      * Internal constructor.
      */
-    public StorageExistsException() {
+    private StorageExistsException() {
         super();
     }
 }

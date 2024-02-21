@@ -12,7 +12,7 @@ public class PasswordNotMatchedException extends Exception {
     /**
      * Internal constructor.
      */
-    public PasswordNotMatchedException() {
+    private PasswordNotMatchedException() {
         super();
     }
 }

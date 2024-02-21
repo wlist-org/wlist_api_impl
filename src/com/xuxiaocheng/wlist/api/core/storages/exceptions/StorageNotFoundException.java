@@ -12,7 +12,7 @@ public class StorageNotFoundException extends RuntimeException {
     /**
      * Internal constructor.
      */
-    public StorageNotFoundException() {
+    private StorageNotFoundException() {
         super();
     }
 }

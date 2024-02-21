@@ -13,7 +13,7 @@ public class StorageInLockException extends RuntimeException {
      * Internal constructor.
      * @param message error message.
      */
-    public StorageInLockException(final String message) {
+    private StorageInLockException(final String message) {
         super(message);
     }
 }
