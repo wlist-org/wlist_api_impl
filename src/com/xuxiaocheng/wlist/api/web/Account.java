@@ -4,7 +4,7 @@ import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 
 /**
- * The web login API.
+ * The web account API.
  */
 public enum Account {;
     /**
