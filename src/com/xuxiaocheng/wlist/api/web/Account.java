@@ -9,10 +9,10 @@ import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 public enum Account {;
     /**
      * Login.
+     * You should call {@link com.xuxiaocheng.wlist.api.web.Version#checkWeb()} first to ensure that the API version is correct.
      * @param userId the user's id.
      * @param password the user's password.
      * @return a future, with the token. (expire in 30 minutes.)
-     * @see com.xuxiaocheng.wlist.api.exceptions.UnavailableApiVersionException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
