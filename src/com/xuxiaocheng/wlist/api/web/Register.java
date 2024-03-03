@@ -1,6 +1,5 @@
 package com.xuxiaocheng.wlist.api.web;
 
-import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 
 /**
@@ -16,6 +15,6 @@ public enum Register {;
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
-    public static NetworkFuture<String> register(final String deviceId, final String password) { return Main.future(); }
+    public static native NetworkFuture<String> register(final String deviceId, final String password);
 
 }

@@ -13,8 +13,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayDeque;
 import java.util.concurrent.ExecutionException;
 
-@DisplayName("Login")
-public class LoginTest {
+@DisplayName("Account")
+public class AccountTest {
     static {
         Tester.initialize();
     }
@@ -26,7 +26,7 @@ public class LoginTest {
         @DisplayName("right password")
         public void loginSuccess() {
             final String token;
-            try (final NetworkFuture<String> future = Login.login(1, "change me")) {
+            try (final NetworkFuture<String> future = Account.login("1", "change me")) {
                 token = Assertions.assertDoesNotThrow(() -> future.get());
             }
             Assertions.assertFalse(token.isBlank());
@@ -35,7 +35,7 @@ public class LoginTest {
         @Test
         @DisplayName("wrong password")
         public void loginFailure() {
-            try (final NetworkFuture<String> future = Login.login(1, "wrong pw")) {
+            try (final NetworkFuture<String> future = Account.login("1", "wrong pw")) {
                 final ExecutionException exception = Assertions.assertThrowsExactly(ExecutionException.class, future::get);
                 Assertions.assertInstanceOf(PasswordNotMatchedException.class, exception.getCause());
             }
@@ -47,7 +47,7 @@ public class LoginTest {
         public void loginHacking() {
             final ArrayDeque<NetworkFuture<String>> futures = new ArrayDeque<>();
             for (int i = 0; i < 16; ++i)
-                futures.add(Login.login(1, "wrong pw"));
+                futures.add(Account.login("1", "wrong pw"));
             while (!futures.isEmpty())
                 try (final NetworkFuture<String> future = futures.remove()) {
                     final ExecutionException exception = Assertions.assertThrowsExactly(ExecutionException.class, future::get);

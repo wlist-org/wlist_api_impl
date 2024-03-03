@@ -1,12 +1,11 @@
 package com.xuxiaocheng.wlist.api.web;
 
-import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 
 /**
  * The web account API.
  */
-public enum Login {;
+public enum Account {;
     /**
      * Login.
      * You should call {@link com.xuxiaocheng.wlist.api.web.Version#checkWeb()} first to ensure that the API version is correct.
@@ -25,7 +24,7 @@ public enum Login {;
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
-    public static NetworkFuture<Void> logout(final String token) { return Main.future(); }
+    public static native NetworkFuture<Void> logout(final String token);
 
     /**
      * Refresh the token. (Then the old token cannot be used.)
@@ -35,5 +34,5 @@ public enum Login {;
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
-    public static NetworkFuture<String> refresh(final String token) { return Main.future(); }
+    public static native NetworkFuture<String> refresh(final String token);
 }
