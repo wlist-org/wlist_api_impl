@@ -19,7 +19,7 @@ public enum Lanzou implements StorageType {/** The instance. */ Instance;
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageExistsException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.IncorrectStorageAccountException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.InvalidStorageConfigException
-     * @see com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      */
     public static NetworkFuture<Long> add(final CoreClient client, final String token, final String storage, final LanzouConfig config) { return Main.future(); }
 

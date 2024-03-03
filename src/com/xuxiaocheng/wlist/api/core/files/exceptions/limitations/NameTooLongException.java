@@ -5,7 +5,7 @@ import java.io.Serial;
 /**
  * Thrown when a file/directory name is too long.
  * This is caused by the backend storage.
- * <p>Unlike {@link com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException}, that is an exception thrown by the core server.</p>
+ * <p>Unlike {@link com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException}, that is an exception thrown by the core server.</p>
  */
 public class NameTooLongException extends RuntimeException {
     @Serial

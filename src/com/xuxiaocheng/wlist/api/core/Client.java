@@ -12,7 +12,7 @@ public enum Client {;
      * @param host the host of server.
      * @param port the port of server.
      * @return a future, with a client instance.
-     * @see com.xuxiaocheng.wlist.api.exceptions.UnavailableApiVersionException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.UnavailableApiVersionException
      */
     public static NetworkFuture<CoreClient> connect(final String host, final int port) { return Main.future(); }
 

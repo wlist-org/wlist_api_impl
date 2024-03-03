@@ -1,4 +1,4 @@
-package com.xuxiaocheng.wlist.api.exceptions;
+package com.xuxiaocheng.wlist.api.common.exceptions;
 
 import java.io.Serial;
 

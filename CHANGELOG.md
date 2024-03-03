@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.0] - 2024-3-3
+
+### Added
+
+* 添加登出接口
+
+### Changed
+
+* 将 userId 类型改为 String
+* 移动 common/exceptions 到子包
+* 拆分登录与注册接口分类
+
 ## [1.1.0] - 2024-2-21
 
 ### Added
