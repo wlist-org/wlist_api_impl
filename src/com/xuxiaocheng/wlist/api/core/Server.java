@@ -19,7 +19,7 @@ public enum Server {;
 
     /**
      * Reset the web user token.
-     * This method must be called after calling {@link com.xuxiaocheng.wlist.api.web.Login#refresh(String)}.
+     * This method must be called after calling {@link com.xuxiaocheng.wlist.api.web.Account#refresh(String)}.
      * @param newToken the new web user token.
      * @throws com.xuxiaocheng.wlist.api.exceptions.TokenExpiredException if the token is expired or invalid.
      */
