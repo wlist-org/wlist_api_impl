@@ -58,7 +58,7 @@ public enum File {;
      * @param token the core token.
      * @param storage the target storage.
      * @param name the file/directory name.
-     * @see com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.NameTooLongException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException
@@ -75,7 +75,7 @@ public enum File {;
      * @param name the name of the new directory.
      * @param duplicate duplication policy of the new directory.
      * @return a future, with the information of the new directory.
-     * @see com.xuxiaocheng.wlist.api.exceptions.TooLargeDataException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.NameTooLongException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException

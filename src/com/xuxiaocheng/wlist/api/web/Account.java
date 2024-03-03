@@ -22,7 +22,7 @@ public enum Account {;
      * Logout.
      * @param token the token.
      * @return a future.
-     * @see com.xuxiaocheng.wlist.api.exceptions.TokenExpiredException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
     public static NetworkFuture<Void> logout(final String token) { return Main.future(); }
@@ -32,7 +32,7 @@ public enum Account {;
      * You may call {@link com.xuxiaocheng.wlist.api.core.Server#resetToken(String)} after calling this method.
      * @param token the token.
      * @return a future, with a new token.
-     * @see com.xuxiaocheng.wlist.api.exceptions.TokenExpiredException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
     public static NetworkFuture<String> refresh(final String token) { return Main.future(); }

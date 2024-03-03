@@ -58,7 +58,7 @@ public enum Refresh {;
 
     /**
      * Get the progress of refresh.
-     * Note that if the refresh is finished/canceled, it will complete exceptionally with {@link com.xuxiaocheng.wlist.api.exceptions.TokenExpiredException}.
+     * Note that if the refresh is finished/canceled, it will complete exceptionally with {@link com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException}.
      * @param client the core client.
      * @param token the refresh token.
      * @return a future, with the progress of refresh.
