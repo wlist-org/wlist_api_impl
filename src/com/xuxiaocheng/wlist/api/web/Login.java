@@ -8,7 +8,7 @@ import com.xuxiaocheng.wlist.api.common.NetworkFuture;
  */
 public enum Login {;
     /**
-     * Register as a visitor.
+     * Register as a guest.
      * @param deviceId the union device ID.
      * @param password the user's password.
      * @return a future, with the user's id.
@@ -28,6 +28,15 @@ public enum Login {;
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
     public static NetworkFuture<String> login(final long userId, final String password) { return Main.future(); }
+
+    /**
+     * Logout.
+     * @param token the token.
+     * @return a future.
+     * @see com.xuxiaocheng.wlist.api.exceptions.TokenExpiredException
+     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
+     */
+    public static NetworkFuture<Void> logout(final String token) { return Main.future(); }
 
     /**
      * Refresh the token. (Then the old token cannot be used.)
