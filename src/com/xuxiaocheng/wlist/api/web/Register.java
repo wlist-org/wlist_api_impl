@@ -16,6 +16,6 @@ public enum Register {;
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
-    public static NetworkFuture<Long> register(final String deviceId, final String password) { return Main.future(); }
+    public static NetworkFuture<String> register(final String deviceId, final String password) { return Main.future(); }
 
 }

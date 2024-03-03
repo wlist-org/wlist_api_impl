@@ -16,7 +16,7 @@ public enum Account {;
      * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
-    public static NetworkFuture<String> login(final long userId, final String password) { return Main.future(); }
+    public static NetworkFuture<String> login(final String userId, final String password) { return Main.future(); }
 
     /**
      * Logout.
