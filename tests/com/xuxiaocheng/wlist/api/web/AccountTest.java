@@ -21,6 +21,22 @@ public class AccountTest {
         Tester.initialize();
     }
 
+    @Test
+    @DisplayName("normally use")
+    public void composeNormally() {
+        final String token;
+        try (final NetworkFuture<String> future = Account.login("1", "change me")) {
+            token = Assertions.assertDoesNotThrow(() -> future.get());
+        }
+        final String refreshed;
+        try (final NetworkFuture<String> future = Account.refresh(token)) {
+            refreshed = Assertions.assertDoesNotThrow(() -> future.get());
+        }
+        try (final NetworkFuture<Void> future = Account.logout(refreshed)) {
+            Assertions.assertDoesNotThrow(() -> future.get());
+        }
+    }
+
     @Nested
     @DisplayName("login")
     public class Login {
