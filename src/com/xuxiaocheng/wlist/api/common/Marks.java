@@ -39,7 +39,7 @@ public final class Marks {
     /**
      * The web api version.
      */
-    public static final String WEB_API_VERSION = "0.4.0";
+    public static final String WEB_API_VERSION = "0.4.1";
     /**
      * The web api impl version.
      */
