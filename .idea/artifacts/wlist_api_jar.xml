@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="wlist_api:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts</output-path>
+    <root id="archive" name="wlist_api.jar">
+      <element id="module-output" name="wlist_api" />
+    </root>
+  </artifact>
+</component>
