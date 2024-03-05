@@ -2,10 +2,13 @@ package com.xuxiaocheng.wlist.api.web;
 
 import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.NetworkFuture;
+import com.xuxiaocheng.wlist.api.common.Stable;
+import com.xuxiaocheng.wlist.api.common.StableModule;
 
 /**
  * The web account API.
  */
+@Stable(since = "1.2.1", module = StableModule.Web)
 public enum Account {;
     /**
      * Login.
