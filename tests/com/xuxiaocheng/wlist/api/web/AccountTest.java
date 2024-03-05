@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayDeque;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeUnit;
 
 @DisplayName("Account")
 public class AccountTest {
@@ -88,6 +89,66 @@ public class AccountTest {
         @DisplayName("wrong token")
         public void logoutWrong() {
             try (final NetworkFuture<Void> future = Account.logout("wrong_token.just-a_test")) {
+                Assertions.assertDoesNotThrow(() -> future.get());
+            }
+        }
+    }
+
+    @Nested
+    @DisplayName("refresh")
+    public class Refresh {
+        @Test
+        @DisplayName("normal token")
+        public void refreshNormally() {
+            final String token;
+            try (final NetworkFuture<String> future = Account.login("1", "change me")) {
+                token = Assertions.assertDoesNotThrow(() -> future.get());
+            }
+
+            final String refreshed;
+            try (final NetworkFuture<String> future = Account.refresh(token)) {
+                refreshed = Assertions.assertDoesNotThrow(() -> future.get());
+            }
+            Assertions.assertFalse(refreshed.isBlank());
+        }
+
+        @Test
+        @DisplayName("blank token")
+        public void refreshEmpty() {
+            try (final NetworkFuture<String> future = Account.refresh("")) {
+                final ExecutionException exception = Assertions.assertThrowsExactly(ExecutionException.class, future::get);
+                Assertions.assertInstanceOf(TokenExpiredException.class, exception.getCause());
+            }
+        }
+
+        @Test
+        @DisplayName("wrong token")
+        public void refreshWrong() {
+            try (final NetworkFuture<String> future = Account.refresh("wrong_token.just-a_test")) {
+                final ExecutionException exception = Assertions.assertThrowsExactly(ExecutionException.class, future::get);
+                Assertions.assertInstanceOf(TokenExpiredException.class, exception.getCause());
+            }
+        }
+
+        @Test
+        @DisplayName("reuse expired")
+        public void reuse() throws InterruptedException {
+            final String token;
+            try (final NetworkFuture<String> future = Account.login("1", "change me")) {
+                token = Assertions.assertDoesNotThrow(() -> future.get());
+            }
+            TimeUnit.SECONDS.sleep(6);
+            final String refreshed;
+            try (final NetworkFuture<String> future = Account.refresh(token)) {
+                refreshed = Assertions.assertDoesNotThrow(() -> future.get());
+            }
+            Assertions.assertNotEquals(token, refreshed);
+
+            try (final NetworkFuture<String> future = Account.refresh(token)) {
+                final ExecutionException exception = Assertions.assertThrowsExactly(ExecutionException.class, future::get);
+                Assertions.assertInstanceOf(TokenExpiredException.class, exception.getCause());
+            }
+            try (final NetworkFuture<String> future = Account.refresh(refreshed)) {
                 Assertions.assertDoesNotThrow(() -> future.get());
             }
         }
