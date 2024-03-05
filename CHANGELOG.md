@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+* 重命名 register 方法
+
 ## [1.2.0] - 2024-3-3
 
 ### Added
