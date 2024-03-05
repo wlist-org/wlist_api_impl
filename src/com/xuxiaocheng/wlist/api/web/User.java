@@ -9,6 +9,8 @@ import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 public enum User {;
     /**
      * Reset the user's password.
+     * Notice the method will expire all tokens of this user.
+     * Then you should call {@link com.xuxiaocheng.wlist.api.web.Account#login(String, String)} to get new token.
      * @param token the token.
      * @param old the old password.
      * @param password the new password to set.
