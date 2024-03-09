@@ -5,7 +5,7 @@ import java.io.Serial;
 /**
  * A string or other type data to store exceeds the maximum size allowed.
  */
-public class TooLargeDataException extends Exception {
+public class TooLargeDataException extends IncorrectArgumentException {
     @Serial
     private static final long serialVersionUID = 4670404482830092591L;
 
@@ -13,6 +13,6 @@ public class TooLargeDataException extends Exception {
      * Internal constructor.
      */
     private TooLargeDataException() {
-        super();
+        super("too large data");
     }
 }

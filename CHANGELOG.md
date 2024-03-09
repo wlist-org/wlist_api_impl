@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.2.2] - 2024-3-10
+
+### Added
+
+* 添加注销 unregister 接口
+
+### Changed
+
+* 优化文档
+* 添加 web api 长度限制
+
 ## [1.2.1] - 2024-3-5
 
 ### Changed
@@ -18,7 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-* 添加登出接口
+* 添加登出 logout 接口
 
 ### Changed
 
