@@ -8,6 +8,18 @@ import com.xuxiaocheng.wlist.api.common.NetworkFuture;
  */
 public enum Register {;
     /**
+     * Unregister.
+     * @param token the token.
+     * @param password the login password.
+     * @return a future.
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
+     * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
+     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
+     */
+    public static NetworkFuture<Void> unregister(final String token, final String password) { return Main.future(); }
+
+
+    /**
      * Register as a guest.
      * Notice each call of this method will create a new guest account.
      * @param deviceId the union device ID. (16 <= length <= 256)
