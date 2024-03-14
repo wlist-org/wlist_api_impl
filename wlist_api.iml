@@ -12,5 +12,7 @@
     <orderEntry type="library" scope="TEST" name="junit.jupiter" level="project" />
     <orderEntry type="library" scope="TEST" name="openjdk.jmh.core" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="openjdk.jmh.generator.annprocess" level="project" />
+    <orderEntry type="library" name="io.netty.all" level="project" />
+    <orderEntry type="library" name="htmlunit" level="project" />
   </component>
 </module>
