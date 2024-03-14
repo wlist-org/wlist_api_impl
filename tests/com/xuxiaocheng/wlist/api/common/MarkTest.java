@@ -31,7 +31,7 @@ public class MarkTest {
 
     @Test
     public void webAPI() {
-        Assertions.assertEquals("0.4.1", Marks.WEB_API_VERSION);
+        Assertions.assertEquals("0.5.1", Marks.WEB_API_VERSION);
         Assertions.assertEquals("0.1.0", Marks.WEB_IMPL_VERSION);
     }
 }

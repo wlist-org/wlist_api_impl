@@ -1,6 +1,5 @@
 package com.xuxiaocheng.wlist.api.web;
 
-import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 
 /**
@@ -21,7 +20,7 @@ public enum User {;
      * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
-    public static NetworkFuture<Void> resetPassword(final String token, final String old, final String password) { return Main.future(); }
+    public static native NetworkFuture<Void> resetPassword(final String token, final String old, final String password);
 
     /**
      * Get the user's nickname.
@@ -30,7 +29,7 @@ public enum User {;
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
-    public static NetworkFuture<String> getNickname(final String token) { return Main.future(); }
+    public static native NetworkFuture<String> getNickname(final String token);
 
     /**
      * Set the user's nickname.
@@ -42,5 +41,5 @@ public enum User {;
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
-    public static NetworkFuture<Void> setNickname(final String token, final String nickname) { return Main.future(); }
+    public static native NetworkFuture<Void> setNickname(final String token, final String nickname);
 }

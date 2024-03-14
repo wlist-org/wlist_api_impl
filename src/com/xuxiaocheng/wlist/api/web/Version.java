@@ -1,6 +1,5 @@
 package com.xuxiaocheng.wlist.api.web;
 
-import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 import com.xuxiaocheng.wlist.api.common.Stable;
 import com.xuxiaocheng.wlist.api.common.StableModule;
@@ -31,12 +30,12 @@ public enum Version {
      * @return a future, with the update information.
      * @see com.xuxiaocheng.wlist.api.common.Marks#CORE_IMPL_VERSION
      */
-    public static NetworkFuture<Version> checkCore() { return Main.future(); }
+    public static native NetworkFuture<Version> checkCore();
 
     /**
      * Check the web version.
      * @return a future, with the update information.
      * @see com.xuxiaocheng.wlist.api.common.Marks#WEB_IMPL_VERSION
      */
-    public static NetworkFuture<Version> checkWeb() { return Main.future(); }
+    public static native NetworkFuture<Version> checkWeb();
 }

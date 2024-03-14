@@ -15,7 +15,7 @@ public enum Register {;
      * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
-    public static NetworkFuture<Void> unregister(final String token, final String password) { return Main.future(); }
+    public static native NetworkFuture<Void> unregister(final String token, final String password);
 
 
     /**
