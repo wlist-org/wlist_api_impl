@@ -1,6 +1,7 @@
 package com.xuxiaocheng.wlist.api.core;
 
 import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.impl.ServerStarter;
 
 /**
  * The core server API.
@@ -15,7 +16,10 @@ public enum Server {;
      * @throws com.xuxiaocheng.wlist.api.core.exceptions.MultiInstanceException if called this method twice.
      * @throws com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException if the token is expired or invalid.
      */
-    public static int start(final int defaultPort, final String token) { throw Main.stub(); }
+    public static int start(final int defaultPort, final String token) {
+        Server.resetToken(token);
+        return ServerStarter.start(defaultPort);
+    }
 
     /**
      * Reset the web user token.
@@ -23,12 +27,14 @@ public enum Server {;
      * @param newToken the new web user token.
      * @throws com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException if the token is expired or invalid.
      */
-    public static void resetToken(final String newToken) { throw Main.stub(); }
+    public static native void resetToken(final String newToken);
 
     /**
      * Stop the core server.
      */
-    public static void stop() { throw Main.stub(); }
+    public static void stop() {
+        ServerStarter.stop();
+    }
 
     /**
      * Reset the admin password of the internal server.

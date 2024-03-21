@@ -2,6 +2,11 @@
  * The api of wlist project.
  */
 module com.xuxiaocheng.wlist.api {
+    requires io.netty.common;
+    requires io.netty.transport;
+    requires io.netty.codec;
+    requires io.netty.buffer;
+
     exports com.xuxiaocheng.wlist.api;
     exports com.xuxiaocheng.wlist.api.common;
     exports com.xuxiaocheng.wlist.api.common.exceptions;

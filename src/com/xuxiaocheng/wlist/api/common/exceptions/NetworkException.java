@@ -13,7 +13,7 @@ public class NetworkException extends InternalException {
      * Internal constructor.
      * @param message error message.
      */
-    private NetworkException(final String message) {
+    public NetworkException(final String message) {
         super(message);
     }
 }
