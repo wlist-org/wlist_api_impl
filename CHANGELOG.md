@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2024-3-24
+
+### Added
+
+* 添加获取文件的缩略图接口
+* 添加恢复回收站文件接口
+* 添加列出回收站文件接口
+
+### Changed
+
+* 简化 CoreClient 实现
+
 ## [1.3.0] - 2024-3-14
 
 ### Changed
