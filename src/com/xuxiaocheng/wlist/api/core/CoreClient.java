@@ -1,6 +1,6 @@
 package com.xuxiaocheng.wlist.api.core;
 
-import java.util.concurrent.atomic.AtomicBoolean;
+import com.xuxiaocheng.wlist.api.Main;
 
 /**
  * The core client.
@@ -8,22 +8,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
  */
 public class CoreClient implements AutoCloseable {
     /**
-     * An internal pointer.
-     */
-    protected final long ptr;
-
-    /**
-     * A flag indicates whether this client is closed.
-     */
-    protected final AtomicBoolean closed = new AtomicBoolean(false);
-
-    /**
      * The internal constructor.
-     * @param ptr internal pointer.
      */
-    private CoreClient(final long ptr) {
+    private CoreClient() {
         super();
-        this.ptr = ptr;
+        throw Main.stub();
     }
 
     /**
@@ -31,22 +20,11 @@ public class CoreClient implements AutoCloseable {
      * @return true if it is available to continue use.
      */
     public boolean isAvailable() {
-        if (this.closed.get())
-            return false;
         return Client.isAvailable(this);
     }
 
     @Override
     public void close() {
-        if (this.closed.compareAndSet(false, true))
-            Client.close(this);
-    }
-
-    @Override
-    public String toString() {
-        return "CoreClient{" +
-                "ptr=" + this.ptr +
-                ", closed=" + this.closed +
-                '}';
+        throw Main.stub();
     }
 }
