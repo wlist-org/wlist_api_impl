@@ -1,6 +1,5 @@
 package com.xuxiaocheng.wlist.api.impl;
 
-import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 import com.xuxiaocheng.wlist.api.common.exceptions.InternalException;
 import com.xuxiaocheng.wlist.api.common.exceptions.NetworkException;
 import com.xuxiaocheng.wlist.api.core.exceptions.MultiInstanceException;
@@ -118,28 +117,28 @@ public final class ServerStarter {
     }
 
 
-    private static native void active(final String id);
-    private static native void inactive(final String id);
-    private static native NetworkFuture<ByteBuf> handle(final String id, final ByteBuf buffer);
-    private static native void exception(final String id, final Throwable throwable);
+    private static native void active(final ServerChannelHandler handler, final ChannelHandlerContext ctx, final String id);
+    private static native void inactive(final ServerChannelHandler handler, final ChannelHandlerContext ctx, final String id);
+    private static native void exception(final ServerChannelHandler handler, final ChannelHandlerContext ctx, final String id, final Throwable throwable);
 
     private static final ChannelHandler handlerInstance = new ServerChannelHandler();
     @ChannelHandler.Sharable
     public static class ServerChannelHandler extends SimpleChannelInboundHandler<ByteBuf> {
         @Override
         public void channelActive(final ChannelHandlerContext ctx) {
-            ServerStarter.active(ctx.channel().id().asLongText());
+            ServerStarter.active(this, ctx, ctx.channel().id().asLongText());
         }
 
         @Override
         public void channelInactive(final ChannelHandlerContext ctx) {
-            ServerStarter.inactive(ctx.channel().id().asLongText());
+            ServerStarter.inactive(this, ctx, ctx.channel().id().asLongText());
         }
 
         @Override
         protected void channelRead0(final ChannelHandlerContext ctx, final ByteBuf msg) {
-            @SuppressWarnings("resource") final NetworkFuture<ByteBuf> future = ServerStarter.handle(ctx.channel().id().asLongText(), msg);
-            future.thenAcceptAsync(buffer -> ctx.channel().writeAndFlush(buffer), ServerStarter.ServerExecutors).thenRun(future::close);
+//            @SuppressWarnings("resource") final NetworkFuture<ByteBuf> future = ServerStarter.handle(ctx.channel().id().asLongText(), msg);
+//            future.thenAcceptAsync(buffer -> ctx.channel().writeAndFlush(buffer), ServerStarter.ServerExecutors).thenRun(future::close);
+            // TODO: deserialize in java side.
         }
 
         @Override
@@ -147,24 +146,24 @@ public final class ServerStarter {
             ctx.close();
             if (cause instanceof CodecException || (cause instanceof SocketException && !ctx.channel().isActive()))
                 return;
-            ServerStarter.exception(ctx.channel().id().asLongText(), cause);
+            ServerStarter.exception(this, ctx, ctx.channel().id().asLongText(), cause);
         }
     }
 
 
     private static native int getMaxPacketSize();
-    private static native void encode(final ServerCodec codec, final ChannelHandlerContext ctx, final ByteBuf msg, final List<Object> out);
-    private static native void decode(final ServerCodec codec, final ChannelHandlerContext ctx, final ByteBuf msg, final List<Object> out);
+    private static native void encode(final ServerCodec codec, final ChannelHandlerContext ctx, final String id, final ByteBuf msg, final List<Object> out);
+    private static native void decode(final ServerCodec codec, final ChannelHandlerContext ctx, final String id, final ByteBuf msg, final List<Object> out);
 
     public static class ServerCodec extends MessageToMessageCodec<ByteBuf, ByteBuf> {
         @Override
         protected void encode(final ChannelHandlerContext ctx, final ByteBuf msg, final List<Object> out) {
-            ServerStarter.encode(this, ctx, msg, out);
+            ServerStarter.encode(this, ctx, ctx.channel().id().asLongText(), msg, out);
         }
 
         @Override
         protected void decode(final ChannelHandlerContext ctx, final ByteBuf msg, final List<Object> out) {
-            ServerStarter.decode(this, ctx, msg, out);
+            ServerStarter.decode(this, ctx, ctx.channel().id().asLongText(), msg, out);
         }
     }
 }
