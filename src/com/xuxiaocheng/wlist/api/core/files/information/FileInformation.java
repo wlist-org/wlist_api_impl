@@ -3,7 +3,7 @@ package com.xuxiaocheng.wlist.api.core.files.information;
 import com.xuxiaocheng.wlist.api.common.Recyclable;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 /**
  * The information of a file/directory.
@@ -12,10 +12,10 @@ import java.time.ZonedDateTime;
  * @param name the file/directory name.
  * @param isDirectory whether a directory or a file.
  * @param size the file/directory size. (-1 means unknown.)
- * @param createTime creation time.
- * @param updateTime update time.
+ * @param createTime the time when created.
+ * @param updateTime the time when updated.
  */
 public record FileInformation(long id, long parentId, String name, boolean isDirectory, long size,
-                              ZonedDateTime createTime, ZonedDateTime updateTime)
+                              Instant createTime, Instant updateTime)
         implements Serializable, Recyclable {
 }

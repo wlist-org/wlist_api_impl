@@ -4,7 +4,7 @@ import com.xuxiaocheng.wlist.api.common.Recyclable;
 import com.xuxiaocheng.wlist.api.core.storages.types.StorageType;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.time.Instant;
 
 /**
  * The information of a storage.
@@ -14,10 +14,10 @@ import java.time.ZonedDateTime;
  * @param type the type of the storage.
  * @param available true if the storage is available. (The share link may be canceled or the personal account may be deleted.)
  * @param size the storage size. (-1 means unknown.)
- * @param createTime creation time.
- * @param updateTime update time.
+ * @param createTime the time when created.
+ * @param updateTime the time when updated.
  */
 public record StorageInformation(long id, String name, boolean readOnly, StorageType type, boolean available,
-                                 long size, ZonedDateTime createTime, ZonedDateTime updateTime)
+                                 long size, Instant createTime, Instant updateTime)
         implements Serializable, Recyclable {
 }
