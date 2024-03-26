@@ -14,5 +14,6 @@
     <orderEntry type="library" scope="PROVIDED" name="openjdk.jmh.generator.annprocess" level="project" />
     <orderEntry type="library" name="io.netty.all" level="project" />
     <orderEntry type="library" name="htmlunit" level="project" />
+    <orderEntry type="library" name="msgpack.core" level="project" />
   </component>
 </module>

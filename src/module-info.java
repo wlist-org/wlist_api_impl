@@ -6,6 +6,7 @@ module com.xuxiaocheng.wlist.api {
     requires io.netty.transport;
     requires io.netty.codec;
     requires io.netty.buffer;
+    requires msgpack.core;
 
     exports com.xuxiaocheng.wlist.api;
     exports com.xuxiaocheng.wlist.api.common;
