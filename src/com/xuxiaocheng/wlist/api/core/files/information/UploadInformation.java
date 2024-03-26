@@ -13,5 +13,6 @@ import java.util.List;
  *               <b>The chunk id is the index of the list.</b>
  * @param expire the expiry time.
  */
-public record UploadInformation(List<UploadChunkInformation> chunks, Instant expire) implements Serializable, Recyclable {
+public record UploadInformation(List<UploadChunkInformation> chunks, Instant expire)
+        implements Serializable, Recyclable {
 }

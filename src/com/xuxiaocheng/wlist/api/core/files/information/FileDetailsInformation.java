@@ -14,5 +14,6 @@ import java.util.List;
  * @param optionalMd5 the optional(<b>nullable</b>) md5. (This is a lowercase string with a length of 32.) (For directory, it's always null.)
  * @param optionalThumbnail the optional(<b>nullable</b>) thumbnail download confirmation.
  */
-public record FileDetailsInformation(FileInformation basic, boolean trashed, List<String> path, String optionalMd5, DownloadConfirmation optionalThumbnail) implements Serializable, Recyclable {
+public record FileDetailsInformation(FileInformation basic, boolean trashed, List<String> path, String optionalMd5, DownloadConfirmation optionalThumbnail)
+        implements Serializable, Recyclable {
 }

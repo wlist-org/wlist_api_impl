@@ -14,5 +14,6 @@ import java.util.List;
  *               <b>The chunk id is the index of the list.</b>
  * @param expire the expiry time.
  */
-public record DownloadInformation(List<DownloadChunkInformation> chunks, Instant expire) implements Serializable, Recyclable {
+public record DownloadInformation(List<DownloadChunkInformation> chunks, Instant expire)
+        implements Serializable, Recyclable {
 }

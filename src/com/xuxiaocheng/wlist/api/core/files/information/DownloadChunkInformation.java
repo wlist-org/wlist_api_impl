@@ -10,5 +10,6 @@ import java.io.Serializable;
  * @param start the start byte index of the entire file.
  * @param size the chunk size.
  */
-public record DownloadChunkInformation(boolean range, long start, long size) implements Serializable, Recyclable {
+public record DownloadChunkInformation(boolean range, long start, long size)
+        implements Serializable, Recyclable {
 }

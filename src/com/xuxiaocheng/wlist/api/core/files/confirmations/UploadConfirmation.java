@@ -10,5 +10,6 @@ import java.io.Serializable;
  * @param done if true, the file has been successfully downloaded. (Uploaded by Speed transmission.)
  * @param token the upload token.
  */
-public record UploadConfirmation(boolean done, UploadToken token) implements Serializable, Recyclable {
+public record UploadConfirmation(boolean done, UploadToken token)
+        implements Serializable, Recyclable {
 }

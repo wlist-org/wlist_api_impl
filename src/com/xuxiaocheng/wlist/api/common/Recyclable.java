@@ -12,7 +12,7 @@ public interface Recyclable extends AutoCloseable {
     default void recycle() { throw Main.stub(); }
 
     @Override
-    default void close() throws Exception {
+    default void close() {
        this.recycle();
     }
 }

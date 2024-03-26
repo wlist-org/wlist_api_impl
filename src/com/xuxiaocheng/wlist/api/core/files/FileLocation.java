@@ -1,5 +1,7 @@
 package com.xuxiaocheng.wlist.api.core.files;
 
+import com.xuxiaocheng.wlist.api.common.Recyclable;
+
 import java.io.Serializable;
 
 /**
@@ -8,5 +10,6 @@ import java.io.Serializable;
  * @param fileId the file/directory id.
  * @param isDirectory true if the location is a directory.
  */
-public record FileLocation(long storage, long fileId, boolean isDirectory) implements Serializable {
+public record FileLocation(long storage, long fileId, boolean isDirectory)
+        implements Serializable, Recyclable {
 }
