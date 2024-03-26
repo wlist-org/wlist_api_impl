@@ -18,5 +18,19 @@ public sealed interface StorageType extends Serializable permits Lanzou {
      * Return true means the storage is shared. (Other's share link.)
      * @return true if the storage is shared.
      */
-    default boolean isShared() { return !this.isPrivate();}
+    default boolean isShared() { return !this.isPrivate(); }
+
+    static StorageType instanceOf(final String name) {
+        return switch (name) {
+            case "lanzou" -> Lanzou.Instance;
+            default -> throw new IllegalArgumentException("Unknown storage type: " + name);
+        };
+    }
+
+    static String name(final StorageType type) {
+        return switch (type.getClass().getCanonicalName()) {
+            case "Lanzou" -> "lanzou";
+            default -> throw new IllegalStateException("Unexpected value: " + type.getClass().getCanonicalName());
+        };
+    }
 }

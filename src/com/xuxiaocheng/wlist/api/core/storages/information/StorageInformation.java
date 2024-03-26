@@ -2,7 +2,10 @@ package com.xuxiaocheng.wlist.api.core.storages.information;
 
 import com.xuxiaocheng.wlist.api.common.Recyclable;
 import com.xuxiaocheng.wlist.api.core.storages.types.StorageType;
+import org.msgpack.core.MessagePacker;
+import org.msgpack.core.MessageUnpacker;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.time.Instant;
 
@@ -20,4 +23,26 @@ import java.time.Instant;
 public record StorageInformation(long id, String name, boolean readOnly, StorageType type, boolean available,
                                  long size, Instant createTime, Instant updateTime)
         implements Serializable, Recyclable {
+    public static void serialize(final StorageInformation self, final MessagePacker packer) throws IOException {
+        packer.packLong(self.id);
+        packer.packString(self.name);
+        packer.packBoolean(self.readOnly);
+        packer.packString(StorageType.name(self.type));
+        packer.packBoolean(self.available);
+        packer.packLong(self.size);
+        packer.packTimestamp(self.createTime);
+        packer.packTimestamp(self.updateTime);
+    }
+
+    public static StorageInformation deserialize(final MessageUnpacker unpacker) throws IOException {
+        final long id = unpacker.unpackLong();
+        final String name = unpacker.unpackString();
+        final boolean readOnly = unpacker.unpackBoolean();
+        final StorageType type = StorageType.instanceOf(unpacker.unpackString());
+        final boolean available = unpacker.unpackBoolean();
+        final long size = unpacker.unpackLong();
+        final Instant createTime = unpacker.unpackTimestamp();
+        final Instant updateTime = unpacker.unpackTimestamp();
+        return new StorageInformation(id, name, readOnly, type, available, size, createTime, updateTime);
+    }
 }

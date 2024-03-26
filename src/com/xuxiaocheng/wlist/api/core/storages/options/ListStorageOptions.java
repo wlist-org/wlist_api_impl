@@ -1,9 +1,13 @@
 package com.xuxiaocheng.wlist.api.core.storages.options;
 
 import com.xuxiaocheng.wlist.api.common.Recyclable;
+import org.msgpack.core.MessagePacker;
+import org.msgpack.core.MessageUnpacker;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 /**
  * Options when listing storages.
@@ -15,4 +19,25 @@ import java.util.LinkedHashMap;
  */
 public record ListStorageOptions(Filter filter, LinkedHashMap<Order, Direction> orders, long offset, int limit)
         implements Serializable, Recyclable {
+    public static void serialize(final ListStorageOptions self, final MessagePacker packer) throws IOException {
+        packer.packString(self.filter.name());
+        packer.packMapHeader(self.orders.size());
+        for (final Map.Entry<Order, Direction> order: self.orders.entrySet()) {
+            packer.packString(order.getKey().name());
+            packer.packString(order.getValue().name());
+        }
+        packer.packLong(self.offset);
+        packer.packInt(self.limit);
+    }
+
+    public static ListStorageOptions deserialize(final MessageUnpacker unpacker) throws IOException {
+        final Filter filter = Filter.valueOf(unpacker.unpackString());
+        final int size = unpacker.unpackMapHeader();
+        final LinkedHashMap<Order, Direction> orders = new LinkedHashMap<>(size);
+        for (int i = 0; i < size; ++i)
+            orders.put(Order.valueOf(unpacker.unpackString()), Direction.valueOf(unpacker.unpackString()));
+        final long offset = unpacker.unpackLong();
+        final int limit = unpacker.unpackInt();
+        return new ListStorageOptions(filter, orders, offset, limit);
+    }
 }
