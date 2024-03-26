@@ -9,5 +9,6 @@ import java.io.Serializable;
  * @param start the start byte index of the entire file.
  * @param size the chunk size.
  */
-public record UploadChunkInformation(long start, long size) implements Serializable, Recyclable {
+public record UploadChunkInformation(long start, long size)
+        implements Serializable, Recyclable {
 }

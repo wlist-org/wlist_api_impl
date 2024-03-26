@@ -11,5 +11,6 @@ import java.util.List;
  * @param filtered the number of files after filtering. (see {@link com.xuxiaocheng.wlist.api.core.files.options.Filter}).
  * @param files the information list.
  */
-public record FileListInformation(long total, long filtered, List<FileInformation> files) implements Serializable, Recyclable {
+public record FileListInformation(long total, long filtered, List<FileInformation> files)
+        implements Serializable, Recyclable {
 }

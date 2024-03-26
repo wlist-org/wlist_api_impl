@@ -11,5 +11,6 @@ import java.util.List;
  * @param filtered the number of storages after filtering. (see {@link com.xuxiaocheng.wlist.api.core.storages.options.Filter}).
  * @param storages the information list.
  */
-public record StorageListInformation(long total, long filtered, List<StorageInformation> storages) implements Serializable, Recyclable {
+public record StorageListInformation(long total, long filtered, List<StorageInformation> storages)
+        implements Serializable, Recyclable {
 }

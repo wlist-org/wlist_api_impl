@@ -76,7 +76,7 @@ public enum File {;
      * Note that this method only provides fast filtering, and some cases may not be covered.
      * @param client the core client.
      * @param token the core token.
-     * @param storage the target storage.
+     * @param storage the id of target storage.
      * @param name the file/directory name.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
@@ -85,7 +85,7 @@ public enum File {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.IllegalSuffixException
      * @return a future, normal completion means the name may be valid.
      */
-    public static NetworkFuture<Void> checkName(final CoreClient client, final String token, final String storage, final String name) { throw Main.stub(); }
+    public static NetworkFuture<Void> checkName(final CoreClient client, final String token, final long storage, final String name) { throw Main.stub(); }
 
     /**
      * Create a new empty directory.

@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.1] - 2024-3-26
+
+### Changed
+
+* 补齐 Recyclable 接口
+
+### Fixed
+
+* 修正 checkName 参数 storage 的类型错误
+
 ## [1.5.0] - 2024-3-26
 
 ### Added
