@@ -18,7 +18,7 @@ public final class Marks {
     /**
      * The common package version.
      */
-    public static final String COMMON_API_VERSION = "1.1.0";
+    public static final String COMMON_API_VERSION = "1.1.1";
     /**
      * The common package impl version.
      */
@@ -28,7 +28,7 @@ public final class Marks {
     /**
      * The core api version.
      */
-    public static final String CORE_API_VERSION = "1.2.0";
+    public static final String CORE_API_VERSION = "1.3.0";
     /**
      * The core api impl version.
      */

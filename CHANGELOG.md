@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.0] - 2024-3-26
+
+### Added
+
+* 添加分享文件和文件夹接口
+
+### Changed
+
+* 使用 Instant 代替 ZonedDateTime
+* 优化文档
+
 ## [1.4.0] - 2024-3-24
 
 ### Added

@@ -4,14 +4,12 @@ import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 import com.xuxiaocheng.wlist.api.common.either.Either;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
+import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.information.FileDetailsInformation;
 import com.xuxiaocheng.wlist.api.core.files.information.FileInformation;
 import com.xuxiaocheng.wlist.api.core.files.information.FileListInformation;
-import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.options.Duplicate;
 import com.xuxiaocheng.wlist.api.core.files.options.ListFileOptions;
-
-import java.util.Optional;
 
 /**
  * The core file API.
@@ -34,7 +32,6 @@ public enum File {;
      * @param token the core token.
      * @param options the options for the list operation.
      * @return a future, with the list result or the refresh token.
-     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      */
     public static NetworkFuture<Either<FileListInformation, RefreshConfirmation>> listTrash(final CoreClient client, final String token, final ListFileOptions options) { return Main.future(); }
 
@@ -45,8 +42,9 @@ public enum File {;
      * @param file the location of the file/directory.
      * @param check true indicates the server should refresh the file information.
      * @return a future, with the optional file/directory information.
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      */
-    public static NetworkFuture<Optional<FileDetailsInformation>> get(final CoreClient client, final String token, final FileLocation file, final boolean check) { return Main.future(); }
+    public static NetworkFuture<FileDetailsInformation> get(final CoreClient client, final String token, final FileLocation file, final boolean check) { return Main.future(); }
 
     /**
      * Trash the file/directory.
