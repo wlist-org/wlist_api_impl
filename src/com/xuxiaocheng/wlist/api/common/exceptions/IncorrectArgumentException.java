@@ -12,6 +12,7 @@ public class IncorrectArgumentException extends Exception {
 
     /**
      * Internal constructor.
+     * @param message error message.
      */
     protected IncorrectArgumentException(final String message) {
         super(message);

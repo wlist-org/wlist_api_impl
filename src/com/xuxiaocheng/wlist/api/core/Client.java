@@ -18,6 +18,7 @@ public enum Client {;
 
     /**
      * Check whether this client is available.
+     * @param client the core client.
      * @return true if it is available to continue use.
      */
     public static boolean isAvailable(final CoreClient client) { throw Main.stub(); }
