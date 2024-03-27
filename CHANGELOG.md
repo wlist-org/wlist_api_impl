@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.5.2] - 2024-3-27
+
+### Changed
+
+* CoreServer 不校验 WebToken 正确性
+
 ## [1.5.1] - 2024-3-26
 
 ### Changed
