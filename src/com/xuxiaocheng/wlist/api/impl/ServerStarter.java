@@ -1,13 +1,16 @@
 package com.xuxiaocheng.wlist.api.impl;
 
+import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.exceptions.InternalException;
 import com.xuxiaocheng.wlist.api.common.exceptions.NetworkException;
 import com.xuxiaocheng.wlist.api.core.exceptions.MultiInstanceException;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufInputStream;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelId;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -25,10 +28,13 @@ import io.netty.util.concurrent.DefaultEventExecutorGroup;
 import io.netty.util.concurrent.DefaultThreadFactory;
 import io.netty.util.concurrent.EventExecutorGroup;
 import io.netty.util.concurrent.Future;
+import org.msgpack.core.MessagePack;
+import org.msgpack.core.MessageUnpacker;
 
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public final class ServerStarter {
@@ -136,9 +142,15 @@ public final class ServerStarter {
 
         @Override
         protected void channelRead0(final ChannelHandlerContext ctx, final ByteBuf msg) {
-//            @SuppressWarnings("resource") final NetworkFuture<ByteBuf> future = ServerStarter.handle(ctx.channel().id().asLongText(), msg);
-//            future.thenAcceptAsync(buffer -> ctx.channel().writeAndFlush(buffer), ServerStarter.ServerExecutors).thenRun(future::close);
-            // TODO: deserialize in java side.
+            ServerStarter.handle(ctx.channel().id(), msg.retain()).handle((result, ex) -> {
+                msg.release();
+                if (ex != null)
+                    ctx.fireExceptionCaught(ex);
+                else if (result != null)
+                    ctx.writeAndFlush(result)
+                            .addListener(f -> { if (!f.isSuccess()) ctx.fireExceptionCaught(f.cause()); });
+                return null;
+            });
         }
 
         @Override
@@ -165,5 +177,10 @@ public final class ServerStarter {
         protected void decode(final ChannelHandlerContext ctx, final ByteBuf msg, final List<Object> out) {
             ServerStarter.decode(this, ctx, ctx.channel().id().asLongText(), msg, out);
         }
+    }
+
+    public static CompletableFuture<ByteBuf> handle(final ChannelId id, final ByteBuf msg) {
+        final MessageUnpacker unpacker = MessagePack.newDefaultUnpacker(new ByteBufInputStream(msg));
+        throw Main.stub();
     }
 }
