@@ -8,20 +8,20 @@ import com.xuxiaocheng.wlist.api.Main;
 public enum Server {;
     /**
      * Start a core server.
-     * Won't block the caller thread.
+     * The server is running in extra threads.
+     * Note that you **must** ensure the token is valid and not expired.
      * @param defaultPort the port to listen on. (0 means random.)
      * @param token the web user token.
      * @return the real port the server listening on. (On 'localhost:$port'.)
      * @throws com.xuxiaocheng.wlist.api.core.exceptions.MultiInstanceException if called this method twice.
-     * @throws com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException if the token is expired or invalid.
      */
     public static int start(final int defaultPort, final String token) { throw Main.stub(); }
 
     /**
      * Reset the web user token.
      * This method must be called after calling {@link com.xuxiaocheng.wlist.api.web.Account#refresh(String)}.
+     * Note that you **must** ensure the token is valid and not expired.
      * @param newToken the new web user token.
-     * @throws com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException if the token is expired or invalid.
      */
     public static void resetToken(final String newToken) { throw Main.stub(); }
 
