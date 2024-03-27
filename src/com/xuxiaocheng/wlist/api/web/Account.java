@@ -33,7 +33,7 @@ public enum Account {;
 
     /**
      * Refresh the token. (Then the old token cannot be used.)
-     * You may call {@link com.xuxiaocheng.wlist.api.core.Server#resetToken(String)} after calling this method.
+     * You **must** call {@link com.xuxiaocheng.wlist.api.core.Server#resetToken(String)} after calling this method.
      * @param token the token.
      * @return a future, with a new token.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
