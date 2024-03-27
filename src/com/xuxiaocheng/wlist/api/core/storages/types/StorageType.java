@@ -18,5 +18,5 @@ public sealed interface StorageType extends Serializable permits Lanzou {
      * Return true means the storage is shared. (Other's share link.)
      * @return true if the storage is shared.
      */
-    default boolean isShared() { return !this.isPrivate();}
+    default boolean isShared() { return !this.isPrivate(); }
 }
