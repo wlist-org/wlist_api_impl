@@ -14,20 +14,24 @@ public enum Client {;
      * @return a future, with a client instance.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.UnavailableApiVersionException
      */
-    public static NetworkFuture<CoreClient> connect(final String host, final int port) { return Main.future(); }
+    public static NetworkFuture<CoreClient> connect(final String host, final int port) {
+        return CoreClient.open(host, port);
+    }
 
     /**
      * Check whether this client is available.
      * @param client the core client.
      * @return true if it is available to continue use.
      */
-    public static boolean isAvailable(final CoreClient client) { throw Main.stub(); }
+    public static boolean isAvailable(final CoreClient client) {
+        return client.isAvailable();
+    }
     
     /**
      * Close the client.
      * @param client the core client.
      */
-    public static void close(final CoreClient client) { throw Main.stub(); }
+    public static void close(final CoreClient client) { client.close(); }
 
     /**
      * Login to the core server.
