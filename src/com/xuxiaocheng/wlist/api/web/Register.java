@@ -1,7 +1,8 @@
 package com.xuxiaocheng.wlist.api.web;
 
 import com.xuxiaocheng.wlist.api.Main;
-import com.xuxiaocheng.wlist.api.common.NetworkFuture;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * The web register API.
@@ -16,7 +17,7 @@ public enum Register {;
      * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
-    public static NetworkFuture<Void> unregister(final String token, final String password) { return Main.future(); }
+    public static CompletableFuture<Void> unregister(final String token, final String password) { return Main.future(); }
 
 
     /**
@@ -29,6 +30,6 @@ public enum Register {;
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
-    public static NetworkFuture<String> registerAsGuest(final String deviceId, final String password) { return Main.future(); }
+    public static CompletableFuture<String> registerAsGuest(final String deviceId, final String password) { return Main.future(); }
 
 }

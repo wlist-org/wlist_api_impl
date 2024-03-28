@@ -1,9 +1,10 @@
 package com.xuxiaocheng.wlist.api.core.broadcast;
 
 import com.xuxiaocheng.wlist.api.Main;
-import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.broadcast.events.Event;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * The core broadcast API.
@@ -16,7 +17,7 @@ public enum Broadcast {;
      * @param token the core token.
      * @return a future, with a broadcast receiver.
      */
-    public static NetworkFuture<BroadcastClient> receiver(final CoreClient client, final String token) { throw Main.stub(); }
+    public static CompletableFuture<BroadcastClient> receiver(final CoreClient client, final String token) { throw Main.stub(); }
 
     /**
      * Receive the next message.
@@ -24,5 +25,5 @@ public enum Broadcast {;
      * @param client the broadcast receiver.
      * @return a future, with the next event.
      */
-    public static NetworkFuture<Event> next(final BroadcastClient client) { throw Main.stub(); }
+    public static CompletableFuture<Event> next(final BroadcastClient client) { throw Main.stub(); }
 }

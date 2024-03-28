@@ -1,7 +1,8 @@
 package com.xuxiaocheng.wlist.api.core;
 
 import com.xuxiaocheng.wlist.api.Main;
-import com.xuxiaocheng.wlist.api.common.NetworkFuture;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * The core client API.
@@ -14,7 +15,7 @@ public enum Client {;
      * @return a future, with a client instance.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.UnavailableApiVersionException
      */
-    public static NetworkFuture<CoreClient> connect(final String host, final int port) { return Main.future(); }
+    public static CompletableFuture<CoreClient> connect(final String host, final int port) { return Main.future(); }
 
     /**
      * Check whether this client is available.
@@ -37,12 +38,12 @@ public enum Client {;
      *                 (For internal server, use {@link com.xuxiaocheng.wlist.api.core.Server#resetAdminPassword()} to get the password.)
      * @return a future, with the core token. (expire in 1 hour.)
      */
-    public static NetworkFuture<String> login(final CoreClient client, final String username, final String password) { return Main.future(); }
+    public static CompletableFuture<String> login(final CoreClient client, final String username, final String password) { return Main.future(); }
 
     /**
      * Refresh the token. (But the old token can still be used.)
      * @param token the core token.
      * @return a future, with a new core token.
      */
-    public static NetworkFuture<String> refresh(final String token) { return Main.future(); }
+    public static CompletableFuture<String> refresh(final String token) { return Main.future(); }
 }

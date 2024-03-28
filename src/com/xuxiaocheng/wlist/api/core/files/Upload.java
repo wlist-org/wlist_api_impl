@@ -1,7 +1,6 @@
 package com.xuxiaocheng.wlist.api.core.files;
 
 import com.xuxiaocheng.wlist.api.Main;
-import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.UploadConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.information.FileInformation;
@@ -11,6 +10,7 @@ import com.xuxiaocheng.wlist.api.core.files.tokens.UploadToken;
 
 import java.nio.ByteBuffer;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * The core upload API.
@@ -35,7 +35,7 @@ public enum Upload {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.IllegalSuffixException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static NetworkFuture<UploadConfirmation> request(final CoreClient client, final String token, final FileLocation parent, final String name, final String md5, final Duplicate duplicate) { return Main.future(); }
+    public static CompletableFuture<UploadConfirmation> request(final CoreClient client, final String token, final FileLocation parent, final String name, final String md5, final Duplicate duplicate) { return Main.future(); }
 
     /**
      * Cancel a upload.
@@ -43,7 +43,7 @@ public enum Upload {;
      * @param token the upload token.
      * @return a future.
      */
-    public static NetworkFuture<Void> cancel(final CoreClient client, final UploadToken token) { return Main.future(); }
+    public static CompletableFuture<Void> cancel(final CoreClient client, final UploadToken token) { return Main.future(); }
 
     /**
      * Confirm a upload.
@@ -51,7 +51,7 @@ public enum Upload {;
      * @param token the upload token.
      * @return a future, with the upload confirmation.
      */
-    public static NetworkFuture<UploadInformation> confirm(final CoreClient client, final UploadToken token) { return Main.future(); }
+    public static CompletableFuture<UploadInformation> confirm(final CoreClient client, final UploadToken token) { return Main.future(); }
 
     /**
      * Upload the file chunk.
@@ -67,7 +67,7 @@ public enum Upload {;
      * @return a future, with a sha256 hash of the uploaded chunk data.
      *                   The hash is optional because the chunk may upload incompletely.
      */
-    public static NetworkFuture<Optional<String>> upload(final CoreClient client, final UploadToken token, final int id, final ByteBuffer buffer) { return Main.future(); }
+    public static CompletableFuture<Optional<String>> upload(final CoreClient client, final UploadToken token, final int id, final ByteBuffer buffer) { return Main.future(); }
 
     /**
      * Finish an upload.
@@ -76,5 +76,5 @@ public enum Upload {;
      * @return a future, with the information of the new file.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.UploadChunkIncompleteException
      */
-    public static NetworkFuture<FileInformation> finish(final CoreClient client, final UploadToken token) { return Main.future(); }
+    public static CompletableFuture<FileInformation> finish(final CoreClient client, final UploadToken token) { return Main.future(); }
 }
