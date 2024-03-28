@@ -6,11 +6,12 @@ import org.junit.jupiter.api.Test;
 public final class Tester {
     static {
         System.loadLibrary("wlist");
-        Main.initialize("./run/cache", "./run/data");
     }
 
     @BeforeAll
     public static void initialize() {
+
+        Main.initialize("./run/cache", "./run/data");
     }
 
     @Test

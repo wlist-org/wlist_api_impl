@@ -16,11 +16,10 @@ public class CodecTest {
     @DisplayName("ping")
     public void testPing() throws ExecutionException, InterruptedException {
         final int port = Server.start(0, "WebToken");
-        final CoreClient client;
-        try (final var future = Client.connect("localhost", port)) {
-            client = future.get();
-        }
+        final CoreClient client = Client.connect("localhost", port).get();
+        final String message = Client.login(client, "123", "456").get();
         Client.close(client);
         Server.stop();
+        System.out.println(message);
     }
 }
