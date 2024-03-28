@@ -1,11 +1,9 @@
 package com.xuxiaocheng.wlist.api.core;
 
 import com.xuxiaocheng.wlist.api.Main;
-import com.xuxiaocheng.wlist.api.common.exceptions.NetworkException;
 import com.xuxiaocheng.wlist.api.impl.ClientStarter;
 import io.netty.buffer.ByteBuf;
 
-import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
@@ -22,20 +20,10 @@ public final class CoreClient implements AutoCloseable {
     }
 
     public static CompletableFuture<CoreClient> open(final String host, final int port) {
-        return CompletableFuture.supplyAsync(() -> {
-            final ClientStarter.ClientImpl client = new ClientStarter.ClientImpl(new InetSocketAddress(host, port));
-            boolean flag = true;
-            try {
-                client.open();
-                flag = false;
-            } catch (final IOException exception) {
-                throw new NetworkException("Opening client", exception);
-            } finally {
-                if (flag)
-                    client.close();
-            }
-            return new CoreClient(client);
-        }, Main.InternalEventLoopGroup);
+        return CompletableFuture.supplyAsync(() -> new ClientStarter.ClientImpl(new InetSocketAddress(host, port)), Main.InternalEventLoopGroup)
+                .thenCompose(client -> client.open().thenApply(ignored -> client))
+                .whenComplete((client, throwable) -> { if (throwable != null) client.close(); })
+                .thenApply(CoreClient::new);
     }
 
     /**
@@ -46,20 +34,16 @@ public final class CoreClient implements AutoCloseable {
         return this.client.isActive();
     }
 
-    public void send(final ByteBuf msg) {
-        try {
-            this.client.send(msg);
-        } catch (final IOException exception) {
-            throw new NetworkException("Sending msg.", exception);
-        }
+    public CompletableFuture<Void> send(final ByteBuf msg) {
+        return this.client.send(msg);
     }
 
-    public Optional<ByteBuf> recv() {
-        try {
-            return this.client.recv();
-        } catch (final IOException exception) {
-            throw new NetworkException("Receiving msg", exception);
-        }
+    public CompletableFuture<ByteBuf> recv() {
+        return this.client.recv();
+    }
+
+    public CompletableFuture<Optional<ByteBuf>> recvOptional() {
+        return this.client.recvOptional();
     }
 
     @Override

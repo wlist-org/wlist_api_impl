@@ -1,5 +1,7 @@
 package com.xuxiaocheng.wlist.api.impl;
 
+import com.xuxiaocheng.wlist.api.common.exceptions.InternalException;
+import com.xuxiaocheng.wlist.api.common.exceptions.NetworkException;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.Channel;
@@ -24,41 +26,47 @@ import java.net.SocketAddress;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.TimeUnit;
 
 public final class ClientStarter {
     private ClientStarter() {
         super();
     }
 
-    private static void awaitFuture(final ChannelFuture future, final String message) throws IOException {
-        try {
-            future.await();
-        } catch (final InterruptedException exception) {
-            throw new IOException(message + exception);
-        }
-        final Throwable throwable = future.cause();
-        if (throwable != null) {
-            if (throwable instanceof final IOException exception)
-                throw exception;
-            throw new IOException(throwable);
-        }
+    private static CompletableFuture<Void> awaitFuture(final ChannelFuture channelFuture, final String message) {
+        final CompletableFuture<Void> future = new CompletableFuture<>();
+        channelFuture.addListener(f -> {
+            if (f.cause() == null) {
+                future.complete(null);
+                return;
+            }
+            final Throwable throwable = f.cause();
+            if (throwable instanceof IOException)
+                future.completeExceptionally(new NetworkException(message, throwable));
+            else
+                future.completeExceptionally(new InternalException(message, throwable));
+        });
+        return future;
     }
 
     public static class ClientImpl implements Closeable {
         protected final EventLoopGroup clientEventLoop = new NioEventLoopGroup(1, new DefaultThreadFactory("ClientEventLoop"));
         protected final SocketAddress address;
-        protected final BlockingQueue<ByteBuf> queue = new LinkedBlockingQueue<>();
-        protected Channel channel;
+        protected final BlockingQueue<CompletableFuture<Optional<ByteBuf>>> receiver = new LinkedBlockingQueue<>();
+        protected final BlockingQueue<ByteBuf> buffers = new LinkedBlockingQueue<>();
+        protected transient Channel channel;
 
         public ClientImpl(final SocketAddress address) {
             super();
             this.address = address;
         }
 
-        public synchronized void open() throws IOException {
-            if (this.channel != null) return;
+        public synchronized CompletableFuture<Void> open() {
+            if (this.channel != null)
+                return CompletableFuture.completedFuture(null);
+            if (this.clientEventLoop.isShuttingDown())
+                throw new NetworkException("Closed client.");
             final Bootstrap bootstrap = new Bootstrap();
             bootstrap.group(this.clientEventLoop);
             bootstrap.channel(NioSocketChannel.class);
@@ -75,8 +83,8 @@ public final class ClientStarter {
                 }
             });
             final ChannelFuture future = bootstrap.connect(this.address);
-            ClientStarter.awaitFuture(future, "Waiting for client to connect to addr: ");
             this.channel = future.channel();
+            return ClientStarter.awaitFuture(future, "Waiting for client to connect to addr.");
         }
 
         public SocketAddress getAddress() {
@@ -87,37 +95,63 @@ public final class ClientStarter {
             return this.channel != null && this.channel.isActive();
         }
 
-        public synchronized void send(final ByteBuf msg) throws IOException {
-            if (!this.isActive()) throw new IOException("Client is not active.");
-            final ChannelFuture future = this.channel.writeAndFlush(msg);
-            ClientStarter.awaitFuture(future, "Waiting for client to send message: ");
+        // The returned future is completed synchronously.
+        private synchronized CompletableFuture<Channel> getChanel() {
+            if (!this.isActive())
+                return CompletableFuture.failedFuture(new NetworkException("Client is not active."));
+            return CompletableFuture.completedFuture(this.channel);
         }
 
-        public synchronized Optional<ByteBuf> recv() throws IOException {
-            if (!this.isActive()) throw new IOException("Client is not active.");
-            ByteBuf receive = null;
-            while (receive == null && this.isActive()) {
-                try {
-                    receive = this.queue.poll(1, TimeUnit.SECONDS);
-                } catch (final InterruptedException exception) {
-                    throw new IOException("Waiting for client to recv message: " + exception);
-                }
-            }
-            return Optional.ofNullable(receive);
+        public synchronized CompletableFuture<Void> send(final ByteBuf msg) {
+            return this.getChanel().thenCompose(channel -> {
+                final ChannelFuture future = channel.writeAndFlush(msg);
+                return ClientStarter.awaitFuture(future, "Waiting for client to send message.");
+            });
+        }
+
+        public CompletableFuture<ByteBuf> recv() {
+            return this.recvOptional().thenApply(buffer -> {
+                if (buffer.isPresent())
+                    return buffer.get();
+                throw new NetworkException("Client is closing");
+            });
+        }
+
+        public synchronized CompletableFuture<Optional<ByteBuf>> recvOptional() {
+            return this.getChanel().thenCompose(ignored -> {
+                final ByteBuf receive = this.buffers.poll();
+                if (receive != null)
+                    return CompletableFuture.completedFuture(Optional.of(receive));
+                final CompletableFuture<Optional<ByteBuf>> future = new CompletableFuture<>();
+                this.receiver.add(future);
+                return future;
+            });
+        }
+
+        public synchronized void fireRecv(final ByteBuf msg) {
+            final CompletableFuture<Optional<ByteBuf>> receiver = this.receiver.poll();
+            if (receiver != null)
+                receiver.complete(Optional.of(msg));
+            else
+                this.buffers.add(msg);
         }
 
         @Override
         public synchronized void close() {
             if (this.channel == null) return;
             this.channel.close().addListener(f -> this.clientEventLoop.shutdownGracefully());
-            while (true) {
-                final ByteBuf deleted = this.queue.poll();
-                if (deleted == null)
-                    break;
-                deleted.release();
-            }
             //noinspection DataFlowIssue
             this.channel = null;
+            while (true) {
+                final ByteBuf deleted = this.buffers.poll();
+                if (deleted == null) break;
+                deleted.release();
+            }
+            while (true) {
+                final CompletableFuture<Optional<ByteBuf>> deleted = this.receiver.poll();
+                if (deleted == null) break;
+                deleted.complete(Optional.empty());
+            }
         }
     }
 
@@ -128,13 +162,13 @@ public final class ClientStarter {
         private final ClientImpl client;
 
         private ClientChannelHandler(final ClientImpl client) {
-            super();
+            super(false);
             this.client = client;
         }
 
         @Override
         protected void channelRead0(final ChannelHandlerContext ctx, final ByteBuf msg) {
-            this.client.queue.add(msg.retain());
+            this.client.fireRecv(msg);
         }
 
         @Override
