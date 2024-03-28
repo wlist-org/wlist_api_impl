@@ -1,11 +1,17 @@
 package com.xuxiaocheng.wlist.api;
 
+import io.netty.util.concurrent.DefaultEventExecutorGroup;
+import io.netty.util.concurrent.DefaultThreadFactory;
+import io.netty.util.concurrent.EventExecutorGroup;
+
 import java.util.concurrent.CompletableFuture;
 
 /**
  * The common global API.
  */
 public enum Main {;
+    public static final EventExecutorGroup InternalEventLoopGroup = new DefaultEventExecutorGroup(Runtime.getRuntime().availableProcessors() << 2, new DefaultThreadFactory("InternalExecutors"));
+
     /**
      * Initialize the core server.
      * Note that you **must** call this method before calling all the others.
@@ -14,7 +20,9 @@ public enum Main {;
      * @param cache the directory of cache.
      * @param data the directory of data.
      */
-    public static void initialize(final String cache, final String data) { throw Main.stub(); }
+    public static native void initialize(final String cache, final String data);
+
+    private static native void shutdownNativeThreads();
 
     /**
      * Shut down all internal threads.
@@ -23,7 +31,10 @@ public enum Main {;
      * If you don't call this method, these threads will block the jvm exit process.
      * If you called any other method after calling this, the behavior of these methods is undefined.
      */
-    public static void shutdownThreads() { throw Main.stub(); }
+    public static void shutdownThreads() {
+        Main.shutdownNativeThreads();
+        Main.InternalEventLoopGroup.shutdownGracefully().awaitUninterruptibly();
+    }
 
 
     /**

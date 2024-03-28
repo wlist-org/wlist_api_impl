@@ -1,5 +1,6 @@
 package com.xuxiaocheng.wlist.api.core;
 
+import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.exceptions.NetworkException;
 import com.xuxiaocheng.wlist.api.impl.ClientStarter;
 import io.netty.buffer.ByteBuf;
@@ -34,7 +35,7 @@ public final class CoreClient implements AutoCloseable {
                     client.close();
             }
             return new CoreClient(client);
-        });
+        }, Main.InternalEventLoopGroup);
     }
 
     /**
