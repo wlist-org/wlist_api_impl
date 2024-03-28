@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.1] - 2024-3-28
+
+### Changed
+
+* 重命名 shutdownNativeThreads 为 shutdownThreads
+* 修改 InternalException 构造函数
+
 ## [1.7.0] - 2024-3-28
 
 ### Changed

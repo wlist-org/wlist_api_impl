@@ -3,7 +3,7 @@ package com.xuxiaocheng.wlist.api;
 import java.util.concurrent.CompletableFuture;
 
 /**
- * Global API.
+ * The common global API.
  */
 public enum Main {;
     /**
