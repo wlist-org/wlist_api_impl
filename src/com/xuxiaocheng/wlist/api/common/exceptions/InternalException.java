@@ -16,4 +16,13 @@ public class InternalException extends RuntimeException {
     public InternalException(final String message) {
         super(message);
     }
+
+    /**
+     * Internal constructor.
+     * @param message error message.
+     * @param cause error cause.
+     */
+    protected InternalException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
 }
