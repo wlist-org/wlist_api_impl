@@ -1,34 +1,40 @@
 package com.xuxiaocheng.wlist.api.core;
 
-import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 import com.xuxiaocheng.wlist.api.common.exceptions.NetworkException;
 import com.xuxiaocheng.wlist.api.impl.ClientStarter;
+import io.netty.buffer.ByteBuf;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * The core client.
  * Use {@link com.xuxiaocheng.wlist.api.core.Client#connect(String, int)} to create an instance.
  */
-public record CoreClient(ClientStarter.ClientImpl client) implements AutoCloseable {
-    public static NetworkFuture<CoreClient> open(final String host, final int port) {
-        final NetworkFuture<CoreClient> future = NetworkFuture.create();
-        future.completeAsync(() -> {
-            final ClientStarter.ClientImpl client = new ClientStarter.ClientImpl(new InetSocketAddress(host,port));
+public final class CoreClient implements AutoCloseable {
+    private final ClientStarter.ClientImpl client;
+
+    private CoreClient(final ClientStarter.ClientImpl client) {
+        this.client = client;
+    }
+
+    public static CompletableFuture<CoreClient> open(final String host, final int port) {
+        return CompletableFuture.supplyAsync(() -> {
+            final ClientStarter.ClientImpl client = new ClientStarter.ClientImpl(new InetSocketAddress(host, port));
             boolean flag = true;
             try {
                 client.open();
                 flag = false;
             } catch (final IOException exception) {
-                throw new NetworkException(exception.getMessage());
+                throw new NetworkException(exception.getLocalizedMessage());
             } finally {
                 if (flag)
                     client.close();
             }
             return new CoreClient(client);
         });
-        return future;
     }
 
     /**
@@ -37,6 +43,22 @@ public record CoreClient(ClientStarter.ClientImpl client) implements AutoCloseab
      */
     public boolean isAvailable() {
         return this.client.isActive();
+    }
+
+    public void send(final ByteBuf msg) {
+        try {
+            this.client.send(msg);
+        } catch (final IOException exception) {
+            throw new NetworkException(exception.getLocalizedMessage());
+        }
+    }
+
+    public Optional<ByteBuf> recv() {
+        try {
+            return this.client.recv();
+        } catch (final IOException exception) {
+            throw new NetworkException(exception.getLocalizedMessage());
+        }
     }
 
     @Override
