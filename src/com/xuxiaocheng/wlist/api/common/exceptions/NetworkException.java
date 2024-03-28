@@ -16,4 +16,13 @@ public class NetworkException extends InternalException {
     private NetworkException(final String message) {
         super(message);
     }
+
+    /**
+     * Internal constructor.
+     * @param message error message.
+     * @param cause error cause.
+     */
+    private NetworkException(final String message, final Throwable cause) {
+        super(message, cause);
+    }
 }
