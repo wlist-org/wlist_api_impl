@@ -29,7 +29,7 @@ public final class CoreClient implements AutoCloseable {
                 client.open();
                 flag = false;
             } catch (final IOException exception) {
-                throw new NetworkException(exception.getLocalizedMessage());
+                throw new NetworkException("Opening client", exception);
             } finally {
                 if (flag)
                     client.close();
@@ -50,7 +50,7 @@ public final class CoreClient implements AutoCloseable {
         try {
             this.client.send(msg);
         } catch (final IOException exception) {
-            throw new NetworkException(exception.getLocalizedMessage());
+            throw new NetworkException("Sending msg.", exception);
         }
     }
 
@@ -58,7 +58,7 @@ public final class CoreClient implements AutoCloseable {
         try {
             return this.client.recv();
         } catch (final IOException exception) {
-            throw new NetworkException(exception.getLocalizedMessage());
+            throw new NetworkException("Receiving msg", exception);
         }
     }
 

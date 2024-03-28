@@ -94,7 +94,7 @@ public final class ServerStarter {
                 if (defaultPort == 0 || flag) {
                     future = serverBootstrap.bind(0).await();
                     if (future.cause() != null)
-                        throw new NetworkException(future.cause().getMessage());
+                        throw new NetworkException("Starting server.", future.cause());
                 }
             } catch (final InterruptedException exception) {
                 throw new InternalException("Waiting for server to bind on port.");

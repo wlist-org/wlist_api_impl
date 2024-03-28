@@ -22,7 +22,7 @@ public class InternalException extends RuntimeException {
      * @param message error message.
      * @param cause error cause.
      */
-    protected InternalException(final String message, final Throwable cause) {
+    public InternalException(final String message, final Throwable cause) {
         super(message, cause);
     }
 }

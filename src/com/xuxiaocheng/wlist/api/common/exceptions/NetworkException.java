@@ -22,7 +22,7 @@ public class NetworkException extends InternalException {
      * @param message error message.
      * @param cause error cause.
      */
-    private NetworkException(final String message, final Throwable cause) {
+    public NetworkException(final String message, final Throwable cause) {
         super(message, cause);
     }
 }
