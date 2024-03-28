@@ -17,12 +17,13 @@ public enum Main {;
     public static void initialize(final String cache, final String data) { throw Main.stub(); }
 
     /**
-     * Shut down all native threads.
+     * Shut down all internal threads.
      * <p>
      * This method can be called when exit the jvm.
-     * If you don't call this method, these native threads will block the jvm exit process.
+     * If you don't call this method, these threads will block the jvm exit process.
+     * If you called any other method after calling this, the behavior of these methods is undefined.
      */
-    public static void shutdownNativeThreads() { throw Main.stub(); }
+    public static void shutdownThreads() { throw Main.stub(); }
 
 
     /**
