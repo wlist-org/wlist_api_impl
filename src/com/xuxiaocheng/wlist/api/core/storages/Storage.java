@@ -1,13 +1,13 @@
 package com.xuxiaocheng.wlist.api.core.storages;
 
 import com.xuxiaocheng.wlist.api.Main;
-import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.storages.information.StorageInformation;
 import com.xuxiaocheng.wlist.api.core.storages.information.StorageListInformation;
 import com.xuxiaocheng.wlist.api.core.storages.options.ListStorageOptions;
 
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * The core storage API.
@@ -20,7 +20,7 @@ public enum Storage {;
      * @param options the options for the list operation.
      * @return a future, with the list result.
      */
-    public static NetworkFuture<StorageListInformation> list(final CoreClient client, final String token, final ListStorageOptions options) { return Main.future(); }
+    public static CompletableFuture<StorageListInformation> list(final CoreClient client, final String token, final ListStorageOptions options) { return Main.future(); }
 
     /**
      * Get the information of a storage.
@@ -30,7 +30,7 @@ public enum Storage {;
      * @param check true indicates the server should recheck the storage is available.
      * @return a future, with the optional information of the storage.
      */
-    public static NetworkFuture<Optional<StorageInformation>> get(final CoreClient client, final String token, final long storage, final boolean check) { return Main.future(); }
+    public static CompletableFuture<Optional<StorageInformation>> get(final CoreClient client, final String token, final long storage, final boolean check) { return Main.future(); }
 
     /**
      * Remove a storage.
@@ -41,7 +41,7 @@ public enum Storage {;
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageNotFoundException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageInLockException
      */
-    public static NetworkFuture<Void> remove(final CoreClient client, final String token, final long storage) { return Main.future(); }
+    public static CompletableFuture<Void> remove(final CoreClient client, final String token, final long storage) { return Main.future(); }
 
     /**
      * Rename a storage.
@@ -53,7 +53,7 @@ public enum Storage {;
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageNotFoundException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageExistsException
      */
-    public static NetworkFuture<Void> rename(final CoreClient client, final String token, final long storage, final String name) { return Main.future(); }
+    public static CompletableFuture<Void> rename(final CoreClient client, final String token, final long storage, final String name) { return Main.future(); }
 
     /**
      * Set a storage as readonly/writable.
@@ -68,5 +68,5 @@ public enum Storage {;
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageInLockException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.MismatchStorageTypeException
      */
-    public static NetworkFuture<Void> setReadonly(final CoreClient client, final String token, final long storage, final boolean readonly) { return Main.future(); }
+    public static CompletableFuture<Void> setReadonly(final CoreClient client, final String token, final long storage, final boolean readonly) { return Main.future(); }
 }

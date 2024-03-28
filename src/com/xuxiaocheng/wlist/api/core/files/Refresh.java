@@ -1,11 +1,12 @@
 package com.xuxiaocheng.wlist.api.core.files;
 
 import com.xuxiaocheng.wlist.api.Main;
-import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.progresses.RefreshProgress;
 import com.xuxiaocheng.wlist.api.core.files.tokens.RefreshToken;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * The core refresh API.
@@ -20,7 +21,7 @@ public enum Refresh {;
      * @return a future, with the refresh confirmation.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      */
-    public static NetworkFuture<RefreshConfirmation> refresh(final CoreClient client, final String token, final FileLocation directory) { return Main.future(); }
+    public static CompletableFuture<RefreshConfirmation> refresh(final CoreClient client, final String token, final FileLocation directory) { return Main.future(); }
 
     /**
      * Cancel a refresh.
@@ -28,7 +29,7 @@ public enum Refresh {;
      * @param token the refresh token.
      * @return a future.
      */
-    public static NetworkFuture<Void> cancel(final CoreClient client, final RefreshToken token) { return Main.future(); }
+    public static CompletableFuture<Void> cancel(final CoreClient client, final RefreshToken token) { return Main.future(); }
 
     /**
      * Confirm a refresh.
@@ -36,7 +37,7 @@ public enum Refresh {;
      * @param token the refresh token.
      * @return a future. It will be complete after finishing, even it's paused.
      */
-    public static NetworkFuture<Void> confirm(final CoreClient client, final RefreshToken token) { return Main.future(); }
+    public static CompletableFuture<Void> confirm(final CoreClient client, final RefreshToken token) { return Main.future(); }
 
     /**
      * Pause a refresh.
@@ -45,7 +46,7 @@ public enum Refresh {;
      * @param token the refresh token.
      * @return a future.
      */
-    public static NetworkFuture<Void> pause(final CoreClient client, final RefreshToken token) { return Main.future(); }
+    public static CompletableFuture<Void> pause(final CoreClient client, final RefreshToken token) { return Main.future(); }
 
     /**
      * Resume a refresh
@@ -54,7 +55,7 @@ public enum Refresh {;
      * @param token the refresh token.
      * @return a future.
      */
-    public static NetworkFuture<Void> resume(final CoreClient client, final RefreshToken token) { return Main.future(); }
+    public static CompletableFuture<Void> resume(final CoreClient client, final RefreshToken token) { return Main.future(); }
 
     /**
      * Get the progress of refresh.
@@ -63,5 +64,5 @@ public enum Refresh {;
      * @param token the refresh token.
      * @return a future, with the progress of refresh.
      */
-    public static NetworkFuture<RefreshProgress> progress(final CoreClient client, final RefreshToken token) { return Main.future(); }
+    public static CompletableFuture<RefreshProgress> progress(final CoreClient client, final RefreshToken token) { return Main.future(); }
 }

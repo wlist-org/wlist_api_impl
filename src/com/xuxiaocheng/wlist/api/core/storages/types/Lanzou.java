@@ -1,9 +1,10 @@
 package com.xuxiaocheng.wlist.api.core.storages.types;
 
 import com.xuxiaocheng.wlist.api.Main;
-import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.storages.configs.LanzouConfig;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * The core lanzou storage API.
@@ -21,7 +22,7 @@ public enum Lanzou implements StorageType {/** The instance. */ Instance;
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.InvalidStorageConfigException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      */
-    public static NetworkFuture<Long> add(final CoreClient client, final String token, final String storage, final LanzouConfig config) { return Main.future(); }
+    public static CompletableFuture<Long> add(final CoreClient client, final String token, final String storage, final LanzouConfig config) { return Main.future(); }
 
     /**
      * Reset the config of the storage.
@@ -35,7 +36,7 @@ public enum Lanzou implements StorageType {/** The instance. */ Instance;
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.MismatchStorageTypeException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageInLockException
      */
-    public static NetworkFuture<Void> update(final CoreClient client, final String token, final long storage, final LanzouConfig config) { return Main.future(); }
+    public static CompletableFuture<Void> update(final CoreClient client, final String token, final long storage, final LanzouConfig config) { return Main.future(); }
 
 
     @Override

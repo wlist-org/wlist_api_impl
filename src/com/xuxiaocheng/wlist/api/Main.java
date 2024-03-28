@@ -1,14 +1,29 @@
 package com.xuxiaocheng.wlist.api;
 
-import com.xuxiaocheng.wlist.api.common.NetworkFuture;
+import java.util.concurrent.CompletableFuture;
 
 /**
- * Stub function.
+ * Global API.
  */
-public final class Main {
-    private Main() {
-        super();
-    }
+public enum Main {;
+    /**
+     * Initialize the core server.
+     * Note that you **must** call this method before calling all the others.
+     * You should ensure these directories exist and have permissions to read/write them.
+     * The path should be absolute.
+     * @param cache the directory of cache.
+     * @param data the directory of data.
+     */
+    public static void initialize(final String cache, final String data) { throw Main.stub(); }
+
+    /**
+     * Shut down all native threads.
+     * <p>
+     * This method can be called when exit the jvm.
+     * If you don't call this method, these native threads will block the jvm exit process.
+     */
+    public static void shutdownNativeThreads() { throw Main.stub(); }
+
 
     /**
      * Stub exception.
@@ -23,8 +38,8 @@ public final class Main {
      * @param <T> the generic type.
      * @return the stub future.
      */
-    public static <T> NetworkFuture<T> future() {
-        final NetworkFuture<T> future = NetworkFuture.create();
+    public static <T> CompletableFuture<T> future() {
+        final CompletableFuture<T> future = new CompletableFuture<>();
         future.completeExceptionally(Main.stub());
         return future;
     }

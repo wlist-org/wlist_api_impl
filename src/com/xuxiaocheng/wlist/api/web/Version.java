@@ -1,8 +1,9 @@
 package com.xuxiaocheng.wlist.api.web;
 
-import com.xuxiaocheng.wlist.api.common.NetworkFuture;
 import com.xuxiaocheng.wlist.api.common.Stable;
 import com.xuxiaocheng.wlist.api.common.StableModule;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * The web version API.
@@ -30,12 +31,12 @@ public enum Version {
      * @return a future, with the update information.
      * @see com.xuxiaocheng.wlist.api.common.Marks#CORE_IMPL_VERSION
      */
-    public static native NetworkFuture<Version> checkCore();
+    public static native CompletableFuture<Version> checkCore();
 
     /**
      * Check the web version.
      * @return a future, with the update information.
      * @see com.xuxiaocheng.wlist.api.common.Marks#WEB_IMPL_VERSION
      */
-    public static native NetworkFuture<Version> checkWeb();
+    public static native CompletableFuture<Version> checkWeb();
 }

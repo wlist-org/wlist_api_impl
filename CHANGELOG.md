@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.0] - 2024-3-28
+
+### Changed
+
+* 移除 NetworkFuture，改回 CompleteFuture
+* 移动全局方法到 Main 中
+
 ## [1.6.0] - 2024-3-28
 
 ### Added

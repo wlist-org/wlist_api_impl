@@ -8,16 +8,6 @@ import com.xuxiaocheng.wlist.api.impl.ServerStarter;
  */
 public enum Server {;
     /**
-     * Initialize the core server.
-     * Note that you **must** call this method before calling all the others.
-     * You should ensure these directories exist and have permissions to read/write them.
-     * The path should be absolute.
-     * @param cache the directory of cache.
-     * @param data the directory of data.
-     */
-    public static void initialize(final String cache, final String data) { throw Main.stub(); }
-
-    /**
      * Start a core server.
      * The server is running in extra threads.
      * Note that you **must** ensure the token is valid and not expired.

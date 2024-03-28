@@ -3,6 +3,7 @@ package com.xuxiaocheng.wlist.api.common;
 /**
  * Some const version strings used in runtime.
  */
+@SuppressWarnings("NativeMethod")
 @Stable(since = "1.0.0", module = StableModule.Common)
 public final class Marks {
     private Marks() {
@@ -18,7 +19,7 @@ public final class Marks {
     /**
      * The common package version.
      */
-    public static final String COMMON_API_VERSION = "1.1.1";
+    public static final String COMMON_API_VERSION = "1.2.0";
     /**
      * The common package impl version.
      */
@@ -28,7 +29,7 @@ public final class Marks {
     /**
      * The core api version.
      */
-    public static final String CORE_API_VERSION = "1.4.0";
+    public static final String CORE_API_VERSION = "1.5.0";
     /**
      * The core api impl version.
      */
@@ -39,7 +40,7 @@ public final class Marks {
     /**
      * The web api version.
      */
-    public static final String WEB_API_VERSION = "0.5.1";
+    public static final String WEB_API_VERSION = "1.0.0";
     /**
      * The web api impl version.
      */

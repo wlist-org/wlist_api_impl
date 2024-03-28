@@ -1,8 +1,10 @@
 package com.xuxiaocheng.wlist.api.web;
 
-import com.xuxiaocheng.wlist.api.common.NetworkFuture;
+import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.Stable;
 import com.xuxiaocheng.wlist.api.common.StableModule;
+
+import java.util.concurrent.CompletableFuture;
 
 /**
  * The web account API.
@@ -19,7 +21,7 @@ public enum Account {;
      * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
-    public static native NetworkFuture<String> login(final String userId, final String password);
+    public static native CompletableFuture<String> login(final String userId, final String password);
 
     /**
      * Logout.
@@ -29,7 +31,7 @@ public enum Account {;
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
-    public static native NetworkFuture<Void> logout(final String token);
+    public static native CompletableFuture<Void> logout(final String token);
 
     /**
      * Refresh the token. (Then the old token cannot be used.)
@@ -39,5 +41,5 @@ public enum Account {;
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
      */
-    public static native NetworkFuture<String> refresh(final String token);
+    public static native CompletableFuture<String> refresh(final String token);
 }
