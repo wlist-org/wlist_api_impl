@@ -1,6 +1,9 @@
 package com.xuxiaocheng.wlist.api.core;
 
 import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.impl.ClientStarter;
+import com.xuxiaocheng.wlist.api.impl.enums.Functions;
+import org.msgpack.core.MessageUnpacker;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -42,7 +45,9 @@ public enum Client {;
      *                 (For internal server, use {@link com.xuxiaocheng.wlist.api.core.Server#resetAdminPassword()} to get the password.)
      * @return a future, with the core token. (expire in 1 hour.)
      */
-    public static CompletableFuture<String> login(final CoreClient client, final String username, final String password) { return Main.future(); }
+    public static CompletableFuture<String> login(final CoreClient client, final String username, final String password) {
+        return ClientStarter.client(client, Functions.Login, packer -> packer.packString(username).packString(password), MessageUnpacker::unpackString);
+    }
 
     /**
      * Refresh the token. (But the old token can still be used.)

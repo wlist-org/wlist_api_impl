@@ -51,8 +51,6 @@ public enum Main {;
      * @return the stub future.
      */
     public static <T> CompletableFuture<T> future() {
-        final CompletableFuture<T> future = new CompletableFuture<>();
-        future.completeExceptionally(Main.stub());
-        return future;
+        return CompletableFuture.failedFuture(Main.stub());
     }
 }

@@ -1,16 +1,18 @@
 package com.xuxiaocheng.wlist.api.impl;
 
-import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.exceptions.InternalException;
 import com.xuxiaocheng.wlist.api.common.exceptions.NetworkException;
 import com.xuxiaocheng.wlist.api.core.exceptions.MultiInstanceException;
+import com.xuxiaocheng.wlist.api.impl.enums.Exceptions;
+import com.xuxiaocheng.wlist.api.impl.enums.Functions;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.ByteBufInputStream;
+import io.netty.buffer.ByteBufOutputStream;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
-import io.netty.channel.ChannelId;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -29,8 +31,10 @@ import io.netty.util.concurrent.DefaultThreadFactory;
 import io.netty.util.concurrent.EventExecutorGroup;
 import io.netty.util.concurrent.Future;
 import org.msgpack.core.MessagePack;
+import org.msgpack.core.MessagePacker;
 import org.msgpack.core.MessageUnpacker;
 
+import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.util.List;
@@ -142,7 +146,17 @@ public final class ServerStarter {
 
         @Override
         protected void channelRead0(final ChannelHandlerContext ctx, final ByteBuf msg) {
-            ServerStarter.handle(ctx.channel().id(), msg.retain()).handle((result, ex) -> {
+            final CompletableFuture<ByteBuf> future;
+            try {
+                final MessageUnpacker unpacker = MessagePack.newDefaultUnpacker(new ByteBufInputStream(msg));
+                final Functions functions = Functions.valueOf(unpacker.unpackString());
+                future = functions.getHandler().handle(ctx.channel().id().asLongText(), unpacker);
+            } catch (final IOException throwable) {
+                ctx.fireExceptionCaught(throwable);
+                return;
+            }
+            msg.retain();
+            future.handle((result, ex) -> {
                 msg.release();
                 if (ex != null)
                     ctx.fireExceptionCaught(ex);
@@ -155,9 +169,8 @@ public final class ServerStarter {
 
         @Override
         public void exceptionCaught(final ChannelHandlerContext ctx, final Throwable cause) {
-            ctx.close();
-            if (cause instanceof CodecException || (cause instanceof SocketException && !ctx.channel().isActive()))
-                return;
+            if (cause instanceof CodecException || cause instanceof SocketException) ctx.close();
+            if (cause instanceof IOException || cause instanceof IllegalArgumentException) return;
             ServerStarter.exception(this, ctx, ctx.channel().id().asLongText(), cause);
         }
     }
@@ -179,8 +192,41 @@ public final class ServerStarter {
         }
     }
 
-    public static CompletableFuture<ByteBuf> handle(final ChannelId id, final ByteBuf msg) {
-        final MessageUnpacker unpacker = MessagePack.newDefaultUnpacker(new ByteBufInputStream(msg));
-        throw Main.stub();
+
+    public interface UnpackAndCallFunction<T> {
+        CompletableFuture<T> unpackAndCall() throws IOException;
+    }
+
+    public interface ReturnAndPackFunction<T> {
+        void returnAndPack(final T returned, final MessagePacker packer) throws IOException;
+    }
+
+    public static <T> CompletableFuture<ByteBuf> server(final UnpackAndCallFunction<? extends T> unpackFunction, final ReturnAndPackFunction<T> packFunction) {
+        return CompletableFuture.completedFuture(null)
+                .thenCompose(ignored -> {
+                    try {
+                        return unpackFunction.unpackAndCall();
+                    } catch (final IOException exception) {
+                        throw new NetworkException("Unpacking msg", exception);
+                    }
+                })
+                .handle((value, throwable) -> {
+                    final ByteBuf buffer = ByteBufAllocator.DEFAULT.buffer();
+                    try (final MessagePacker packer = MessagePack.newDefaultPacker(new ByteBufOutputStream(buffer))) {
+                        if (throwable == null) {
+                            packer.packBoolean(true);
+                            packFunction.returnAndPack(value, packer);
+                        } else {
+                            packer.packBoolean(false);
+                            if (throwable instanceof final Exceptions.CustomExceptions exceptions) {
+                                packer.packString(exceptions.identifier().name());
+                                exceptions.serialize(packer);
+                            }
+                        }
+                    } catch (final IOException exception) {
+                        throw new NetworkException("Packing msg", exception);
+                    }
+                    return buffer;
+                });
     }
 }
