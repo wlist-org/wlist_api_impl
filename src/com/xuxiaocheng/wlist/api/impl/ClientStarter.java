@@ -206,4 +206,42 @@ public final class ClientStarter {
             ClientStarter.decode(this, ctx, ctx.channel().id().asLongText(), msg, out);
         }
     }
+
+
+    public interface PackFunction {
+        void pack(final MessagePacker packer) throws IOException;
+    }
+
+    public interface UnpackFunction<T> {
+        T unpack(final MessageUnpacker unpacker) throws IOException;
+    }
+
+    public static <T> CompletableFuture<T> client(final CoreClient client, final Functions function, final PackFunction packFunction, final UnpackFunction<? extends T> unpackFunction) {
+        return CompletableFuture
+                .supplyAsync(() -> {
+                    final ByteBuf buffer = ByteBufAllocator.DEFAULT.buffer();
+                    try (final MessagePacker packer = MessagePack.newDefaultPacker(new ByteBufOutputStream(buffer))) {
+                        packer.packString(function.name());
+                        packFunction.pack(packer);
+                    } catch (final IOException exception) {
+                        throw new NetworkException("Packing msg", exception);
+                    }
+                    return buffer;
+                }, Main.InternalEventLoopGroup)
+                .thenCompose(buffer -> client.send(buffer).thenApply(ignored -> Unpooled.EMPTY_BUFFER))
+                .thenCompose(ignored -> client.recv())
+                .thenApplyAsync(buffer -> {
+                    try (final MessageUnpacker unpacker = MessagePack.newDefaultUnpacker(new ByteBufInputStream(buffer))) {
+                        final boolean success = unpacker.unpackBoolean();
+                        if (success)
+                            return unpackFunction.unpack(unpacker);
+                        final Exceptions exceptions = Exceptions.valueOf(unpacker.unpackString());
+                        throw exceptions.getDeserialize().deserialize(unpacker);
+                    } catch (final IOException exception) {
+                        throw new NetworkException("Unpacking msg", exception);
+                    } finally {
+                        buffer.release();
+                    }
+                }, Main.InternalEventLoopGroup);
+    }
 }
