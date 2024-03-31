@@ -17,8 +17,8 @@ public enum User {;
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.IncorrectArgumentException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
-     * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
-     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.PasswordNotMatchedException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException
      */
     public static native CompletableFuture<Void> resetPassword(final String token, final String old, final String password);
 
@@ -27,7 +27,7 @@ public enum User {;
      * @param token the token.
      * @return a future, with the user's nickname.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
-     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException
      */
     public static native CompletableFuture<String> getNickname(final String token);
 
@@ -39,7 +39,7 @@ public enum User {;
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.IncorrectArgumentException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
-     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException
      */
     public static native CompletableFuture<Void> setNickname(final String token, final String nickname);
 }

@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.7.3] - 2024-3-28
+
+### Changed
+
+* 移动 web 中异常到 common
+* 优化文档
+* 标记 core 中 Client 及 Server 相关方法为 Stable
+
 ## [1.7.2] - 2024-3-28
 
 ### Changed

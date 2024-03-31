@@ -1,15 +1,17 @@
 package com.xuxiaocheng.wlist.api.core;
 
 import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.common.Stable;
+import com.xuxiaocheng.wlist.api.common.StableModule;
 import com.xuxiaocheng.wlist.api.impl.ClientStarter;
 import com.xuxiaocheng.wlist.api.impl.enums.Functions;
-import org.msgpack.core.MessageUnpacker;
 
 import java.util.concurrent.CompletableFuture;
 
 /**
  * The core client API.
  */
+@Stable(since = "1.7.3", module = StableModule.Core)
 public enum Client {;
     /**
      * Connect to the core server ({@link com.xuxiaocheng.wlist.api.core.Server#start(int, String)}).
@@ -44,6 +46,7 @@ public enum Client {;
      * @param password the user's password.
      *                 (For internal server, use {@link com.xuxiaocheng.wlist.api.core.Server#resetAdminPassword()} to get the password.)
      * @return a future, with the core token. (expire in 1 hour.)
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.PasswordNotMatchedException
      */
     public static CompletableFuture<String> login(final CoreClient client, final String username, final String password) {
         return ClientStarter.client(client, Functions.Login, packer -> packer.packString(username).packString(password), MessageUnpacker::unpackString);
@@ -53,6 +56,7 @@ public enum Client {;
      * Refresh the token. (But the old token can still be used.)
      * @param token the core token.
      * @return a future, with a new core token.
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
-    public static CompletableFuture<String> refresh(final String token) { return Main.future(); }
+    public static CompletableFuture<String> refresh(final CoreClient client, final String token) { return Main.future(); }
 }

@@ -31,7 +31,6 @@ module com.xuxiaocheng.wlist.api {
     exports com.xuxiaocheng.wlist.api.core.broadcast;
     exports com.xuxiaocheng.wlist.api.core.broadcast.events;
     exports com.xuxiaocheng.wlist.api.web;
-    exports com.xuxiaocheng.wlist.api.web.exceptions;
 
     exports com.xuxiaocheng.wlist.api.impl;
     exports com.xuxiaocheng.wlist.api.impl.enums;

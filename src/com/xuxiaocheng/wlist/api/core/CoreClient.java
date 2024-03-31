@@ -1,6 +1,8 @@
 package com.xuxiaocheng.wlist.api.core;
 
 import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.common.Stable;
+import com.xuxiaocheng.wlist.api.common.StableModule;
 import com.xuxiaocheng.wlist.api.impl.ClientStarter;
 import io.netty.buffer.ByteBuf;
 
@@ -12,6 +14,7 @@ import java.util.concurrent.CompletableFuture;
  * The core client.
  * Use {@link com.xuxiaocheng.wlist.api.core.Client#connect(String, int)} to create an instance.
  */
+@Stable(since = "1.4.0", module = StableModule.Core)
 public final class CoreClient implements AutoCloseable {
     private final ClientStarter.ClientImpl client;
 

@@ -1,11 +1,14 @@
 package com.xuxiaocheng.wlist.api.core;
 
 import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.common.Stable;
+import com.xuxiaocheng.wlist.api.common.StableModule;
 import com.xuxiaocheng.wlist.api.impl.ServerStarter;
 
 /**
  * The core server API.
  */
+@Stable(since = "1.7.3", module = StableModule.Core)
 public enum Server {;
     /**
      * Start a core server.
@@ -38,7 +41,8 @@ public enum Server {;
 
     /**
      * Reset the admin password of the internal server.
-     * @return the password for the admin account.
+     * And then all the signed admin tokens will be expired.
+     * @return the new password for the admin account. (length == 8)
      */
     public static String resetAdminPassword() { throw Main.stub(); }
 }

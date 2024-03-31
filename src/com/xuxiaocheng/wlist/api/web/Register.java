@@ -12,8 +12,8 @@ public enum Register {;
      * @param password the login password.
      * @return a future.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
-     * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
-     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.PasswordNotMatchedException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException
      */
     public static native CompletableFuture<Void> unregister(final String token, final String password);
 
@@ -26,7 +26,7 @@ public enum Register {;
      * @return a future, with the user's id.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.IncorrectArgumentException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
-     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException
      */
     public static native CompletableFuture<String> registerAsGuest(final String deviceId, final String password);
 

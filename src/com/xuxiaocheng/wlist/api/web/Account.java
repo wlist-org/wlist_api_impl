@@ -18,8 +18,8 @@ public enum Account {;
      * @param userId the user's id.
      * @param password the user's password.
      * @return a future, with the token. (expire in 30 minutes.)
-     * @see com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException
-     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.PasswordNotMatchedException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException
      */
     public static native CompletableFuture<String> login(final String userId, final String password);
 
@@ -29,7 +29,7 @@ public enum Account {;
      * @param token the token.
      * @return a future.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
-     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException
      */
     public static native CompletableFuture<Void> logout(final String token);
 
@@ -39,7 +39,7 @@ public enum Account {;
      * @param token the token.
      * @return a future, with a new token.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
-     * @see com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException
      */
     public static native CompletableFuture<String> refresh(final String token);
 }
