@@ -16,4 +16,11 @@ public enum Client {;
         }, (token, packer) -> packer.packString(token));
     }
 
+    private static native CompletableFuture<String> refresh0(final String id, final String token);
+    public static CompletableFuture<ByteBuf> refresh(final String id, final MessageUnpacker unpacker) {
+        return ServerStarter.server(() -> {
+            final String token = unpacker.unpackString();
+            return Client.refresh0(id, token);
+        }, (token, packer) -> packer.packString(token));
+    }
 }

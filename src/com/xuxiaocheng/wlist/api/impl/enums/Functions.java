@@ -8,6 +8,7 @@ import java.util.concurrent.CompletableFuture;
 
 public enum Functions {
     Login(Client::login),
+    Refresh(Client::refresh),
 
     // TODO
     ;

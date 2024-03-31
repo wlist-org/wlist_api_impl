@@ -1,6 +1,5 @@
 package com.xuxiaocheng.wlist.api.core;
 
-import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.Stable;
 import com.xuxiaocheng.wlist.api.common.StableModule;
 import com.xuxiaocheng.wlist.api.impl.ServerStarter;
@@ -44,5 +43,5 @@ public enum Server {;
      * And then all the signed admin tokens will be expired.
      * @return the new password for the admin account. (length == 8)
      */
-    public static String resetAdminPassword() { throw Main.stub(); }
+    public static native String resetAdminPassword();
 }

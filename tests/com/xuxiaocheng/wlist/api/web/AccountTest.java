@@ -1,9 +1,9 @@
 package com.xuxiaocheng.wlist.api.web;
 
 import com.xuxiaocheng.wlist.api.Tester;
+import com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException;
+import com.xuxiaocheng.wlist.api.common.exceptions.PasswordNotMatchedException;
 import com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException;
-import com.xuxiaocheng.wlist.api.web.exceptions.MatchFrequencyControlException;
-import com.xuxiaocheng.wlist.api.web.exceptions.PasswordNotMatchedException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;

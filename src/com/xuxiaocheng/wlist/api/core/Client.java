@@ -1,10 +1,10 @@
 package com.xuxiaocheng.wlist.api.core;
 
-import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.Stable;
 import com.xuxiaocheng.wlist.api.common.StableModule;
 import com.xuxiaocheng.wlist.api.impl.ClientStarter;
 import com.xuxiaocheng.wlist.api.impl.enums.Functions;
+import org.msgpack.core.MessageUnpacker;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -58,5 +58,7 @@ public enum Client {;
      * @return a future, with a new core token.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
-    public static CompletableFuture<String> refresh(final CoreClient client, final String token) { return Main.future(); }
+    public static CompletableFuture<String> refresh(final CoreClient client, final String token) {
+        return ClientStarter.client(client, Functions.Refresh, packer -> packer.packString(token), MessageUnpacker::unpackString);
+    }
 }
