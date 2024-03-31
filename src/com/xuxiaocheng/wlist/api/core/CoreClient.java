@@ -1,11 +1,14 @@
 package com.xuxiaocheng.wlist.api.core;
 
 import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.common.Stable;
+import com.xuxiaocheng.wlist.api.common.StableModule;
 
 /**
  * The core client.
  * Use {@link com.xuxiaocheng.wlist.api.core.Client#connect(String, int)} to create an instance.
  */
+@Stable(since = "1.4.0", module = StableModule.Core)
 public class CoreClient implements AutoCloseable {
     /**
      * The internal constructor.
