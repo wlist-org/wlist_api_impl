@@ -1,6 +1,6 @@
 package com.xuxiaocheng.wlist.api.common;
 
-import com.xuxiaocheng.wlist.api.Tester;
+import com.xuxiaocheng.wlist.api.MainTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 public class MarkTest {
     @BeforeAll
     public static void initialize() {
-        Tester.initialize();
+        MainTest.initialize();
     }
 
     @Test

@@ -1,6 +1,6 @@
 package com.xuxiaocheng.wlist.api.web;
 
-import com.xuxiaocheng.wlist.api.Tester;
+import com.xuxiaocheng.wlist.api.MainTest;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 @DisplayName("Version")
 public class VersionTest {
     static {
-        Tester.initialize();
+        MainTest.initialize();
     }
 
     @Test

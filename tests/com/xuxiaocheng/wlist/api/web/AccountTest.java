@@ -1,6 +1,6 @@
 package com.xuxiaocheng.wlist.api.web;
 
-import com.xuxiaocheng.wlist.api.Tester;
+import com.xuxiaocheng.wlist.api.MainTest;
 import com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException;
 import com.xuxiaocheng.wlist.api.common.exceptions.PasswordNotMatchedException;
 import com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException;
@@ -18,7 +18,7 @@ import java.util.concurrent.TimeUnit;
 @DisplayName("Account")
 public class AccountTest {
     static {
-        Tester.initialize();
+        MainTest.initialize();
     }
 
     @Test
