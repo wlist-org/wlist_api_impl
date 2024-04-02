@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.8.0] - 2024-4-2
+
+### Added
+
+* 分享支持自定义过期时间
+* 添加详细的 StorageDetailsInformation
+
+### Changed
+
+* 上传需要计算分片 MD5
+
 ## [1.7.3] - 2024-3-28
 
 ### Changed
