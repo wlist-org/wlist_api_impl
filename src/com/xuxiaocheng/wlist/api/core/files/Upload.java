@@ -23,7 +23,8 @@ public enum Upload {;
      * @param token the core token.
      * @param parent the parent directory.
      * @param name the name of the new file.
-     * @param md5 the hash md5 of the new file. (This should be a lowercase string with a length of 32.)
+     * @param md5 the hash md5 of the entire new file. (This should be a lowercase string with a length of 32.)
+     * @param md5s the md5 slice of each 4MB part of the new file.
      * @param duplicate duplication policy of the new file.
      * @return a future, with the upload confirmation.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
@@ -35,7 +36,7 @@ public enum Upload {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.IllegalSuffixException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static CompletableFuture<UploadConfirmation> request(final CoreClient client, final String token, final FileLocation parent, final String name, final String md5, final Duplicate duplicate) { return Main.future(); }
+    public static CompletableFuture<UploadConfirmation> request(final CoreClient client, final String token, final FileLocation parent, final String name, final String md5, final String[] md5s, final Duplicate duplicate) { return Main.future(); }
 
     /**
      * Cancel a upload.

@@ -2,11 +2,10 @@ package com.xuxiaocheng.wlist.api.core.storages;
 
 import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
-import com.xuxiaocheng.wlist.api.core.storages.information.StorageInformation;
+import com.xuxiaocheng.wlist.api.core.storages.information.StorageDetailsInformation;
 import com.xuxiaocheng.wlist.api.core.storages.information.StorageListInformation;
 import com.xuxiaocheng.wlist.api.core.storages.options.ListStorageOptions;
 
-import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 
 /**
@@ -27,10 +26,11 @@ public enum Storage {;
      * @param client the core client.
      * @param token the core token.
      * @param storage the id of the storage.
-     * @param check true indicates the server should recheck the storage is available.
+     * @param check true indicates the server should recheck whether the storage is available.
      * @return a future, with the optional information of the storage.
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageNotFoundException
      */
-    public static CompletableFuture<Optional<StorageInformation>> get(final CoreClient client, final String token, final long storage, final boolean check) { return Main.future(); }
+    public static CompletableFuture<StorageDetailsInformation> get(final CoreClient client, final String token, final long storage, final boolean check) { return Main.future(); }
 
     /**
      * Remove a storage.
