@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.9.0] - 2024-4-5
+
+### Added
+
+* Storages 支持 checkConfig
+
+### Changed
+
+* 优化 Files 中 checkName 文档
+* 优化 InvalidStorageConfigException 错误信息
+
 ## [1.8.0] - 2024-4-2
 
 ### Added

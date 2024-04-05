@@ -73,18 +73,22 @@ public enum File {;
     public static CompletableFuture<FileInformation> restore(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
 
     /**
-     * Check the file/directory name is valid.
+     * Check whether the file/directory name is valid.
      * Note that this method only provides fast filtering, and some cases may not be covered.
+     * <p>
+     * The {@code DuplicateFileException} is the last exception to check.
+     * This means if {@code DuplicateFileException} was thrown, the validation is passed.
      * @param client the core client.
      * @param token the core token.
      * @param storage the id of target storage.
-     * @param name the file/directory name.
+     * @param name the file/directory name to check.
+     * @return a future, normal completion means the name may be valid.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.DuplicateFileException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.NameTooLongException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.IllegalSuffixException
-     * @return a future, normal completion means the name may be valid.
      */
     public static CompletableFuture<Void> checkName(final CoreClient client, final String token, final long storage, final String name) { throw Main.stub(); }
 

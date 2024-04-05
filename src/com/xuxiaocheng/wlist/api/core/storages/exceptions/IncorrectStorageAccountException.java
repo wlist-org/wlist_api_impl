@@ -1,6 +1,7 @@
 package com.xuxiaocheng.wlist.api.core.storages.exceptions;
 
 import java.io.Serial;
+import java.util.Map;
 
 /**
  * Thrown when the storage account is incorrect.
@@ -14,6 +15,6 @@ public class IncorrectStorageAccountException extends InvalidStorageConfigExcept
      * Internal constructor.
      */
     private IncorrectStorageAccountException() {
-        super("password");
+        super(Map.of("password", "Incorrent storage account."));
     }
 }

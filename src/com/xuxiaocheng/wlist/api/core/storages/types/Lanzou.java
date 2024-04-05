@@ -35,17 +35,25 @@ public enum Lanzou implements StorageType {/** The instance. */ Instance;
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.InvalidStorageConfigException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.MismatchStorageTypeException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageInLockException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      */
     public static CompletableFuture<Void> update(final CoreClient client, final String token, final long storage, final LanzouConfig config) { return Main.future(); }
+
+    /**
+     * Check whether the configuration is valid.
+     * @param client the core client.
+     * @param token the core token.
+     * @param config the configuration to check.
+     * @return a future, normal completion means the configuration is valid.
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.IncorrectStorageAccountException
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.InvalidStorageConfigException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
+     */
+    public static CompletableFuture<Void> checkConfig(final CoreClient client, final String token, final LanzouConfig config) { return Main.future(); }
 
 
     @Override
     public boolean isPrivate() {
         return true;
-    }
-
-    @Override
-    public boolean isShared() {
-        return false;
     }
 }
