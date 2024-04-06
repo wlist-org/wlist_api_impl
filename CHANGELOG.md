@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.0] - 2024-4-6
+
+### Changed
+
+* 优化 checkConfig 行为
+* 优化 core 中部分 exceptions
+
 ## [1.9.0] - 2024-4-5
 
 ### Added
