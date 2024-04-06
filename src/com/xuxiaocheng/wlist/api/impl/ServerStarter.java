@@ -2,6 +2,7 @@ package com.xuxiaocheng.wlist.api.impl;
 
 import com.xuxiaocheng.wlist.api.common.exceptions.InternalException;
 import com.xuxiaocheng.wlist.api.common.exceptions.NetworkException;
+import com.xuxiaocheng.wlist.api.common.exceptions.UnavailableApiVersionException;
 import com.xuxiaocheng.wlist.api.core.exceptions.MultiInstanceException;
 import com.xuxiaocheng.wlist.api.impl.enums.Exceptions;
 import com.xuxiaocheng.wlist.api.impl.enums.Functions;
@@ -210,8 +211,8 @@ public final class ServerStarter {
                 .thenCompose(ignored -> {
                     try {
                         return unpackFunction.unpackAndCall();
-                    } catch (final MessagePackException | IOException exception) {
-                        throw new NetworkException("Unpacking msg", exception);
+                    } catch (final MessagePackException | IOException ignoredException) {
+                        throw new UnavailableApiVersionException();
                     }
                 })
                 .handle((value, throwable) -> {

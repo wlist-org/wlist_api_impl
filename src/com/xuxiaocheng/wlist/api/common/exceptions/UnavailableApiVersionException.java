@@ -19,7 +19,7 @@ public class UnavailableApiVersionException extends RuntimeException implements 
     /**
      * Internal constructor.
      */
-    private UnavailableApiVersionException() {
+    public UnavailableApiVersionException() {
         super();
     }
 

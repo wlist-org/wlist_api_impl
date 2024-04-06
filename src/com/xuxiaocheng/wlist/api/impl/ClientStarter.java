@@ -3,6 +3,7 @@ package com.xuxiaocheng.wlist.api.impl;
 import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.exceptions.InternalException;
 import com.xuxiaocheng.wlist.api.common.exceptions.NetworkException;
+import com.xuxiaocheng.wlist.api.common.exceptions.UnavailableApiVersionException;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.impl.enums.Exceptions;
 import com.xuxiaocheng.wlist.api.impl.enums.Functions;
@@ -242,8 +243,8 @@ public final class ClientStarter {
                             return unpackFunction.unpack(unpacker);
                         final Exceptions exceptions = Exceptions.valueOf(unpacker.unpackString());
                         throw exceptions.getDeserialize().deserialize(unpacker);
-                    } catch (final MessagePackException | IOException exception) {
-                        throw new NetworkException("Unpacking msg", exception);
+                    } catch (final MessagePackException | IOException ignoredException) {
+                        throw new UnavailableApiVersionException();
                     } finally {
                         buffer.release();
                     }
