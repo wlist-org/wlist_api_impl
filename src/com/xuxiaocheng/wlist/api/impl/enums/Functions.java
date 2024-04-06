@@ -1,6 +1,7 @@
 package com.xuxiaocheng.wlist.api.impl.enums;
 
 import com.xuxiaocheng.wlist.api.impl.functions.Client;
+import com.xuxiaocheng.wlist.api.impl.functions.Storage;
 import io.netty.buffer.ByteBuf;
 import org.msgpack.core.MessageUnpacker;
 
@@ -9,6 +10,12 @@ import java.util.concurrent.CompletableFuture;
 public enum Functions {
     Login(Client::login),
     Refresh(Client::refresh),
+
+    StorageList(Storage::list),
+    StorageGet(Storage::get),
+    StorageRemove(Storage::remove),
+    StorageRename(Storage::rename),
+    StorageSetReadonly(Storage::setReadonly),
 
     // TODO
     ;

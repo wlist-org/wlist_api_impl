@@ -217,6 +217,10 @@ public final class ClientStarter {
         T unpack(final MessageUnpacker unpacker) throws IOException;
     }
 
+    public static Void deserializeVoid(final MessageUnpacker ignoredUnpacker) {
+        return null;
+    }
+
     public static <T> CompletableFuture<T> client(final CoreClient client, final Functions function, final PackFunction packFunction, final UnpackFunction<? extends T> unpackFunction) {
         return CompletableFuture
                 .supplyAsync(() -> {
