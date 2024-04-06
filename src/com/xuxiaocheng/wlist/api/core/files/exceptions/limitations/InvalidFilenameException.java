@@ -1,11 +1,16 @@
 package com.xuxiaocheng.wlist.api.core.files.exceptions.limitations;
 
+import com.xuxiaocheng.wlist.api.impl.enums.Exceptions;
+import org.msgpack.core.MessagePacker;
+import org.msgpack.core.MessageUnpacker;
+
+import java.io.IOException;
 import java.io.Serial;
 
 /**
  * Throw if the filename contains the invalid code point.
  */
-public class InvalidFilenameException extends RuntimeException {
+public class InvalidFilenameException extends RuntimeException implements Exceptions.CustomExceptions {
     @Serial
     private static final long serialVersionUID = 5053028543902405054L;
 
@@ -59,5 +64,33 @@ public class InvalidFilenameException extends RuntimeException {
      */
     public Integer getOptionalCodePoint() {
         return this.optionalCodePoint;
+    }
+
+    @Override
+    public Exceptions identifier() {
+        return Exceptions.InvalidFilename;
+    }
+
+    @Override
+    public void serialize(final MessagePacker packer) throws IOException {
+        packer.packLong(this.storage).packString(this.name);
+        if (this.optionalCodePoint == null) {
+            packer.packBoolean(false);
+        } else {
+            packer.packBoolean(true);
+            packer.packInt(this.optionalCodePoint);
+        }
+    }
+
+    public static InvalidFilenameException deserialize(final MessageUnpacker unpacker) throws IOException {
+        final long storage = unpacker.unpackLong();
+        final String name = unpacker.unpackString();
+        final Integer optionalCodePoint;
+        if (unpacker.unpackBoolean()) {
+            optionalCodePoint = unpacker.unpackInt();
+        } else {
+            optionalCodePoint = null;
+        }
+        return new InvalidFilenameException(storage, name, optionalCodePoint);
     }
 }

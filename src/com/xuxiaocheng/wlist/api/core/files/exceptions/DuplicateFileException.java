@@ -1,13 +1,17 @@
 package com.xuxiaocheng.wlist.api.core.files.exceptions;
 
 import com.xuxiaocheng.wlist.api.core.files.FileLocation;
+import com.xuxiaocheng.wlist.api.impl.enums.Exceptions;
+import org.msgpack.core.MessagePacker;
+import org.msgpack.core.MessageUnpacker;
 
+import java.io.IOException;
 import java.io.Serial;
 
 /**
  * Thrown if the duplication policy is {@link com.xuxiaocheng.wlist.api.core.files.options.Duplicate#Error}.
  */
-public class DuplicateFileException extends RuntimeException {
+public class DuplicateFileException extends RuntimeException implements Exceptions.CustomExceptions {
     @Serial
     private static final long serialVersionUID = 2179754168282049943L;
 
@@ -46,5 +50,22 @@ public class DuplicateFileException extends RuntimeException {
      */
     public String getName() {
         return this.name;
+    }
+
+    @Override
+    public Exceptions identifier() {
+        return Exceptions.DuplicateFile;
+    }
+
+    @Override
+    public void serialize(final MessagePacker packer) throws IOException {
+        FileLocation.serialize(this.parent, packer);
+        packer.packString(this.name);
+    }
+
+    public static DuplicateFileException deserialize(final MessageUnpacker unpacker) throws IOException {
+        final FileLocation parent = FileLocation.deserialize(unpacker);
+        final String name = unpacker.unpackString();
+        return new DuplicateFileException(parent, name);
     }
 }

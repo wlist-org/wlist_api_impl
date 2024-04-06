@@ -28,6 +28,7 @@ import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.codec.MessageToMessageCodec;
 import io.netty.util.concurrent.DefaultThreadFactory;
 import org.msgpack.core.MessagePack;
+import org.msgpack.core.MessagePackException;
 import org.msgpack.core.MessagePacker;
 import org.msgpack.core.MessageUnpacker;
 
@@ -237,6 +238,8 @@ public final class ClientStarter {
                             return unpackFunction.unpack(unpacker);
                         final Exceptions exceptions = Exceptions.valueOf(unpacker.unpackString());
                         throw exceptions.getDeserialize().deserialize(unpacker);
+                    } catch (final MessagePackException exception) {
+                        throw new NetworkException("Unpacking invalid msg", exception);
                     } catch (final IOException exception) {
                         throw new NetworkException("Unpacking msg", exception);
                     } finally {

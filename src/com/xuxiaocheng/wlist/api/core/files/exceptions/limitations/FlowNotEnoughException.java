@@ -1,11 +1,16 @@
 package com.xuxiaocheng.wlist.api.core.files.exceptions.limitations;
 
+import com.xuxiaocheng.wlist.api.impl.enums.Exceptions;
+import org.msgpack.core.MessagePacker;
+import org.msgpack.core.MessageUnpacker;
+
+import java.io.IOException;
 import java.io.Serial;
 
 /**
  * Thrown when the transmission flow of the storage is not enough.
  */
-public class FlowNotEnoughException extends RuntimeException {
+public class FlowNotEnoughException extends RuntimeException implements Exceptions.CustomExceptions {
     @Serial
     private static final long serialVersionUID = -6252572995937609898L;
 
@@ -60,5 +65,22 @@ public class FlowNotEnoughException extends RuntimeException {
      */
     public long getRemaining() {
         return this.remaining;
+    }
+
+    @Override
+    public Exceptions identifier() {
+        return Exceptions.FlowNotEnough;
+    }
+
+    @Override
+    public void serialize(final MessagePacker packer) throws IOException {
+        packer.packLong(this.storage).packLong(this.require).packLong(this.remaining);
+    }
+
+    public static FlowNotEnoughException deserialize(final MessageUnpacker unpacker) throws IOException {
+        final long storage = unpacker.unpackLong();
+        final long require = unpacker.unpackLong();
+        final long remaining = unpacker.unpackLong();
+        return new FlowNotEnoughException(storage, require, remaining);
     }
 }
