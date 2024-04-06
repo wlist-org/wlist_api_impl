@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.10.1] - 2024-4-6
+
+### Changed
+
+* 优化 StorageDetailsInformation 流量统计
+
 ## [1.10.0] - 2024-4-6
 
 ### Changed
