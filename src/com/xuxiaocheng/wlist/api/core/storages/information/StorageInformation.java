@@ -28,7 +28,6 @@ public record StorageInformation(long id, String name, boolean readOnly, Storage
         packer.packBoolean(self.readOnly);
         packer.packString(StorageType.name(self.type));
         packer.packBoolean(self.available);
-        packer.packLong(self.size);
         packer.packTimestamp(self.createTime);
         packer.packTimestamp(self.updateTime);
     }
@@ -39,9 +38,8 @@ public record StorageInformation(long id, String name, boolean readOnly, Storage
         final boolean readOnly = unpacker.unpackBoolean();
         final StorageType type = StorageType.instanceOf(unpacker.unpackString());
         final boolean available = unpacker.unpackBoolean();
-        final long size = unpacker.unpackLong();
         final Instant createTime = unpacker.unpackTimestamp();
         final Instant updateTime = unpacker.unpackTimestamp();
-        return new StorageInformation(id, name, readOnly, type, available, size, createTime, updateTime);
+        return new StorageInformation(id, name, readOnly, type, available, createTime, updateTime);
     }
 }

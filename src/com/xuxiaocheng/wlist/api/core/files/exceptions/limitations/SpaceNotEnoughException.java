@@ -74,7 +74,9 @@ public class SpaceNotEnoughException extends RuntimeException implements Excepti
 
     @Override
     public void serialize(final MessagePacker packer) throws IOException {
-        packer.packLong(this.storage).packLong(this.require).packLong(this.remaining);
+        packer.packLong(this.storage);
+        packer.packLong(this.require);
+        packer.packLong(this.remaining);
     }
 
     public static SpaceNotEnoughException deserialize(final MessageUnpacker unpacker) throws IOException {

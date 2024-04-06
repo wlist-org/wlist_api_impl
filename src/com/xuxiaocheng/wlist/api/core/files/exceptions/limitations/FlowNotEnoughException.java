@@ -74,7 +74,9 @@ public class FlowNotEnoughException extends RuntimeException implements Exceptio
 
     @Override
     public void serialize(final MessagePacker packer) throws IOException {
-        packer.packLong(this.storage).packLong(this.require).packLong(this.remaining);
+        packer.packLong(this.storage);
+        packer.packLong(this.require);
+        packer.packLong(this.remaining);
     }
 
     public static FlowNotEnoughException deserialize(final MessageUnpacker unpacker) throws IOException {

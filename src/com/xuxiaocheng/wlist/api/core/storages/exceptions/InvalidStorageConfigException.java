@@ -55,8 +55,10 @@ public class InvalidStorageConfigException extends RuntimeException implements E
     @Override
     public void serialize(final MessagePacker packer) throws IOException {
         packer.packMapHeader(this.messages.size());
-        for (final Map.Entry<String, String> entry: this.messages.entrySet())
-            packer.packString(entry.getKey()).packString(entry.getValue());
+        for (final Map.Entry<String, String> entry: this.messages.entrySet()) {
+            packer.packString(entry.getKey());
+            packer.packString(entry.getValue());
+        }
     }
 
     public static InvalidStorageConfigException deserialize(final MessageUnpacker unpacker) throws IOException {

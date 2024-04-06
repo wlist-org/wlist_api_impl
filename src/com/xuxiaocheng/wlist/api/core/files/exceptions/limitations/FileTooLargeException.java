@@ -74,7 +74,9 @@ public class FileTooLargeException extends RuntimeException implements Exception
 
     @Override
     public void serialize(final MessagePacker packer) throws IOException {
-        packer.packLong(this.storage).packLong(this.require).packLong(this.limitation);
+        packer.packLong(this.storage);
+        packer.packLong(this.require);
+        packer.packLong(this.limitation);
     }
 
     public static FileTooLargeException deserialize(final MessageUnpacker unpacker) throws IOException {

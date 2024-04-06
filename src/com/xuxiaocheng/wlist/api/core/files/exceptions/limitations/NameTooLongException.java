@@ -60,7 +60,8 @@ public class NameTooLongException extends RuntimeException implements Exceptions
 
     @Override
     public void serialize(final MessagePacker packer) throws IOException {
-        packer.packLong(this.storage).packString(this.name);
+        packer.packLong(this.storage);
+        packer.packString(this.name);
     }
 
     public static NameTooLongException deserialize(final MessageUnpacker unpacker) throws IOException {

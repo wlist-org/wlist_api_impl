@@ -59,7 +59,8 @@ public class IllegalSuffixException extends RuntimeException implements Exceptio
 
     @Override
     public void serialize(final MessagePacker packer) throws IOException {
-        packer.packLong(this.storage).packString(this.suffix);
+        packer.packLong(this.storage);
+        packer.packString(this.suffix);
     }
 
     public static IllegalSuffixException deserialize(final MessageUnpacker unpacker) throws IOException {
