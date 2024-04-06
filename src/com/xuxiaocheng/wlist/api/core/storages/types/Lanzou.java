@@ -17,7 +17,7 @@ public enum Lanzou implements StorageType {/** The instance. */ Instance;
      * @param storage the name of the storage to add.
      * @param config the Lanzou configuration.
      * @return a future, with the id of the new storage.
-     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageExistsException
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.DuplicateStorageException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.IncorrectStorageAccountException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.InvalidStorageConfigException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException

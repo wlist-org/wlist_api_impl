@@ -51,7 +51,7 @@ public enum Storage {;
      * @param name the new name of the storage.
      * @return a future.
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageNotFoundException
-     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageExistsException
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.DuplicateStorageException
      */
     public static CompletableFuture<Void> rename(final CoreClient client, final String token, final long storage, final String name) { return Main.future(); }
 

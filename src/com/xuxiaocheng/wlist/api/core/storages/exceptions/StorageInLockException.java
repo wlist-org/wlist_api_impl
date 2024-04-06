@@ -10,10 +10,24 @@ public class StorageInLockException extends RuntimeException {
     private static final long serialVersionUID = -4737443365855387892L;
 
     /**
-     * Internal constructor.
-     * @param message error message.
+     * The locked type.
      */
-    private StorageInLockException(final String message) {
-        super(message);
+    protected final String type;
+
+    /**
+     * Internal constructor.
+     * @param type the locked type.
+     */
+    private StorageInLockException(final String type) {
+        super(type);
+        this.type = type;
+    }
+
+    /**
+     * Get the locked type.
+     * @return the locked type.
+     */
+    public String getType() {
+        return this.type;
     }
 }

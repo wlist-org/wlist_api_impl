@@ -28,7 +28,7 @@ public class InvalidStorageConfigException extends RuntimeException {
      * @param messages the field that is invalid.
      */
     protected InvalidStorageConfigException(final Map<String, String> messages) {
-        super("Invalid: " + messages);
+        super("Invalid config: " + messages);
         this.messages = Collections.unmodifiableMap(messages);
     }
 

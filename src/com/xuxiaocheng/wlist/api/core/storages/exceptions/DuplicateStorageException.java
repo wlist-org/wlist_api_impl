@@ -5,14 +5,14 @@ import java.io.Serial;
 /**
  * Thrown if the name of storage is conflict.
  */
-public class StorageExistsException extends RuntimeException {
+public class DuplicateStorageException extends RuntimeException {
     @Serial
     private static final long serialVersionUID = 1211419147906466881L;
 
     /**
      * Internal constructor.
      */
-    private StorageExistsException() {
+    private DuplicateStorageException() {
         super();
     }
 }
