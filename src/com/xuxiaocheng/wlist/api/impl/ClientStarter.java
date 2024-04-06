@@ -238,9 +238,7 @@ public final class ClientStarter {
                             return unpackFunction.unpack(unpacker);
                         final Exceptions exceptions = Exceptions.valueOf(unpacker.unpackString());
                         throw exceptions.getDeserialize().deserialize(unpacker);
-                    } catch (final MessagePackException exception) {
-                        throw new NetworkException("Unpacking invalid msg", exception);
-                    } catch (final IOException exception) {
+                    } catch (final MessagePackException | IOException exception) {
                         throw new NetworkException("Unpacking msg", exception);
                     } finally {
                         buffer.release();

@@ -31,6 +31,7 @@ import io.netty.util.concurrent.DefaultThreadFactory;
 import io.netty.util.concurrent.EventExecutorGroup;
 import io.netty.util.concurrent.Future;
 import org.msgpack.core.MessagePack;
+import org.msgpack.core.MessagePackException;
 import org.msgpack.core.MessagePacker;
 import org.msgpack.core.MessageUnpacker;
 
@@ -206,7 +207,7 @@ public final class ServerStarter {
                 .thenCompose(ignored -> {
                     try {
                         return unpackFunction.unpackAndCall();
-                    } catch (final IOException exception) {
+                    } catch (final MessagePackException | IOException exception) {
                         throw new NetworkException("Unpacking msg", exception);
                     }
                 })
@@ -221,7 +222,8 @@ public final class ServerStarter {
                             if (throwable instanceof final Exceptions.CustomExceptions exceptions) {
                                 packer.packString(exceptions.identifier().name());
                                 exceptions.serialize(packer);
-                            }
+                            } else
+                                packer.packString(Exceptions.Internal.name());
                         }
                     } catch (final IOException exception) {
                         throw new NetworkException("Packing msg", exception);
