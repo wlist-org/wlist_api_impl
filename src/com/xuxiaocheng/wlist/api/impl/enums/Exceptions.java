@@ -19,10 +19,10 @@ import com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilena
 import com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.NameTooLongException;
 import com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException;
 import com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.SpaceNotEnoughException;
+import com.xuxiaocheng.wlist.api.core.storages.exceptions.DuplicateStorageException;
 import com.xuxiaocheng.wlist.api.core.storages.exceptions.IncorrectStorageAccountException;
 import com.xuxiaocheng.wlist.api.core.storages.exceptions.InvalidStorageConfigException;
 import com.xuxiaocheng.wlist.api.core.storages.exceptions.MismatchStorageTypeException;
-import com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageExistsException;
 import com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageInLockException;
 import com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageNotFoundException;
 import org.msgpack.core.MessagePacker;
@@ -42,7 +42,7 @@ public enum Exceptions {
 
     InvalidStorageConfig(InvalidStorageConfigException::deserialize),
     IncorrectStorageAccount(IncorrectStorageAccountException::deserialize),
-    StorageExists(StorageExistsException::deserialize),
+    DuplicateStorage(DuplicateStorageException::deserialize),
     StorageNotFound(StorageNotFoundException::deserialize),
     MismatchStorageType(MismatchStorageTypeException::deserialize),
     StorageInLock(StorageInLockException::deserialize),

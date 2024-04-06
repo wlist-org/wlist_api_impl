@@ -20,7 +20,7 @@ public class IncorrectStorageAccountException extends InvalidStorageConfigExcept
      * Internal constructor.
      */
     private IncorrectStorageAccountException() {
-        super(Map.of("password", "Incorrent storage account."));
+        super(Map.of("password", "Incorrect storage account."));
     }
 
     @Override

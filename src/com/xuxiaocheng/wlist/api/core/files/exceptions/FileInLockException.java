@@ -21,13 +21,19 @@ public class FileInLockException extends RuntimeException implements Exceptions.
     protected final FileLocation location;
 
     /**
+     * The locked type.
+     */
+    protected final String type;
+
+    /**
      * Internal constructor.
      * @param location the location of the locked file/directory.
-     * @param message error message.
+     * @param type the locked type.
      */
-    private FileInLockException(final FileLocation location, final String message) {
-        super(location.toString() + ": " + message);
+    private FileInLockException(final FileLocation location, final String type) {
+        super(location.toString() + ": " + type);
         this.location = location;
+        this.type = type;
     }
 
     /**
@@ -38,6 +44,14 @@ public class FileInLockException extends RuntimeException implements Exceptions.
         return this.location;
     }
 
+    /**
+     * Get the locked type.
+     * @return the locked type.
+     */
+    public String getType() {
+        return this.type;
+    }
+
     @Override
     public Exceptions identifier() {
         return Exceptions.FileInLock;
@@ -46,12 +60,12 @@ public class FileInLockException extends RuntimeException implements Exceptions.
     @Override
     public void serialize(final MessagePacker packer) throws IOException {
         FileLocation.serialize(this.location, packer);
-        packer.packString(this.message);
+        packer.packString(this.type);
     }
 
     public static FileInLockException deserialize(final MessageUnpacker unpacker) throws IOException {
         final FileLocation parent = FileLocation.deserialize(unpacker);
-        final String message = unpacker.unpackString();
-        return new FileInLockException(parent, message);
+        final String type = unpacker.unpackString();
+        return new FileInLockException(parent, type);
     }
 }

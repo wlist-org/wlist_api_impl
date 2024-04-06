@@ -10,27 +10,27 @@ import java.io.Serial;
 /**
  * Thrown if the name of storage is conflict.
  */
-public class StorageExistsException extends RuntimeException implements Exceptions.CustomExceptions {
+public class DuplicateStorageException extends RuntimeException implements Exceptions.CustomExceptions {
     @Serial
     private static final long serialVersionUID = 1211419147906466881L;
 
     /**
      * Internal constructor.
      */
-    private StorageExistsException() {
+    private DuplicateStorageException() {
         super();
     }
 
     @Override
     public Exceptions identifier() {
-        return Exceptions.StorageExists;
+        return Exceptions.DuplicateStorage;
     }
 
     @Override
     public void serialize(final MessagePacker packer) throws IOException {
     }
 
-    public static StorageExistsException deserialize(final MessageUnpacker ignoredUnpacker) throws IOException {
-        return new StorageExistsException();
+    public static DuplicateStorageException deserialize(final MessageUnpacker ignoredUnpacker) throws IOException {
+        return new DuplicateStorageException();
     }
 }

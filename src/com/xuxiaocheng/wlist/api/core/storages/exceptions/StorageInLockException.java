@@ -15,11 +15,25 @@ public class StorageInLockException extends RuntimeException implements Exceptio
     private static final long serialVersionUID = -4737443365855387892L;
 
     /**
-     * Internal constructor.
-     * @param message error message.
+     * The locked type.
      */
-    private StorageInLockException(final String message) {
-        super(message);
+    protected final String type;
+
+    /**
+     * Internal constructor.
+     * @param type the locked type.
+     */
+    private StorageInLockException(final String type) {
+        super(type);
+        this.type = type;
+    }
+
+    /**
+     * Get the locked type.
+     * @return the locked type.
+     */
+    public String getType() {
+        return this.type;
     }
 
     @Override
@@ -29,7 +43,7 @@ public class StorageInLockException extends RuntimeException implements Exceptio
 
     @Override
     public void serialize(final MessagePacker packer) throws IOException {
-        packer.packString(this.getMessage());
+        packer.packString(this.type);
     }
 
     public static StorageInLockException deserialize(final MessageUnpacker unpacker) throws IOException {
