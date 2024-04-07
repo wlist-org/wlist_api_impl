@@ -40,7 +40,7 @@ public enum Client {;
      * @param password the user's password.
      *                 (For internal server, use {@link com.xuxiaocheng.wlist.api.core.Server#resetAdminPassword()} to get the password.)
      * @return a future, with the core token. (expire in 1 hour.)
-     * @see com.xuxiaocheng.wlist.api.common.exceptions.PasswordNotMatchedException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.PasswordMismatchedException
      */
     public static CompletableFuture<String> login(final CoreClient client, final String username, final String password) { return Main.future(); }
 

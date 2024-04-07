@@ -14,7 +14,7 @@ public enum Register {;
      * @param password the login password.
      * @return a future.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
-     * @see com.xuxiaocheng.wlist.api.common.exceptions.PasswordNotMatchedException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.PasswordMismatchedException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException
      */
     public static CompletableFuture<Void> unregister(final String token, final String password) { return Main.future(); }

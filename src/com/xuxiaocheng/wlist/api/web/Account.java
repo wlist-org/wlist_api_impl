@@ -18,7 +18,7 @@ public enum Account {;
      * @param userId the user's id.
      * @param password the user's password.
      * @return a future, with the token. (expire in 30 minutes.)
-     * @see com.xuxiaocheng.wlist.api.common.exceptions.PasswordNotMatchedException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.PasswordMismatchedException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException
      */
     public static CompletableFuture<String> login(final String userId, final String password) { return Main.future(); }
