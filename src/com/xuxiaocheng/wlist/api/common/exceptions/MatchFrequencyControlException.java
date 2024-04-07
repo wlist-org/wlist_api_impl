@@ -14,6 +14,6 @@ public class MatchFrequencyControlException extends RuntimeException {
      * Internal constructor.
      */
     private MatchFrequencyControlException() {
-        super();
+        super("Match frequency control");
     }
 }

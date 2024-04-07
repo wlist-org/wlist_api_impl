@@ -13,6 +13,6 @@ public class DuplicateStorageException extends RuntimeException {
      * Internal constructor.
      */
     private DuplicateStorageException() {
-        super();
+        super("Duplicate storage");
     }
 }

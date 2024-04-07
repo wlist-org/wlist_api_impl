@@ -15,6 +15,6 @@ public class ComplexOperationException extends RuntimeException {
      * Internal constructor.
      */
     private ComplexOperationException() {
-        super();
+        super("Operation is too complex");
     }
 }

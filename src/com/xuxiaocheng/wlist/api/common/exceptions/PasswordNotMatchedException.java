@@ -13,6 +13,6 @@ public class PasswordNotMatchedException extends RuntimeException {
      * Internal constructor.
      */
     private PasswordNotMatchedException() {
-        super();
+        super("Password is not matched");
     }
 }

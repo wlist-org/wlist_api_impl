@@ -5,14 +5,14 @@ import java.io.Serial;
 /**
  * Thrown when calling mismatched storage methods.
  */
-public class MismatchStorageTypeException extends RuntimeException {
+public class StorageTypeMismatchedException extends RuntimeException {
     @Serial
     private static final long serialVersionUID = 6605520003534618096L;
 
     /**
      * Internal constructor.
      */
-    private MismatchStorageTypeException() {
-        super();
+    private StorageTypeMismatchedException() {
+        super("Storage type is mismatched");
     }
 }

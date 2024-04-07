@@ -15,6 +15,6 @@ public class UnavailableApiVersionException extends RuntimeException {
      * Internal constructor.
      */
     private UnavailableApiVersionException() {
-        super();
+        super("Current api version is unavailable");
     }
 }

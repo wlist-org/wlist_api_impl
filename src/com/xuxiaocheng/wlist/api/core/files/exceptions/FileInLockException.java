@@ -27,7 +27,7 @@ public class FileInLockException extends RuntimeException {
      * @param type the locked type.
      */
     private FileInLockException(final FileLocation location, final String type) {
-        super(location.toString() + ": " + type);
+        super("File " + location + " is in lock: " + type);
         this.location = location;
         this.type = type;
     }

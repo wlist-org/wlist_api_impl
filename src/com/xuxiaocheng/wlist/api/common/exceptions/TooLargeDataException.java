@@ -13,6 +13,6 @@ public class TooLargeDataException extends IncorrectArgumentException {
      * Internal constructor.
      */
     private TooLargeDataException() {
-        super("too large data");
+        super("Too large data");
     }
 }
