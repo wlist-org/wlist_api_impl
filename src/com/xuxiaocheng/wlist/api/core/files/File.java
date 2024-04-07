@@ -74,7 +74,8 @@ public enum File {;
 
     /**
      * Check whether the file/directory name is valid.
-     * Note that this method only provides fast filtering, and some cases may not be covered.
+     * Note that this method only provides fast filtering, and some cases may still not be covered.
+     * This method may extend some cases from {@link com.xuxiaocheng.wlist.api.core.storages.types.StorageType#allowedSuffixes()}, etc.
      * <p>
      * The {@code DuplicateFileException} is the last exception to check.
      * This means if {@code DuplicateFileException} was thrown, the validation is passed.
@@ -90,7 +91,7 @@ public enum File {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.IllegalSuffixException
      */
-    public static CompletableFuture<Void> checkName(final CoreClient client, final String token, final long storage, final String name) { throw Main.stub(); }
+    public static CompletableFuture<Void> checkName(final CoreClient client, final String token, final long storage, final FileLocation parent, final String name) { throw Main.stub(); }
 
     /**
      * Create a new empty directory.
