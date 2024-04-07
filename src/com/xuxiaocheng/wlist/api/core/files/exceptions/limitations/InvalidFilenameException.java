@@ -10,11 +10,6 @@ public class InvalidFilenameException extends RuntimeException {
     private static final long serialVersionUID = 5053028543902405054L;
 
     /**
-     * the id of the backend storage.
-     */
-    protected final long storage;
-
-    /**
      * The name which contains the invalid code point.
      */
     protected final String name;
@@ -26,23 +21,13 @@ public class InvalidFilenameException extends RuntimeException {
 
     /**
      * Internal constructor.
-     * @param storage the id of the backend storage.
      * @param name the name which contains the invalid code point.
      * @param optionalCodePoint the optional invalid code point.
      */
-    private InvalidFilenameException(final long storage, final String name, final Integer optionalCodePoint) {
-        super(name + " (storage: " + storage + ", codePoint: " + optionalCodePoint + ")");
-        this.storage = storage;
+    private InvalidFilenameException(final String name, final Integer optionalCodePoint) {
+        super("Invalid filename: " + name + " (codePoint: " + optionalCodePoint + ")");
         this.name = name;
         this.optionalCodePoint = optionalCodePoint;
-    }
-
-    /**
-     * Get the id of the backend storage.
-     * @return the id of the backend storage.
-     */
-    public long getStorage() {
-        return this.storage;
     }
 
     /**

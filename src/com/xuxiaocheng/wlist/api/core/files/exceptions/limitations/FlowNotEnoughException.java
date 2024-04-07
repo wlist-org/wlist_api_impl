@@ -10,9 +10,9 @@ public class FlowNotEnoughException extends RuntimeException {
     private static final long serialVersionUID = -6252572995937609898L;
 
     /**
-     * The id of the backend storage.
+     * True means upload flow, false means download flow.
      */
-    protected final long storage;
+    protected final boolean isUpload;
 
     /**
      * The required flow.
@@ -26,24 +26,24 @@ public class FlowNotEnoughException extends RuntimeException {
 
     /**
      * Internal constructor.
-     * @param storage the id of the backend storage.
+     * @param isUpload whether upload flow or download flow.
      * @param require the required flow.
      * @param remaining the remaining flow.
      */
-    private FlowNotEnoughException(final long storage, final long require, final long remaining) {
-        super(storage + ": flow " + require + (remaining == -1 ? " not enough" : " > " + remaining));
+    private FlowNotEnoughException(final boolean isUpload, final long require, final long remaining) {
+        super((isUpload ? "upload" : "download") + " flow " + require + (remaining == -1 ? " not enough" : " > " + remaining));
         assert remaining == -1 || require > remaining;
-        this.storage = storage;
+        this.isUpload = isUpload;
         this.require = require;
         this.remaining = remaining;
     }
 
     /**
-     * Get the id of the backend storage.
-     * @return the id of the backend storage.
+     * Whether upload flow or download flow.
+     * @return true means upload flow, false means download flow.
      */
-    public long getStorage() {
-        return this.storage;
+    public boolean isUpload() {
+        return this.isUpload;
     }
 
     /**
