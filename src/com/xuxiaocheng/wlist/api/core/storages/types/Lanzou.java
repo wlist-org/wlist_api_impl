@@ -33,7 +33,7 @@ public enum Lanzou implements StorageType {/** The instance. */ Instance;
      * @return a future.
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.IncorrectStorageAccountException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.InvalidStorageConfigException
-     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.MismatchStorageTypeException
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageTypeMismatchedException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageInLockException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      */

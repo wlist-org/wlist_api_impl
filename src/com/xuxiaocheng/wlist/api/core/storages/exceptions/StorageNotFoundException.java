@@ -18,7 +18,7 @@ public class StorageNotFoundException extends RuntimeException implements Except
      * Internal constructor.
      */
     private StorageNotFoundException() {
-        super();
+        super("Storage not found");
     }
 
     @Override

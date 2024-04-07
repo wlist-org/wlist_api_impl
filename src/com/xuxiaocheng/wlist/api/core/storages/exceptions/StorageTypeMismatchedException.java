@@ -10,27 +10,27 @@ import java.io.Serial;
 /**
  * Thrown when calling mismatched storage methods.
  */
-public class MismatchStorageTypeException extends RuntimeException implements Exceptions.CustomExceptions {
+public class StorageTypeMismatchedException extends RuntimeException implements Exceptions.CustomExceptions {
     @Serial
     private static final long serialVersionUID = 6605520003534618096L;
 
     /**
      * Internal constructor.
      */
-    private MismatchStorageTypeException() {
-        super();
+    private StorageTypeMismatchedException() {
+        super("Storage type is mismatched");
     }
 
     @Override
     public Exceptions identifier() {
-        return Exceptions.MismatchStorageType;
+        return Exceptions.StorageTypeMismatched;
     }
 
     @Override
     public void serialize(final MessagePacker packer) throws IOException {
     }
 
-    public static MismatchStorageTypeException deserialize(final MessageUnpacker ignoredUnpacker) throws IOException {
-        return new MismatchStorageTypeException();
+    public static StorageTypeMismatchedException deserialize(final MessageUnpacker ignoredUnpacker) throws IOException {
+        return new StorageTypeMismatchedException();
     }
 }

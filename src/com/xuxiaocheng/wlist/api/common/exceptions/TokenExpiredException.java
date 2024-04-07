@@ -19,7 +19,7 @@ public class TokenExpiredException extends RuntimeException implements Exception
      * Internal constructor.
      */
     private TokenExpiredException() {
-        super();
+        super("Token is expired");
     }
 
     @Override

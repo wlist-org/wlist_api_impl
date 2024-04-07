@@ -17,32 +17,24 @@ public class NameTooLongException extends RuntimeException implements Exceptions
     private static final long serialVersionUID = 6260690462739069062L;
 
     /**
-     * the id of the backend storage.
-     */
-    protected final long storage;
-
-    /**
-     * The name which is too long. (May added suffix.)
+     * The name which is too long. (Added the indexed suffix.)
      */
     protected final String name;
 
     /**
-     * Internal constructor.
-     * @param storage the id of the backend storage.
-     * @param name the too long name.
+     * The limitation. (-1 means unknown.)
      */
-    private NameTooLongException(final long storage, final String name) {
-        super(name + " (storage: " + storage + ")");
-        this.storage = storage;
-        this.name = name;
-    }
+    protected final long limitation;
 
     /**
-     * Get the id of the backend storage.
-     * @return the id of the backend storage.
+     * Internal constructor.
+     * @param name the too long name.
      */
-    public long getStorage() {
-        return this.storage;
+    private NameTooLongException(final String name, final long limitation) {
+        super("name length " + name.length() + (limitation == -1 ? " too long" : " > " + limitation));
+        assert limitation == -1 || name.length() > limitation;
+        this.name = name;
+        this.limitation = limitation;
     }
 
     /**
@@ -53,6 +45,14 @@ public class NameTooLongException extends RuntimeException implements Exceptions
         return this.name;
     }
 
+    /**
+     * Get the limitation. (-1 means unknown)
+     * @return the limitation.
+     */
+    public long getLimitation() {
+        return this.limitation;
+    }
+
     @Override
     public Exceptions identifier() {
         return Exceptions.NameTooLong;
@@ -60,13 +60,13 @@ public class NameTooLongException extends RuntimeException implements Exceptions
 
     @Override
     public void serialize(final MessagePacker packer) throws IOException {
-        packer.packLong(this.storage);
         packer.packString(this.name);
+        packer.packLong(this.limitation);
     }
 
     public static NameTooLongException deserialize(final MessageUnpacker unpacker) throws IOException {
-        final long storage = unpacker.unpackLong();
         final String name = unpacker.unpackString();
-        return new NameTooLongException(storage, name);
+        final long limitation = unpacker.unpackLong();
+        return new NameTooLongException(name, limitation);
     }
 }

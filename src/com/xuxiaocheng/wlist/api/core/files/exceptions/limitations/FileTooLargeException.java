@@ -15,11 +15,6 @@ public class FileTooLargeException extends RuntimeException implements Exception
     private static final long serialVersionUID = -8726792675627293257L;
 
     /**
-     * The id of the backend storage.
-     */
-    protected final long storage;
-
-    /**
      * The required filesize.
      */
     protected final long require;
@@ -31,24 +26,14 @@ public class FileTooLargeException extends RuntimeException implements Exception
 
     /**
      * Internal constructor.
-     * @param storage the id of the backend storage.
      * @param require the required filesize.
      * @param limitation the limitation.
      */
-    private FileTooLargeException(final long storage, final long require, final long limitation) {
-        super(storage + ": file " + require + (limitation == -1 ? " too large" : " > " + limitation));
+    private FileTooLargeException(final long require, final long limitation) {
+        super("file size " + require + (limitation == -1 ? " too large" : " > " + limitation));
         assert limitation == -1 || require > limitation;
-        this.storage = storage;
         this.require = require;
         this.limitation = limitation;
-    }
-
-    /**
-     * Get the id of the backend storage.
-     * @return the id of the backend storage.
-     */
-    public long getStorage() {
-        return this.storage;
     }
 
     /**
@@ -74,15 +59,13 @@ public class FileTooLargeException extends RuntimeException implements Exception
 
     @Override
     public void serialize(final MessagePacker packer) throws IOException {
-        packer.packLong(this.storage);
         packer.packLong(this.require);
         packer.packLong(this.limitation);
     }
 
     public static FileTooLargeException deserialize(final MessageUnpacker unpacker) throws IOException {
-        final long storage = unpacker.unpackLong();
         final long require = unpacker.unpackLong();
         final long limitation = unpacker.unpackLong();
-        return new FileTooLargeException(storage, require, limitation);
+        return new FileTooLargeException(require, limitation);
     }
 }

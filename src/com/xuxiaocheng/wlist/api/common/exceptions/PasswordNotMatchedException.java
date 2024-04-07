@@ -18,7 +18,7 @@ public class PasswordNotMatchedException extends RuntimeException implements Exc
      * Internal constructor.
      */
     private PasswordNotMatchedException() {
-        super();
+        super("Password is not matched");
     }
 
     @Override

@@ -25,7 +25,7 @@ public class FileNotFoundException extends RuntimeException implements Exception
      * @param location the location which not found.
      */
     private FileNotFoundException(final FileLocation location) {
-        super(location.toString()+ " not found.");
+        super("File " + location + " not found.");
         this.location = location;
     }
 

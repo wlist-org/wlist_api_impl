@@ -18,7 +18,7 @@ public class DuplicateStorageException extends RuntimeException implements Excep
      * Internal constructor.
      */
     private DuplicateStorageException() {
-        super();
+        super("Duplicate storage");
     }
 
     @Override

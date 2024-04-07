@@ -18,7 +18,7 @@ public class TooLargeDataException extends IncorrectArgumentException implements
      * Internal constructor.
      */
     private TooLargeDataException() {
-        super("too large data");
+        super("Too large data");
     }
 
     @Override

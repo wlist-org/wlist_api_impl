@@ -20,7 +20,7 @@ public class ComplexOperationException extends RuntimeException implements Excep
      * Internal constructor.
      */
     private ComplexOperationException() {
-        super();
+        super("Operation is too complex");
     }
 
     @Override

@@ -22,9 +22,9 @@ import com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.SpaceNotEnoug
 import com.xuxiaocheng.wlist.api.core.storages.exceptions.DuplicateStorageException;
 import com.xuxiaocheng.wlist.api.core.storages.exceptions.IncorrectStorageAccountException;
 import com.xuxiaocheng.wlist.api.core.storages.exceptions.InvalidStorageConfigException;
-import com.xuxiaocheng.wlist.api.core.storages.exceptions.MismatchStorageTypeException;
 import com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageInLockException;
 import com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageNotFoundException;
+import com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageTypeMismatchedException;
 import org.msgpack.core.MessagePacker;
 import org.msgpack.core.MessageUnpacker;
 
@@ -44,7 +44,7 @@ public enum Exceptions {
     IncorrectStorageAccount(IncorrectStorageAccountException::deserialize),
     DuplicateStorage(DuplicateStorageException::deserialize),
     StorageNotFound(StorageNotFoundException::deserialize),
-    MismatchStorageType(MismatchStorageTypeException::deserialize),
+    StorageTypeMismatched(StorageTypeMismatchedException::deserialize),
     StorageInLock(StorageInLockException::deserialize),
 
     ComplexOperation(ComplexOperationException::deserialize),

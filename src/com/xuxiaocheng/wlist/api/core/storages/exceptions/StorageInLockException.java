@@ -24,7 +24,7 @@ public class StorageInLockException extends RuntimeException implements Exceptio
      * @param type the locked type.
      */
     private StorageInLockException(final String type) {
-        super(type);
+        super("Storage is in lock: " + type);
         this.type = type;
     }
 

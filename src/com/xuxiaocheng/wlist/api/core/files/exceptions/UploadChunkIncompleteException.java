@@ -19,7 +19,7 @@ public class UploadChunkIncompleteException extends RuntimeException implements 
      * Internal constructor.
      */
     private UploadChunkIncompleteException() {
-        super();
+        super("Upload chunks are incomplete");
     }
 
     @Override

@@ -16,7 +16,7 @@ public enum Share {;
      * Share the files/directories, these files/directories may not in a same directory even a same storage.
      * If {@code requirePassword} is true, the share information will contain the password.
      * If {@code optionalPassword} is null, or it's length isn't 4, the password will be auto-generated.
-     * Note if {@code requirePassword} is false, {@code optionalPassword} will be ignored.
+     * Note that if {@code requirePassword} is false, {@code optionalPassword} will be ignored.
      * @param client the core client.
      * @param token the core token.
      * @param files the list of files/directories you want to share.

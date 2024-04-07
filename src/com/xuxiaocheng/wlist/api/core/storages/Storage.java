@@ -69,7 +69,7 @@ public enum Storage {;
 
     /**
      * Set a storage as readonly/writable.
-     * For shared, if {@code readonly} is false, it will throw {@link com.xuxiaocheng.wlist.api.core.storages.exceptions.MismatchStorageTypeException}.
+     * For shared, if {@code readonly} is false, it will throw {@link com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageTypeMismatchedException}.
      * Note that if the storage is already readonly/writable, it will be normally completed with no-effort.
      * @param client the core client.
      * @param token the core token.
@@ -78,7 +78,7 @@ public enum Storage {;
      * @return a future.
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageNotFoundException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageInLockException
-     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.MismatchStorageTypeException
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageTypeMismatchedException
      */
     public static CompletableFuture<Void> setReadonly(final CoreClient client, final String token, final long storage, final boolean readonly) {
         return ClientStarter.client(client, Functions.StorageSetReadonly, packer -> packer.packString(token).packLong(storage).packBoolean(readonly), ClientStarter::deserializeVoid);

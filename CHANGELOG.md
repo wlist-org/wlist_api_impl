@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.11.0] - 2024-4-7
+
+### Added
+
+* 通过 StoragesType 快速预查 filename 是否合法
+
+### Changed
+
+* 优化 Exception
+
 ## [1.10.1] - 2024-4-6
 
 ### Changed

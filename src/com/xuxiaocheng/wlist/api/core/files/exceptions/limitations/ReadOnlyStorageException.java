@@ -15,25 +15,10 @@ public class ReadOnlyStorageException extends RuntimeException implements Except
     private static final long serialVersionUID = -5809318309571708372L;
 
     /**
-     * the id of the backend storage.
-     */
-    protected final long storage;
-
-    /**
      * Internal constructor.
-     * @param storage the id of the backend storage.
      */
-    private ReadOnlyStorageException(final long storage) {
-        super("Readonly storage: " + storage);
-        this.storage = storage;
-    }
-
-    /**
-     * Get the id of the backend storage.
-     * @return the id of the backend storage.
-     */
-    public long getStorage() {
-        return this.storage;
+    private ReadOnlyStorageException() {
+        super("Readonly storage");
     }
 
     @Override
@@ -43,11 +28,9 @@ public class ReadOnlyStorageException extends RuntimeException implements Except
 
     @Override
     public void serialize(final MessagePacker packer) throws IOException {
-        packer.packLong(this.storage);
     }
 
-    public static ReadOnlyStorageException deserialize(final MessageUnpacker unpacker) throws IOException {
-        final long storage = unpacker.unpackLong();
-        return new ReadOnlyStorageException(storage);
+    public static ReadOnlyStorageException deserialize(final MessageUnpacker ignoredUnpacker) throws IOException {
+        return new ReadOnlyStorageException();
     }
 }
