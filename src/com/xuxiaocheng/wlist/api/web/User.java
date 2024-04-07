@@ -17,7 +17,7 @@ public enum User {;
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.IncorrectArgumentException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
-     * @see com.xuxiaocheng.wlist.api.common.exceptions.PasswordNotMatchedException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.PasswordMismatchedException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException
      */
     public static native CompletableFuture<Void> resetPassword(final String token, final String old, final String password);

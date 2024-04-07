@@ -42,7 +42,7 @@ public enum File {;
      * @param token the core token.
      * @param file the location of the file/directory.
      * @param check true indicates the server should refresh the file information.
-     * @return a future, with the optional file/directory information.
+     * @return a future, with the file/directory information.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      */
     public static CompletableFuture<FileDetailsInformation> get(final CoreClient client, final String token, final FileLocation file, final boolean check) { return Main.future(); }

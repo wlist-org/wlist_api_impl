@@ -10,27 +10,27 @@ import java.io.Serial;
 /**
  * Wrong userid or password.
  */
-public class PasswordNotMatchedException extends RuntimeException implements Exceptions.CustomExceptions {
+public class PasswordMismatchedException extends RuntimeException implements Exceptions.CustomExceptions {
     @Serial
     private static final long serialVersionUID = 5685188115242899871L;
 
     /**
      * Internal constructor.
      */
-    private PasswordNotMatchedException() {
-        super("Password is not matched");
+    private PasswordMismatchedException() {
+        super("Password is mismatched");
     }
 
     @Override
     public Exceptions identifier() {
-        return Exceptions.PasswordNotMatched;
+        return Exceptions.PasswordMismatched;
     }
 
     @Override
     public void serialize(final MessagePacker packer) throws IOException {
     }
 
-    public static PasswordNotMatchedException deserialize(final MessageUnpacker ignoredUnpacker) throws IOException {
-        return new PasswordNotMatchedException();
+    public static PasswordMismatchedException deserialize(final MessageUnpacker ignoredUnpacker) throws IOException {
+        return new PasswordMismatchedException();
     }
 }

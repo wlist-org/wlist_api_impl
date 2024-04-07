@@ -3,7 +3,7 @@ package com.xuxiaocheng.wlist.api.impl.enums;
 import com.xuxiaocheng.wlist.api.common.exceptions.IncorrectArgumentException;
 import com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException;
 import com.xuxiaocheng.wlist.api.common.exceptions.NetworkException;
-import com.xuxiaocheng.wlist.api.common.exceptions.PasswordNotMatchedException;
+import com.xuxiaocheng.wlist.api.common.exceptions.PasswordMismatchedException;
 import com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException;
 import com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException;
 import com.xuxiaocheng.wlist.api.common.exceptions.UnavailableApiVersionException;
@@ -37,7 +37,7 @@ public enum Exceptions {
     MatchFrequencyControl(MatchFrequencyControlException::deserialize),
     IncorrectArgument(IncorrectArgumentException::deserialize),
     TooLargeData(TooLargeDataException::deserialize),
-    PasswordNotMatched(PasswordNotMatchedException::deserialize),
+    PasswordMismatched(PasswordMismatchedException::deserialize),
     TokenExpired(TokenExpiredException::deserialize),
 
     InvalidStorageConfig(InvalidStorageConfigException::deserialize),
