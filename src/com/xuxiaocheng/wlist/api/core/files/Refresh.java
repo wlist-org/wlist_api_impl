@@ -14,7 +14,7 @@ import java.util.concurrent.CompletableFuture;
 public enum Refresh {;
     /**
      * Refresh the directory.
-     * Note the refresh token will lock the directory until it is canceled/finished.
+     * Note that the refresh token will lock the directory until it is canceled/finished.
      * @param client the core client.
      * @param token the core token.
      * @param directory the location of the directory. ({@code assert directory.isDirectory;})

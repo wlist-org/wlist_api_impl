@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
 public enum Download {;
     /**
      * Request to download the file.
-     * Note the download token will lock the file until it is canceled/finished.
+     * Note that the download token will lock the file until it is canceled/finished.
      * @param client the core client.
      * @param token the core token.
      * @param file the location of the file. ({@code assert !file.isDirectory;})
