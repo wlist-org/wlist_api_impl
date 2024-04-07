@@ -3,7 +3,7 @@ package com.xuxiaocheng.wlist.api.core.files.exceptions.limitations;
 import java.io.Serial;
 
 /**
- * Throw if the filename contains the invalid code point.
+ * Throw if the filename contains the invalid character.
  */
 public class InvalidFilenameException extends RuntimeException {
     @Serial
@@ -17,17 +17,17 @@ public class InvalidFilenameException extends RuntimeException {
     /**
      * The optional(nullable) invalid code point.
      */
-    protected final Integer optionalCodePoint;
+    protected final Character optionalCharacter;
 
     /**
      * Internal constructor.
-     * @param name the name which contains the invalid code point.
-     * @param optionalCodePoint the optional invalid code point.
+     * @param name the name which contains the invalid character.
+     * @param optionalCharacter the optional invalid character.
      */
-    private InvalidFilenameException(final String name, final Integer optionalCodePoint) {
-        super("Invalid filename: " + name + " (codePoint: " + optionalCodePoint + ")");
+    private InvalidFilenameException(final String name, final Character optionalCharacter) {
+        super("Invalid filename: " + name + " (character: " + optionalCharacter + ")");
         this.name = name;
-        this.optionalCodePoint = optionalCodePoint;
+        this.optionalCharacter = optionalCharacter;
     }
 
     /**
@@ -39,10 +39,10 @@ public class InvalidFilenameException extends RuntimeException {
     }
 
     /**
-     * Get the optional(nullable) invalid code point.
-     * @return the optional(nullable) invalid code point.
+     * Get the optional(nullable) invalid character.
+     * @return the optional(nullable) invalid character.
      */
-    public Integer getOptionalCodePoint() {
-        return this.optionalCodePoint;
+    public Character getOptionalCharacter() {
+        return this.optionalCharacter;
     }
 }
