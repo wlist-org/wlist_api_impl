@@ -15,8 +15,9 @@ import java.time.Instant;
  * @param available true if the storage is available. (The share link may be canceled or the personal account may be deleted.)
  * @param createTime the time when created.
  * @param updateTime the time when updated.
+ * @param rootDirectoryId the root directory id of the storage.
  */
 public record StorageInformation(long id, String name, boolean readOnly, StorageType type, boolean available,
-                                 Instant createTime, Instant updateTime)
+                                 Instant createTime, Instant updateTime, long rootDirectoryId)
         implements Serializable, Recyclable {
 }
