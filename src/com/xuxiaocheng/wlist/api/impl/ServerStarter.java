@@ -211,7 +211,7 @@ public final class ServerStarter {
                 .thenCompose(ignored -> {
                     try {
                         return unpackFunction.unpackAndCall();
-                    } catch (final MessagePackException | IOException ignoredException) {
+                    } catch (final MessagePackException | IOException | IllegalArgumentException ignoredException) {
                         throw new UnavailableApiVersionException();
                     }
                 })

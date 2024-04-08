@@ -243,7 +243,7 @@ public final class ClientStarter {
                             return unpackFunction.unpack(unpacker);
                         final Exceptions exceptions = Exceptions.valueOf(unpacker.unpackString());
                         throw exceptions.getDeserialize().deserialize(unpacker);
-                    } catch (final MessagePackException | IOException ignoredException) {
+                    } catch (final MessagePackException | IOException | IllegalArgumentException ignoredException) {
                         throw new UnavailableApiVersionException();
                     } finally {
                         buffer.release();
