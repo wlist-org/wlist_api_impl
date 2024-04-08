@@ -10,6 +10,7 @@ import java.util.concurrent.CompletableFuture;
 
 /**
  * The core refresh API.
+ * Only after refreshing, the files/directories are indexed.
  */
 public enum Refresh {;
     /**
