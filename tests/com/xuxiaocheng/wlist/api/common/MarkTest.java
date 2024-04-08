@@ -25,7 +25,7 @@ public class MarkTest {
 
     @Test
     public void coreAPI() {
-        Assertions.assertEquals("1.9.1", Marks.CORE_API_VERSION);
+        Assertions.assertEquals("1.10.0", Marks.CORE_API_VERSION);
         Assertions.assertEquals("0.1.0", Marks.CORE_IMPL_VERSION);
     }
 

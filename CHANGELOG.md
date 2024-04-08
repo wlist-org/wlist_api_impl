@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.0] - 2024-4-8
+
+### Added
+
+* 添加搜索 API
+* 支持更多 storage 排序选项
+
+### Changed
+
+* 添加 rootDirectoryId
+
 ## [1.11.1] - 2024-4-7
 
 ### Changed
