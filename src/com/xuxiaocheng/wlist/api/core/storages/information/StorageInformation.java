@@ -31,6 +31,7 @@ public record StorageInformation(long id, String name, boolean readOnly, Storage
         packer.packBoolean(self.available);
         packer.packTimestamp(self.createTime);
         packer.packTimestamp(self.updateTime);
+        packer.packLong(self.rootDirectoryId);
     }
 
     public static StorageInformation deserialize(final MessageUnpacker unpacker) throws IOException {
@@ -41,6 +42,7 @@ public record StorageInformation(long id, String name, boolean readOnly, Storage
         final boolean available = unpacker.unpackBoolean();
         final Instant createTime = unpacker.unpackTimestamp();
         final Instant updateTime = unpacker.unpackTimestamp();
-        return new StorageInformation(id, name, readOnly, type, available, createTime, updateTime);
+        final long rootDirectoryId = unpacker.unpackLong();
+        return new StorageInformation(id, name, readOnly, type, available, createTime, updateTime, rootDirectoryId);
     }
 }

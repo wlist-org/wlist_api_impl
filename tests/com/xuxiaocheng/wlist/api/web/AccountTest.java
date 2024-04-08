@@ -2,7 +2,7 @@ package com.xuxiaocheng.wlist.api.web;
 
 import com.xuxiaocheng.wlist.api.MainTest;
 import com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException;
-import com.xuxiaocheng.wlist.api.common.exceptions.PasswordNotMatchedException;
+import com.xuxiaocheng.wlist.api.common.exceptions.PasswordMismatchedException;
 import com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
@@ -43,7 +43,7 @@ public class AccountTest {
         @DisplayName("wrong password")
         public void loginFailure() {
             final ExecutionException exception = Assertions.assertThrowsExactly(ExecutionException.class, () -> Account.login("1", "wrong pw").get());
-            Assertions.assertInstanceOf(PasswordNotMatchedException.class, exception.getCause());
+            Assertions.assertInstanceOf(PasswordMismatchedException.class, exception.getCause());
         }
 
         @Test
