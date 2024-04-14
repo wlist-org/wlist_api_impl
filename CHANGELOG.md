@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.1] - 2024-4-14
+
+### Added
+
+* 支持按照文件后缀名排序
+
+### Changed
+
+* 更新 Readme
+
 ## [1.12.0] - 2024-4-8
 
 ### Added
