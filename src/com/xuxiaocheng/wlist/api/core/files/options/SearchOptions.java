@@ -1,9 +1,11 @@
 package com.xuxiaocheng.wlist.api.core.files.options;
 
+import com.xuxiaocheng.wlist.api.common.Recyclable;
 import org.msgpack.core.MessagePacker;
 import org.msgpack.core.MessageUnpacker;
 
 import java.io.IOException;
+import java.io.Serializable;
 
 /**
  * Options when searching files/directories.
@@ -11,7 +13,8 @@ import java.io.IOException;
  * @param pattern match pattern mode.
  * @param recursive true means search in recursive directories.
  */
-public record SearchOptions(String keyword, Pattern pattern, boolean recursive) {
+public record SearchOptions(String keyword, Pattern pattern, boolean recursive)
+        implements Serializable, Recyclable {
     public static void serialize(final SearchOptions self, final MessagePacker packer) throws IOException {
         packer.packString(self.keyword);
         packer.packString(self.pattern.name());
