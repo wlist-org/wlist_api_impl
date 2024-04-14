@@ -15,6 +15,13 @@ public enum Order {
     Name,
 
     /**
+     * Sort by the suffix of name.
+     * Split by '.', it is unknown if the name does not contain '.'.
+     * (unknown is ahead of known, sort in GBK encoding)
+     */
+    Suffix,
+
+    /**
      * true/false. 'true' is ahead of 'false'.
      */
     Directory,
