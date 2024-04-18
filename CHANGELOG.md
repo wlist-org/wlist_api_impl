@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.12.2] - 2024-4-18
+
+### Changed
+
+* 优化 Files 行为
+* 标记 core 中 Storage 为 Stable
+
 ## [1.12.1] - 2024-4-14
 
 ### Added
@@ -156,7 +163,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-* *Modified Stable* 将 Version 中的 CompletableFuture 改为 NetworkFuture
+将 Version 中的 CompletableFuture 改为 NetworkFuture
 
 ## [1.2.2] - 2024-3-10
 
