@@ -49,7 +49,6 @@ public enum File {;
 
     /**
      * Trash the file/directory.
-     * Notice if the file/directory is trashed, this method will do nothing.
      * @param client the core client.
      * @param token the core token.
      * @param file the location of the file/directory
@@ -63,12 +62,13 @@ public enum File {;
 
     /**
      * Restore the file/directory.
-     * Notice if the file/directory isn't trashed, this method will do nothing and return the file information.
      * @param client the core client.
      * @param token the core token.
      * @param file the location of the file/directory to restore.
      * @return a future, with the restored file information.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileInLockException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
     public static CompletableFuture<FileInformation> restore(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
 
