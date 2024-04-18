@@ -1,6 +1,8 @@
 package com.xuxiaocheng.wlist.api.core.storages;
 
 import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.common.Stable;
+import com.xuxiaocheng.wlist.api.common.StableModule;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.storages.information.StorageDetailsInformation;
 import com.xuxiaocheng.wlist.api.core.storages.information.StorageListInformation;
@@ -11,6 +13,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * The core storage API.
  */
+@Stable(since = "1.11.0", module = StableModule.Core)
 public enum Storage {;
     /**
      * List the storages.
