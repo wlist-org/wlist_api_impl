@@ -8,8 +8,8 @@ import java.lang.annotation.Target;
 
 /**
  * Indicates the API is stable.
- * When this annotation is applied to not field nor method,
- * it means that all public fields and methods inside it are stable.
+ * When this annotation is applied to class, package, or module,
+ * it means that all public fields and methods inside are stable.
  */
 @Documented
 @Retention(RetentionPolicy.CLASS)
