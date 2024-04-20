@@ -51,7 +51,7 @@ public enum Trash {;
     public static CompletableFuture<TrashInformation> trash(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
 
     /**
-     * Restore the file/directory.
+     * Restore the trashed file/directory.
      * @param client the core client.
      * @param token the core token.
      * @param file the location of the file/directory to restore.
@@ -61,4 +61,24 @@ public enum Trash {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
     public static CompletableFuture<FileInformation> restore(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
+
+    /**
+     * Delete the trashed file/directory.
+     * @param client the core client.
+     * @param token the core token.
+     * @param file the location of the trashed file/directory to delete.
+     * @return a future.
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
+     */
+    public static CompletableFuture<Void> delete(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
+
+    /**
+     * Delete all the trashed files and directories.
+     * @param client the core client.
+     * @param token the core token.
+     * @return a future.
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
+     */
+    public static CompletableFuture<Void> deleteAll(final CoreClient client, final String token) { return Main.future(); }
 }
