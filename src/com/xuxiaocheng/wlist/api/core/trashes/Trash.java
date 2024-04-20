@@ -6,8 +6,10 @@ import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.FileLocation;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.information.FileInformation;
-import com.xuxiaocheng.wlist.api.core.files.information.FileListInformation;
-import com.xuxiaocheng.wlist.api.core.files.options.ListFileOptions;
+import com.xuxiaocheng.wlist.api.core.trashes.information.TrashDetailsInformation;
+import com.xuxiaocheng.wlist.api.core.trashes.information.TrashInformation;
+import com.xuxiaocheng.wlist.api.core.trashes.information.TrashListInformation;
+import com.xuxiaocheng.wlist.api.core.trashes.options.ListTrashOptions;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -22,7 +24,18 @@ public enum Trash {;
      * @param options the options for the list operation.
      * @return a future, with the list result or the refresh token.
      */
-    public static CompletableFuture<Either<FileListInformation, RefreshConfirmation>> listTrash(final CoreClient client, final String token, final ListFileOptions options) { return Main.future(); }
+    public static CompletableFuture<Either<TrashListInformation, RefreshConfirmation>> list(final CoreClient client, final String token, final ListTrashOptions options) { return Main.future(); }
+
+    /**
+     * Get the file/directory information.
+     * @param client the core client.
+     * @param token the core token.
+     * @param file the location of the file/directory.
+     * @param check true indicates the server should refresh the file information.
+     * @return a future, with the file/directory information.
+     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
+     */
+    public static CompletableFuture<TrashDetailsInformation> get(final CoreClient client, final String token, final FileLocation file, final boolean check) { return Main.future(); }
 
     /**
      * Trash the file/directory.
@@ -35,7 +48,7 @@ public enum Trash {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileInLockException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static CompletableFuture<Void> trash(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
+    public static CompletableFuture<TrashInformation> trash(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
 
     /**
      * Restore the file/directory.
