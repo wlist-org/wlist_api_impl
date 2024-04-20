@@ -1,5 +1,6 @@
 package com.xuxiaocheng.wlist.api.core.storages.options;
 
+import com.xuxiaocheng.wlist.api.common.Direction;
 import com.xuxiaocheng.wlist.api.common.Recyclable;
 import org.msgpack.core.MessagePacker;
 import org.msgpack.core.MessageUnpacker;

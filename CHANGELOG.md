@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.13.0] - 2024-4-20
+
+### Changed
+
+* 合并使用同一个 Direction 类
+
+### Added
+
+* 独立 trashes 分类
+* 添加彻底删除回收站文件接口
+
 ## [1.12.2] - 2024-4-18
 
 ### Changed
