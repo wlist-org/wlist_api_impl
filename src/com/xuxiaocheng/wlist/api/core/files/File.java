@@ -28,15 +28,6 @@ public enum File {;
     public static CompletableFuture<Either<FileListInformation, RefreshConfirmation>> list(final CoreClient client, final String token, final FileLocation directory, final ListFileOptions options) { return Main.future(); }
 
     /**
-     * List the files in trash.
-     * @param client the core client.
-     * @param token the core token.
-     * @param options the options for the list operation.
-     * @return a future, with the list result or the refresh token.
-     */
-    public static CompletableFuture<Either<FileListInformation, RefreshConfirmation>> listTrash(final CoreClient client, final String token, final ListFileOptions options) { return Main.future(); }
-
-    /**
      * Get the file/directory information.
      * @param client the core client.
      * @param token the core token.
@@ -46,31 +37,6 @@ public enum File {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      */
     public static CompletableFuture<FileDetailsInformation> get(final CoreClient client, final String token, final FileLocation file, final boolean check) { return Main.future(); }
-
-    /**
-     * Trash the file/directory.
-     * @param client the core client.
-     * @param token the core token.
-     * @param file the location of the file/directory
-     * @return a future.
-     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.ComplexOperationException
-     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
-     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileInLockException
-     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
-     */
-    public static CompletableFuture<Void> trash(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
-
-    /**
-     * Restore the file/directory.
-     * @param client the core client.
-     * @param token the core token.
-     * @param file the location of the file/directory to restore.
-     * @return a future, with the restored file information.
-     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
-     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileInLockException
-     * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
-     */
-    public static CompletableFuture<FileInformation> restore(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
 
     /**
      * Check whether the file/directory name is valid.
