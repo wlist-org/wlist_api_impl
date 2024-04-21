@@ -16,7 +16,7 @@ public enum Pattern {
 
     /**
      * Using <a href="https://github.com/wangfenjin/simple">an extension of fts5</a>.
-     * {@code WHERE name MATCH jieba_query(:keyword)}.
+     * {@code WHERE name MATCH simple_query(:keyword)}.
      */
     Pinyin,
 }
