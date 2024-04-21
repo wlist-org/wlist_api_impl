@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.13.1] - 2024-4-21
+
+### Added
+
+* 添加 trashes 搜索接口
+
 ## [1.13.0] - 2024-4-20
 
 ### Changed
