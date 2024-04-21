@@ -27,7 +27,7 @@ public enum Search {;
      * Search in a specified directory.
      * @param client the core client.
      * @param token the core token.
-     * @param directory the specified directory.
+     * @param directory the specified directory. ({@code assert file.isDirectory;})
      * @param options the options for the search operation.
      * @param list the options for the list operation.
      * @return a future, with the searched result.
