@@ -29,6 +29,7 @@ public enum Refresh {;
      * @param client the core client.
      * @param token the refresh token.
      * @return a future.
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
     public static CompletableFuture<Void> cancel(final CoreClient client, final RefreshToken token) { return Main.future(); }
 
@@ -37,6 +38,7 @@ public enum Refresh {;
      * @param client the core client.
      * @param token the refresh token.
      * @return a future. It will be complete after finishing, even it's paused.
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
     public static CompletableFuture<Void> confirm(final CoreClient client, final RefreshToken token) { return Main.future(); }
 
@@ -46,6 +48,7 @@ public enum Refresh {;
      * @param client the core client.
      * @param token the refresh token.
      * @return a future.
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
     public static CompletableFuture<Void> pause(final CoreClient client, final RefreshToken token) { return Main.future(); }
 
@@ -55,6 +58,7 @@ public enum Refresh {;
      * @param client the core client.
      * @param token the refresh token.
      * @return a future.
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
     public static CompletableFuture<Void> resume(final CoreClient client, final RefreshToken token) { return Main.future(); }
 
@@ -64,6 +68,19 @@ public enum Refresh {;
      * @param client the core client.
      * @param token the refresh token.
      * @return a future, with the progress of refresh.
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
     public static CompletableFuture<RefreshProgress> progress(final CoreClient client, final RefreshToken token) { return Main.future(); }
+
+    /**
+     * Check the refresh state.
+     * If the refresh progress throws any exceptions, it will complete exceptionally.
+     * Note you should call this method to release resources after {@link #progress} throws {@code TokenExpiredException}.
+     * If this method returned true, the next time call will throw {@code TokenExpiredException}.
+     * @param client the core client.
+     * @param token the refresh token.
+     * @return a future, true means the refresh is finished, false means the refresh is in progress.
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
+     */
+    public static CompletableFuture<Boolean> check(final CoreClient client, final RefreshToken token) { return Main.future(); }
 }
