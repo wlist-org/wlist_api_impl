@@ -55,12 +55,13 @@ public enum Trash {;
      * @param client the core client.
      * @param token the core token.
      * @param file the location of the file/directory to restore.
+     * @param parent the parent location the file/directory restored to.
      * @return a future, with the restored file information.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileInLockException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static CompletableFuture<FileInformation> restore(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
+    public static CompletableFuture<FileInformation> restore(final CoreClient client, final String token, final FileLocation file, final FileLocation parent) { return Main.future(); }
 
     /**
      * Delete the trashed file/directory.
