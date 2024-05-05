@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.14.0] - 2024-5-5
+
+### Changed
+
+* refresh 操作可以 check 结束状态
+* restore 操作需指定父文件夹
+
 ## [1.13.1] - 2024-4-21
 
 ### Added
