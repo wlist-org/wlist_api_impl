@@ -8,6 +8,7 @@ import com.xuxiaocheng.wlist.api.core.files.tokens.DownloadToken;
 
 import java.nio.ByteBuffer;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * The core download API.
@@ -49,16 +50,19 @@ public enum Download {;
      * Note that the buffer needn't be large enough to contain the entire chunk.
      * This method will start downloading from the {@code start} byte
      * and try to fill the {@code buffer} as much as possible.
-     * <p>The behavior of this method is similar to sending a GET request containing a range header.</p>
+     * The behavior of this method is similar to sending a GET request containing a range header,
+     * so don't call this method at high frequency to avoid HTTP 429,
      * <p>You can call {@code buffer.position()} to get the downloading progress. (Not real-time, but at a small interval. Maybe hundreds to thousands of bytes)</p>
+     * <p>You can set the controller to pause or resume the upload.</p>
      * @param client the core client.
      * @param token the download token.
      * @param id the download chunk id.
      * @param buffer the directly buffer to write the data. ({@code assert buffer.isDirect();})
      * @param start the start position to download of the <b>chunk</b>.
+     * @param controller false means pause, true means resume.
      * @return a future.
      */
-    public static CompletableFuture<Void> download(final CoreClient client, final DownloadToken token, final int id, final ByteBuffer buffer, final long start) { return Main.future(); }
+    public static CompletableFuture<Void> download(final CoreClient client, final DownloadToken token, final int id, final ByteBuffer buffer, final long start, final AtomicBoolean controller) { return Main.future(); }
 
     /**
      * Finish a download.

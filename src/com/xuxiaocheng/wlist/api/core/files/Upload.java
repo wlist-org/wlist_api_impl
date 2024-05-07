@@ -11,6 +11,7 @@ import com.xuxiaocheng.wlist.api.core.files.tokens.UploadToken;
 import java.nio.ByteBuffer;
 import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * The core upload API.
@@ -61,14 +62,16 @@ public enum Upload {;
      * but please ensure that the buffer start position corresponds to the previous end position.
      * <p>You can call {@code buffer.position()} to get the uploading progress. (Not real-time, but at a small interval. Maybe hundreds to thousands of bytes)</p>
      * <p>If the returned hash isn't matched, you may cancel the upload and request a new one.</p>
+     * <p>You can set the controller to pause or resume the upload.</p>
      * @param client the core client.
      * @param token the upload token.
      * @param id the upload chunk id.
      * @param buffer the buffer containing the chunk data.
+     * @param controller false means pause, true means resume.
      * @return a future, with a sha256 hash of the uploaded chunk data.
      *                   The hash is optional because the chunk may upload incompletely.
      */
-    public static CompletableFuture<Optional<String>> upload(final CoreClient client, final UploadToken token, final int id, final ByteBuffer buffer) { return Main.future(); }
+    public static CompletableFuture<Optional<String>> upload(final CoreClient client, final UploadToken token, final int id, final ByteBuffer buffer, final AtomicBoolean controller) { return Main.future(); }
 
     /**
      * Finish an upload.
