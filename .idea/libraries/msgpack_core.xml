@@ -4,9 +4,7 @@
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/org/msgpack/msgpack-core/0.9.8/msgpack-core-0.9.8.jar!/" />
     </CLASSES>
-    <JAVADOC>
-      <root url="jar://$MAVEN_REPOSITORY$/org/msgpack/msgpack-core/0.9.8/msgpack-core-0.9.8-javadoc.jar!/" />
-    </JAVADOC>
+    <JAVADOC />
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/org/msgpack/msgpack-core/0.9.8/msgpack-core-0.9.8-sources.jar!/" />
     </SOURCES>

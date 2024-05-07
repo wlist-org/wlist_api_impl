@@ -7,6 +7,7 @@ module com.xuxiaocheng.wlist.api {
     requires io.netty.codec;
     requires io.netty.buffer;
     requires msgpack.core;
+    requires htmlunit;
 
     exports com.xuxiaocheng.wlist.api;
     exports com.xuxiaocheng.wlist.api.common;

@@ -3,6 +3,10 @@
     <output-path>$PROJECT_DIR$/out/artifacts</output-path>
     <root id="archive" name="wlist_api.jar">
       <element id="module-output" name="wlist_api" />
+      <element id="library" level="project" name="htmlunit" />
+      <element id="library" level="project" name="io.netty.all" />
+      <element id="library" level="project" name="msgpack.core" />
+      <element id="library" level="project" name="xml.apis" />
     </root>
   </artifact>
 </component>
