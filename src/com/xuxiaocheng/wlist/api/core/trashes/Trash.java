@@ -27,6 +27,14 @@ public enum Trash {;
     public static CompletableFuture<Either<TrashListInformation, RefreshConfirmation>> list(final CoreClient client, final String token, final ListTrashOptions options) { return Main.future(); }
 
     /**
+     * Refresh the trash.
+     * @param client the core client.
+     * @param token the core token.
+     * @return a future, with the refresh confirmation.
+     */
+    public static CompletableFuture<RefreshConfirmation> refresh(final CoreClient client, final String token) { return Main.future(); }
+
+    /**
      * Get the file/directory information.
      * @param client the core client.
      * @param token the core token.
