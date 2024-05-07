@@ -62,7 +62,7 @@ public enum Download {;
 
     /**
      * Finish a download.
-     * This method is similar to call {@link com.xuxiaocheng.wlist.api.core.files.Download#cancel(com.xuxiaocheng.wlist.api.core.CoreClient, com.xuxiaocheng.wlist.api.core.files.tokens.DownloadToken)},
+     * This method is similar to call {@link #cancel},
      * but different in log.
      * @param client the core client.
      * @param token the download token.

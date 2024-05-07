@@ -60,7 +60,7 @@ public enum Upload {;
      * You can call this method multiple times to upload the rest data,
      * but please ensure that the buffer start position corresponds to the previous end position.
      * <p>You can call {@code buffer.position()} to get the uploading progress. (Not real-time, but at a small interval. Maybe hundreds to thousands of bytes)</p>
-     * <p>If the returned hash isn't matched, you can simply call this method again to reset the cached chunk data.</p>
+     * <p>If the returned hash isn't matched, you may cancel the upload and request a new one.</p>
      * @param client the core client.
      * @param token the upload token.
      * @param id the upload chunk id.
