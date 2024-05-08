@@ -9,12 +9,11 @@ import org.htmlunit.util.Cookie;
 
 import java.io.IOException;
 import java.net.URI;
-import java.time.ZoneOffset;
-import java.time.ZonedDateTime;
+import java.time.Instant;
 import java.util.Set;
 
 public enum Lanzou {;
-    public record Tokens(String token, long uid, ZonedDateTime expires) {}
+    public record Tokens(String token, Instant expire, long uid) {}
 
     // Nullable
     public static Tokens login(final String passport, final String password) throws IOException {
@@ -33,14 +32,15 @@ public enum Lanzou {;
         }
         Cookie token = null, uid = null;
         for (final Cookie c: cookies) {
+            //noinspection SpellCheckingInspection
             if ("phpdisk_info".equalsIgnoreCase(c.getName()))
                 token = c;
+            //noinspection SpellCheckingInspection
             if ("ylogin".equalsIgnoreCase(c.getName()))
                 uid = c;
         }
         if (token == null || uid == null)
             return null;
-        final ZonedDateTime expires = ZonedDateTime.ofInstant(token.getExpires().toInstant(), ZoneOffset.UTC);
-        return new Tokens(token.getValue(), Long.parseLong(uid.getValue()), expires);
+        return new Tokens(token.getValue(), token.getExpires().toInstant(), Long.parseLong(uid.getValue()));
     }
 }

@@ -19,8 +19,7 @@ public final class BrowserUtil {
         super();
     }
 
-    private static final Cache SharedCache = new Cache();
-    static {
+    private static final Cache SharedCache = new Cache(); static {
         SharedCache.setMaxSize(64);
     }
 
@@ -38,11 +37,11 @@ public final class BrowserUtil {
     }
 
     public static class SilentConsoleLogger implements WebConsole.Logger {
-        @Override public boolean isTraceEnabled() {return false;}@Override public void trace(final Object message) {}
-        @Override public boolean isDebugEnabled() {return false;}@Override public void debug(final Object message) {}
-        @Override public boolean isInfoEnabled() {return false;}@Override public void info(final Object message) {}
-        @Override public boolean isWarnEnabled() {return false;}@Override public void warn(final Object message) {}
-        @Override public boolean isErrorEnabled() {return false;}@Override public void error(final Object message) {}
+        @Override public boolean isTraceEnabled() { return false; } @Override public void trace(final Object message) { }
+        @Override public boolean isDebugEnabled() { return false; } @Override public void debug(final Object message) { }
+        @Override public boolean isInfoEnabled() { return false; } @Override public void info(final Object message) { }
+        @Override public boolean isWarnEnabled() { return false; } @Override public void warn(final Object message) { }
+        @Override public boolean isErrorEnabled() { return false; } @Override public void error(final Object message) { }
     }
 
 
@@ -60,12 +59,16 @@ public final class BrowserUtil {
                 break;
     }
 
+
     public static final NameValuePair JSResponseHeader = new NameValuePair("Content-Type", "application/javascript");
+
     public static final WebResponseData EmptyResponse = new WebResponseData(EmptyArrays.EMPTY_BYTES, 200, "OK", List.of());
     public static final WebResponseData EmptyJSResponse = new WebResponseData(EmptyArrays.EMPTY_BYTES, 200, "OK", List.of(BrowserUtil.JSResponseHeader));
+
     public static WebResponse emptyResponse(final WebRequest request) {
-        if (request.getUrl().toString().endsWith(".js"))
-            return new WebResponse(BrowserUtil.EmptyJSResponse, request, 0);
         return new WebResponse(BrowserUtil.EmptyResponse, request, 0);
+    }
+    public static WebResponse emptyJSResponse(final WebRequest request) {
+        return new WebResponse(BrowserUtil.EmptyJSResponse, request, 0);
     }
 }
