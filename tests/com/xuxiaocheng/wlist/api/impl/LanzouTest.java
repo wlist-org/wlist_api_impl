@@ -11,6 +11,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class LanzouTest {
     @BeforeAll
@@ -26,14 +27,15 @@ public class LanzouTest {
     @CsvFileSource(files = "tester/lanzou.csv")
     @DisplayName("correct")
     public void test(final String passport, final String password) throws IOException {
-        final Lanzou.Tokens tokens = Lanzou.login(passport, password);
-        Assertions.assertNotNull(tokens);
+        final Optional<Lanzou.Tokens> tokens = Lanzou.login(passport, password);
+        Assertions.assertTrue(tokens.isPresent());
 //        System.out.println(tokens);
     }
 
     @Test
     @DisplayName("incorrect")
     public void incorrect() throws IOException {
-        Assertions.assertNull(Lanzou.login("12345674567", "123456"));
+        final Optional<Lanzou.Tokens> tokens =Lanzou.login("12345674567", "123456");
+        Assertions.assertFalse(tokens.isPresent());
     }
 }

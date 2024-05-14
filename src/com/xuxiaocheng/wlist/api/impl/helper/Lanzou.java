@@ -10,13 +10,13 @@ import org.htmlunit.util.Cookie;
 import java.io.IOException;
 import java.net.URI;
 import java.time.Instant;
+import java.util.Optional;
 import java.util.Set;
 
 public enum Lanzou {;
     public record Tokens(String token, Instant expire, long uid) {}
 
-    // Nullable
-    public static Tokens login(final String passport, final String password) throws IOException {
+    public static Optional<Tokens> login(final String passport, final String password) throws IOException {
         final Set<Cookie> cookies;
         try (final WebClient client = BrowserUtil.newWebClient()) {
             final HtmlPage page = client.getPage("https://up.woozooo.com/account.php?action=login");
@@ -40,7 +40,7 @@ public enum Lanzou {;
                 uid = c;
         }
         if (token == null || uid == null)
-            return null;
-        return new Tokens(token.getValue(), token.getExpires().toInstant(), Long.parseLong(uid.getValue()));
+            return Optional.empty();
+        return Optional.of(new Tokens(token.getValue(), token.getExpires().toInstant(), Long.parseLong(uid.getValue())));
     }
 }
