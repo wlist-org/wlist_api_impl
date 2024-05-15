@@ -26,9 +26,24 @@ public record TrashInformation(long id, String name, boolean isDirectory, long s
         packer.packString(self.name);
         packer.packBoolean(self.isDirectory);
         packer.packLong(self.size);
-        packer.packTimestamp(self.createTime);
-        packer.packTimestamp(self.updateTime);
-        packer.packTimestamp(self.trashTime);
+        if (self.createTime == null) {
+            packer.packBoolean(false);
+        } else {
+            packer.packBoolean(true);
+            packer.packTimestamp(self.createTime);
+        }
+        if (self.createTime == null) {
+            packer.packBoolean(false);
+        } else {
+            packer.packBoolean(true);
+            packer.packTimestamp(self.updateTime);
+        }
+        if (self.trashTime == null) {
+            packer.packBoolean(false);
+        } else {
+            packer.packBoolean(true);
+            packer.packTimestamp(self.trashTime);
+        }
     }
 
     public static TrashInformation deserialize(final MessageUnpacker unpacker) throws IOException {
@@ -36,9 +51,9 @@ public record TrashInformation(long id, String name, boolean isDirectory, long s
         final String name = unpacker.unpackString();
         final boolean isDirectory = unpacker.unpackBoolean();
         final long size = unpacker.unpackLong();
-        final Instant createTime = unpacker.unpackTimestamp();
-        final Instant updateTime = unpacker.unpackTimestamp();
-        final Instant trashTime = unpacker.unpackTimestamp();
+        final Instant createTime = unpacker.unpackBoolean() ? unpacker.unpackTimestamp() : null;
+        final Instant updateTime = unpacker.unpackBoolean() ? unpacker.unpackTimestamp() : null;
+        final Instant trashTime = unpacker.unpackBoolean() ? unpacker.unpackTimestamp() : null;
         return new TrashInformation(id, name, isDirectory, size, createTime, updateTime, trashTime);
     }
 }

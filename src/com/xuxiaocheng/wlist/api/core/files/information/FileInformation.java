@@ -27,8 +27,18 @@ public record FileInformation(long id, long parentId, String name, boolean isDir
         packer.packString(self.name);
         packer.packBoolean(self.isDirectory);
         packer.packLong(self.size);
-        packer.packTimestamp(self.createTime);
-        packer.packTimestamp(self.updateTime);
+        if (self.createTime == null) {
+            packer.packBoolean(false);
+        } else {
+            packer.packBoolean(true);
+            packer.packTimestamp(self.createTime);
+        }
+        if (self.createTime == null) {
+            packer.packBoolean(false);
+        } else {
+            packer.packBoolean(true);
+            packer.packTimestamp(self.updateTime);
+        }
     }
 
     public static FileInformation deserialize(final MessageUnpacker unpacker) throws IOException {
@@ -37,8 +47,8 @@ public record FileInformation(long id, long parentId, String name, boolean isDir
         final String name = unpacker.unpackString();
         final boolean isDirectory = unpacker.unpackBoolean();
         final long size = unpacker.unpackLong();
-        final Instant createTime = unpacker.unpackTimestamp();
-        final Instant updateTime = unpacker.unpackTimestamp();
+        final Instant createTime = unpacker.unpackBoolean() ? unpacker.unpackTimestamp() : null;
+        final Instant updateTime = unpacker.unpackBoolean() ? unpacker.unpackTimestamp() : null;
         return new FileInformation(id, parentId, name, isDirectory, size, createTime, updateTime);
     }
 }
