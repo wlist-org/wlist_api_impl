@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.15.1] - 2024-5-15
+
+### Changed
+
+* FileInformation 和 TrashInformation 中 time 系列字段可能为 unknown
+
 ## [1.15.0] - 2024-5-7
 
 ### Changed
