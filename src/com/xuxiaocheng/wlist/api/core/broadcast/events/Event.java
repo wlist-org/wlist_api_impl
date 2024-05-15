@@ -7,8 +7,7 @@ import java.io.Serializable;
 /**
  * An interface that represents an event.
  */
-public sealed interface Event extends Serializable, Recyclable permits
-        NetworkReceivingEvent, NetworkSendingEvent, ServerCloseEvent,
+public sealed interface Event extends Serializable, Recyclable permits ServerCloseEvent,
         StorageAddEvent, StorageLoginEvent, StorageRemoveEvent,
         FileUpdateEvent, FileUploadEvent, FileTrashEvent, FileDeleteEvent {
 }
