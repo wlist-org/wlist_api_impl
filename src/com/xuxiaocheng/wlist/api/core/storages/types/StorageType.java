@@ -34,7 +34,7 @@ public sealed interface StorageType extends Serializable permits Lanzou {
      * Return all the suffixes the storage disallowed.
      * Note that empty set means all suffixes are valid.
      * This method is only for fast check, some cases may not be covered.
-     * @return all the suffixes the storage allowed.
+     * @return all the suffixes the storage disallowed.
      */
     default Set<String> disallowedSuffixes() { return Set.of(); }
 
