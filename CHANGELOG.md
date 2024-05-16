@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.16.1] - 2024-5-16
+
+### Changed
+
+* 优化 checkName 参数
+
 ## [1.16.0] - 2024-5-15
 
 ### Changed
