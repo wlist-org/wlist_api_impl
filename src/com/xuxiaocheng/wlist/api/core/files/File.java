@@ -47,8 +47,9 @@ public enum File {;
      * This means if {@code DuplicateFileException} was thrown, the validation is passed.
      * @param client the core client.
      * @param token the core token.
-     * @param storage the id of target storage.
      * @param name the file/directory name to check.
+     * @param parent the parent directory location.
+     * @param isDirectory whether is file/directory.
      * @return a future, normal completion means the name may be valid.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
@@ -57,7 +58,7 @@ public enum File {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.InvalidFilenameException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.IllegalSuffixException
      */
-    public static CompletableFuture<Void> checkName(final CoreClient client, final String token, final long storage, final FileLocation parent, final String name) { throw Main.stub(); }
+    public static CompletableFuture<Void> checkName(final CoreClient client, final String token, final String name, final FileLocation parent, final boolean isDirectory) { throw Main.stub(); }
 
     /**
      * Create a new empty directory.
