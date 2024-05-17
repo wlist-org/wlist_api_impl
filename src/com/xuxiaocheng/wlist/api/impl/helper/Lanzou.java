@@ -1,5 +1,6 @@
 package com.xuxiaocheng.wlist.api.impl.helper;
 
+import com.xuxiaocheng.wlist.api.core.trashes.information.TrashInformation;
 import org.htmlunit.ElementNotFoundException;
 import org.htmlunit.WebClient;
 import org.htmlunit.WebRequest;
@@ -21,6 +22,7 @@ import java.net.URI;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -41,7 +43,7 @@ public enum Lanzou {;
             page.<HtmlInput>getElementByName("username").setValue(passport);
             page.<HtmlInput>getElementByName("password").setValue(password);
             page.getHtmlElementById("s3").click();
-            cookies = client.getCookies(URI.create("https://up.woozooo.com/").toURL());
+            cookies = client.getCookies(new URL("https://up.woozooo.com/"));
         }
         Cookie token = null, uid = null;
         for (final Cookie c: cookies) {
@@ -74,9 +76,7 @@ public enum Lanzou {;
                         return BrowserUtil.emptyJSResponse(request);
                     if (!requestUrl.getHost().equals(url.getHost()) && !requestUrl.getHost().equals("assets.woozooo.com")) {
                         // skip other unnessary asserts
-                        if (path.endsWith(".js"))
-                            return BrowserUtil.emptyJSResponse(request);
-                        return BrowserUtil.emptyResponse(request);
+                        return path.endsWith(".js") ? BrowserUtil.emptyJSResponse(request) : BrowserUtil.emptyResponse(request);
                     }
                     return super.getResponse(request);
                 }
@@ -114,5 +114,36 @@ public enum Lanzou {;
         }
         final String downloadUrl = downloading.<HtmlAnchor>querySelector("a").getAttribute("href");
         return new FileUrls(true, true, downloadUrl);
+    }
+
+
+    public static List<TrashInformation> getTrashList(final String token) throws IOException {
+        try (final WebClient client = BrowserUtil.newWebClient()) {
+            client.getCookieManager().addCookie(new Cookie("up.woozooo.com", "phpdisk_info", token));
+            client.setWebConnection(new WebConnectionWrapper(client.getWebConnection()) {
+                @Override
+                public WebResponse getResponse(final WebRequest request) throws IOException {
+                    final String path = request.getUrl().getPath();
+                    if (!path.equals("/mydisk.php")) {
+                        // skip unnessary asserts
+                        return path.endsWith(".js") ? BrowserUtil.emptyJSResponse(request) : BrowserUtil.emptyResponse(request);
+                    }
+                    return super.getResponse(request);
+                }
+            });
+            final HtmlPage page = client.getPage("https://up.woozooo.com/mydisk.php?item=recycle&action=files");
+            final List<TrashInformation> list = new ArrayList<>();
+            for (final DomElement directory: page.getElementsByName("fd_sel_ids[]")) {
+                final long id = Integer.parseInt(((HtmlInput) directory).getValue());
+                final String name = directory.getParentNode().querySelector("a").asNormalizedText().substring(1);
+                list.add(new TrashInformation(id, name, true, -1, null, null, null));
+            }
+            for (final DomElement file: page.getElementsByName("fl_sel_ids[]")) {
+                final long id = Integer.parseInt(((HtmlInput) file).getValue());
+                final String name = file.getParentNode().querySelector("a").asNormalizedText();
+                list.add(new TrashInformation(id, name, false, -1, null, null, null));
+            }
+            return list;
+        }
     }
 }
