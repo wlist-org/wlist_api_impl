@@ -1,5 +1,6 @@
 package com.xuxiaocheng.wlist.api.impl.helper;
 
+import com.xuxiaocheng.wlist.api.core.trashes.information.TrashDetailsInformation;
 import com.xuxiaocheng.wlist.api.core.trashes.information.TrashInformation;
 import org.htmlunit.ElementNotFoundException;
 import org.htmlunit.WebClient;
@@ -117,33 +118,46 @@ public enum Lanzou {;
     }
 
 
-    public static List<TrashInformation> getTrashList(final String token) throws IOException {
-        try (final WebClient client = BrowserUtil.newWebClient()) {
-            client.getCookieManager().addCookie(new Cookie("up.woozooo.com", "phpdisk_info", token));
-            client.setWebConnection(new WebConnectionWrapper(client.getWebConnection()) {
-                @Override
-                public WebResponse getResponse(final WebRequest request) throws IOException {
-                    final String path = request.getUrl().getPath();
-                    if (!path.equals("/mydisk.php")) {
-                        // skip unnessary asserts
-                        return path.endsWith(".js") ? BrowserUtil.emptyJSResponse(request) : BrowserUtil.emptyResponse(request);
-                    }
-                    return super.getResponse(request);
+    private static WebClient trashWebClient(final String token) {
+        final WebClient client = BrowserUtil.newWebClient();
+        client.getCookieManager().addCookie(new Cookie("up.woozooo.com", "phpdisk_info", token));
+        client.setWebConnection(new WebConnectionWrapper(client.getWebConnection()) {
+            @Override
+            public WebResponse getResponse(final WebRequest request) throws IOException {
+                final String path = request.getUrl().getPath();
+                if (!path.equals("/mydisk.php")) {
+                    // skip unnessary asserts
+                    return path.endsWith(".js") ? BrowserUtil.emptyJSResponse(request) : BrowserUtil.emptyResponse(request);
                 }
-            });
+                return super.getResponse(request);
+            }
+        });
+        return client;
+    }
+
+    public static List<TrashDetailsInformation> getTrashList(final String token) throws IOException {
+        try (final WebClient client = Lanzou.trashWebClient(token)) {
             final HtmlPage page = client.getPage("https://up.woozooo.com/mydisk.php?item=recycle&action=files");
-            final List<TrashInformation> list = new ArrayList<>();
+            final List<TrashDetailsInformation> list = new ArrayList<>();
             for (final DomElement directory: page.getElementsByName("fd_sel_ids[]")) {
                 final long id = Integer.parseInt(((HtmlInput) directory).getValue());
                 final String name = directory.getParentNode().querySelector("a").asNormalizedText().substring(1);
-                list.add(new TrashInformation(id, name, true, -1, null, null, null));
+                list.add(new TrashDetailsInformation(new TrashInformation(id, name, true, -1, null, null, null), null));
             }
             for (final DomElement file: page.getElementsByName("fl_sel_ids[]")) {
                 final long id = Integer.parseInt(((HtmlInput) file).getValue());
                 final String name = file.getParentNode().querySelector("a").asNormalizedText();
-                list.add(new TrashInformation(id, name, false, -1, null, null, null));
+                list.add(new TrashDetailsInformation(new TrashInformation(id, name, false, -1, null, null, null), null));
             }
             return list;
+        }
+    }
+
+    public static void restore(final String token, final long id, final boolean isDirectory) throws IOException {
+        try (final WebClient client = Lanzou.trashWebClient(token)) {
+            final String url = "https://up.woozooo.com/mydisk.php?item=recycle&action=" + (isDirectory ? "folder_restore&folder_id=" : "file_restore&file_id=") + id;
+            final HtmlPage page = client.getPage(url);
+            page.<DomElement>querySelector(".btn[type=\"submit\"]").click();
         }
     }
 }
