@@ -160,4 +160,20 @@ public enum Lanzou {;
             page.<DomElement>querySelector(".btn[type=\"submit\"]").click();
         }
     }
+
+    public static void delete(final String token, final long id, final boolean isDirectory) throws IOException {
+        try (final WebClient client = Lanzou.trashWebClient(token)) {
+            final String url = "https://up.woozooo.com/mydisk.php?item=recycle&action=" + (isDirectory ? "folder_delete_complete&folder_id=" : "file_delete_complete&file_id=") + id;
+            final HtmlPage page = client.getPage(url);
+            page.<DomElement>querySelector(".btn[type=\"submit\"]").click();
+        }
+    }
+
+    public static void deleteAll(final String token) throws IOException {
+        try (final WebClient client = Lanzou.trashWebClient(token)) {
+            client.setConfirmHandler((p, m) -> true);
+            final HtmlPage page = client.getPage("https://up.woozooo.com/mydisk.php?item=recycle&action=delete_all");
+            page.<DomElement>querySelector(".btn[type=\"submit\"]").click();
+        }
+    }
 }
