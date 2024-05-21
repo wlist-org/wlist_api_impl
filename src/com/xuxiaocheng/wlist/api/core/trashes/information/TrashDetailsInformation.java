@@ -16,12 +16,8 @@ public record TrashDetailsInformation(TrashInformation basic, String optionalMd5
         implements Serializable, Recyclable {
     public static void serialize(final TrashDetailsInformation self, final MessagePacker packer) throws IOException {
         TrashInformation.serialize(self.basic, packer);
-        if (self.optionalMd5 == null) {
-            packer.packBoolean(false);
-        } else {
-            packer.packBoolean(true);
-            packer.packString(self.optionalMd5);
-        }
+        if (self.optionalMd5 == null) packer.packBoolean(false);
+        else packer.packBoolean(true).packString(self.optionalMd5);
     }
 
     public static TrashDetailsInformation deserialize(final MessageUnpacker unpacker) throws IOException {

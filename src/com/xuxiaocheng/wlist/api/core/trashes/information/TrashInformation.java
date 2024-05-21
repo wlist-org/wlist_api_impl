@@ -26,24 +26,12 @@ public record TrashInformation(long id, String name, boolean isDirectory, long s
         packer.packString(self.name);
         packer.packBoolean(self.isDirectory);
         packer.packLong(self.size);
-        if (self.createTime == null) {
-            packer.packBoolean(false);
-        } else {
-            packer.packBoolean(true);
-            packer.packTimestamp(self.createTime);
-        }
-        if (self.createTime == null) {
-            packer.packBoolean(false);
-        } else {
-            packer.packBoolean(true);
-            packer.packTimestamp(self.updateTime);
-        }
-        if (self.trashTime == null) {
-            packer.packBoolean(false);
-        } else {
-            packer.packBoolean(true);
-            packer.packTimestamp(self.trashTime);
-        }
+        if (self.createTime == null) packer.packBoolean(false);
+        else packer.packBoolean(true).packTimestamp(self.createTime);
+        if (self.createTime == null) packer.packBoolean(false);
+        else packer.packBoolean(true).packTimestamp(self.updateTime);
+        if (self.trashTime == null) packer.packBoolean(false);
+        else packer.packBoolean(true).packTimestamp(self.trashTime);
     }
 
     public static TrashInformation deserialize(final MessageUnpacker unpacker) throws IOException {

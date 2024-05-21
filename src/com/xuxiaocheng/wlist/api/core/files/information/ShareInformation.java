@@ -18,12 +18,8 @@ public record ShareInformation(String id, String optionalPassword, Instant expir
         implements Serializable, Recyclable {
     public static void serialize(final ShareInformation self, final MessagePacker packer) throws IOException {
         packer.packString(self.id);
-        if (self.optionalPassword == null)
-            packer.packBoolean(false);
-        else {
-            packer.packBoolean(true);
-            packer.packString(self.optionalPassword);
-        }
+        if (self.optionalPassword == null) packer.packBoolean(false);
+        else packer.packBoolean(true).packString(self.optionalPassword);
         packer.packTimestamp(self.expire);
     }
 

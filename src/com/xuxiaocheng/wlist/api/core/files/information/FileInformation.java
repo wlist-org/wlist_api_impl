@@ -27,18 +27,10 @@ public record FileInformation(long id, long parentId, String name, boolean isDir
         packer.packString(self.name);
         packer.packBoolean(self.isDirectory);
         packer.packLong(self.size);
-        if (self.createTime == null) {
-            packer.packBoolean(false);
-        } else {
-            packer.packBoolean(true);
-            packer.packTimestamp(self.createTime);
-        }
-        if (self.createTime == null) {
-            packer.packBoolean(false);
-        } else {
-            packer.packBoolean(true);
-            packer.packTimestamp(self.updateTime);
-        }
+        if (self.createTime == null) packer.packBoolean(false);
+        else packer.packBoolean(true).packTimestamp(self.createTime);
+        if (self.createTime == null) packer.packBoolean(false);
+        else packer.packBoolean(true).packTimestamp(self.updateTime);
     }
 
     public static FileInformation deserialize(final MessageUnpacker unpacker) throws IOException {

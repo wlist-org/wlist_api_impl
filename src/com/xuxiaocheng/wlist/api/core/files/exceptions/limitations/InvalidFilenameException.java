@@ -59,12 +59,8 @@ public class InvalidFilenameException extends RuntimeException implements Except
     @Override
     public void serialize(final MessagePacker packer) throws IOException {
         packer.packString(this.name);
-        if (this.optionalCharacter == null) {
-            packer.packBoolean(false);
-        } else {
-            packer.packBoolean(true);
-            packer.packInt(this.optionalCharacter);
-        }
+        if (this.optionalCharacter == null) packer.packBoolean(false);
+        else packer.packBoolean(true).packInt(this.optionalCharacter);
     }
 
     public static InvalidFilenameException deserialize(final MessageUnpacker unpacker) throws IOException {

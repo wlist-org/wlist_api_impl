@@ -24,18 +24,10 @@ public record FileDetailsInformation(FileInformation basic, List<String> path, S
         packer.packArrayHeader(self.path.size());
         for (final String path: self.path)
             packer.packString(path);
-        if (self.optionalMd5 == null) {
-            packer.packBoolean(false);
-        } else {
-            packer.packBoolean(true);
-            packer.packString(self.optionalMd5);
-        }
-        if (self.optionalThumbnail == null) {
-            packer.packBoolean(false);
-        } else {
-            packer.packBoolean(true);
-            DownloadConfirmation.serialize(self.optionalThumbnail, packer);
-        }
+        if (self.optionalMd5 == null) packer.packBoolean(false);
+        else packer.packBoolean(true).packString(self.optionalMd5);
+        if (self.optionalThumbnail == null) packer.packBoolean(false);
+        else { packer.packBoolean(true); DownloadConfirmation.serialize(self.optionalThumbnail, packer); }
     }
 
     public static FileDetailsInformation deserialize(final MessageUnpacker unpacker) throws IOException {
