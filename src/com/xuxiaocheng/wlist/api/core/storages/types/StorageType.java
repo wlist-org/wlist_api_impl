@@ -1,14 +1,59 @@
 package com.xuxiaocheng.wlist.api.core.storages.types;
 
+import com.xuxiaocheng.wlist.api.core.CoreClient;
+import com.xuxiaocheng.wlist.api.core.storages.configs.Config;
+
 import java.io.Serializable;
 import java.util.Set;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * An interface that represents a type of storage.
  * Each implementation should be a singleton.
  * (e.g., An enumeration class with only {@code Instance}.)
  */
-public sealed interface StorageType extends Serializable permits Lanzou {
+public sealed interface StorageType<C extends Config> extends Serializable permits Lanzou {
+    /**
+     * Add a new storage.
+     * @param client the core client.
+     * @param token the core token.
+     * @param storage the name of the storage to add.
+     * @param config the storage configuration.
+     * @return a future, with the id of the new storage.
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.DuplicateStorageException
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.IncorrectStorageAccountException
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.InvalidStorageConfigException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
+     */
+    CompletableFuture<Long> add(final CoreClient client, final String token, final String storage, final C config);
+
+    /**
+     * Reset the config of the storage.
+     * @param client the core client.
+     * @param token the core token.
+     * @param storage the id of the storage.
+     * @param config the new configuration.
+     * @return a future.
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.IncorrectStorageAccountException
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.InvalidStorageConfigException
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageTypeMismatchedException
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageInLockException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
+     */
+    CompletableFuture<Void> update(final CoreClient client, final String token, final long storage, final C config);
+
+    /**
+     * Check whether the configuration is valid.
+     * Note that this method won't check whether the account is correct/available.
+     * @param client the core client.
+     * @param token the core token.
+     * @param config the configuration to check.
+     * @return a future, normal completion means the configuration is valid.
+     * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.InvalidStorageConfigException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
+     */
+    CompletableFuture<Void> checkConfig(final CoreClient client, final String token, final C config);
+
     /**
      * Return true means the storage is private. (User's personal account.)
      * @return true if the storage is private.
