@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.17.0] - 2024-5-22
+
+### Changed
+
+* 将 StorageType 相关方法移动到基类
+
+### Added
+
+* 添加 minFilenameLength 限制条件
+
 ## [1.16.1] - 2024-5-16
 
 ### Changed
