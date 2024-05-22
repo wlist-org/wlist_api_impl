@@ -47,6 +47,13 @@ public sealed interface StorageType extends Serializable permits Lanzou {
     default Set<Character> disallowedCharacter() { return Set.of('/', '\\', ':'); }
 
     /**
+     * Return the min length of the filename the storage allowed.
+     * This method is only for fast check, some cases may not be covered.
+     * @return the min length of the filename the storage allowed.
+     */
+    default long minFilenameLength() { return 0; }
+
+    /**
      * Return the max length of the filename the storage allowed. (-1 means infinity)
      * This method is only for fast check, some cases may not be covered.
      * @return the max length of the filename the storage allowed.
