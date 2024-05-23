@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.17.1] - 2024-5-23
+
+### Changed
+
+* Token 添加 storage 字段
+
 ## [1.17.0] - 2024-5-22
 
 ### Changed
