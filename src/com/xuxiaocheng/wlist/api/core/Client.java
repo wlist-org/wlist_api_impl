@@ -49,7 +49,7 @@ public enum Client {;
      * @see com.xuxiaocheng.wlist.api.common.exceptions.PasswordMismatchedException
      */
     public static CompletableFuture<String> login(final CoreClient client, final String username, final String password) {
-        return ClientStarter.client(client, Functions.Login, packer -> packer.packString(username).packString(password), MessageUnpacker::unpackString);
+        return ClientStarter.client(client, Functions.ClientLogin, packer -> packer.packString(username).packString(password), MessageUnpacker::unpackString);
     }
 
     /**
@@ -59,6 +59,6 @@ public enum Client {;
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
     public static CompletableFuture<String> refresh(final CoreClient client, final String token) {
-        return ClientStarter.client(client, Functions.Refresh, packer -> packer.packString(token), MessageUnpacker::unpackString);
+        return ClientStarter.client(client, Functions.ClientRefresh, packer -> packer.packString(token), MessageUnpacker::unpackString);
     }
 }

@@ -29,6 +29,7 @@ public enum Lanzou implements StorageType<LanzouConfig> {
 
     @Override
     public Set<String> allowedSuffixes() {
+        //noinspection SpellCheckingInspection
         return Set.of(
                 "doc","docx","zip","rar","apk","ipa","txt","exe","7z","e","z","ct","ke","cetrainer","db","tar","pdf","w3x",
                 "epub","mobi","azw","azw3","osk","osz","xpa","cpk","lua","jar","dmg","ppt","pptx","xls","xlsx","mp3",

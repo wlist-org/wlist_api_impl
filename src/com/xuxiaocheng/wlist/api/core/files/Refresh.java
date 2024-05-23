@@ -1,10 +1,12 @@
 package com.xuxiaocheng.wlist.api.core.files;
 
-import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.progresses.RefreshProgress;
 import com.xuxiaocheng.wlist.api.core.files.tokens.RefreshToken;
+import com.xuxiaocheng.wlist.api.impl.ClientStarter;
+import com.xuxiaocheng.wlist.api.impl.enums.Functions;
+import org.msgpack.core.MessageUnpacker;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -22,7 +24,12 @@ public enum Refresh {;
      * @return a future, with the refresh confirmation.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      */
-    public static CompletableFuture<RefreshConfirmation> refresh(final CoreClient client, final String token, final FileLocation directory) { return Main.future(); }
+    public static CompletableFuture<RefreshConfirmation> refresh(final CoreClient client, final String token, final FileLocation directory) {
+        return ClientStarter.client(client, Functions.RefreshRequest, packer -> {
+            packer.packString(token);
+            FileLocation.serialize(directory, packer);
+        }, RefreshConfirmation::deserialize);
+    }
 
     /**
      * Cancel a refresh.
@@ -31,7 +38,9 @@ public enum Refresh {;
      * @return a future.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
-    public static CompletableFuture<Void> cancel(final CoreClient client, final RefreshToken token) { return Main.future(); }
+    public static CompletableFuture<Void> cancel(final CoreClient client, final RefreshToken token) {
+        return ClientStarter.client(client, Functions.RefreshCancel, packer -> RefreshToken.serialize(token, packer), ClientStarter::deserializeVoid);
+    }
 
     /**
      * Confirm a refresh.
@@ -40,7 +49,9 @@ public enum Refresh {;
      * @return a future. It will be complete after finishing, even it's paused.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
-    public static CompletableFuture<Void> confirm(final CoreClient client, final RefreshToken token) { return Main.future(); }
+    public static CompletableFuture<Void> confirm(final CoreClient client, final RefreshToken token) {
+        return ClientStarter.client(client, Functions.RefreshConfirm, packer -> RefreshToken.serialize(token, packer), ClientStarter::deserializeVoid);
+    }
 
     /**
      * Pause a refresh.
@@ -50,7 +61,9 @@ public enum Refresh {;
      * @return a future.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
-    public static CompletableFuture<Void> pause(final CoreClient client, final RefreshToken token) { return Main.future(); }
+    public static CompletableFuture<Void> pause(final CoreClient client, final RefreshToken token) {
+        return ClientStarter.client(client, Functions.RefreshPause, packer -> RefreshToken.serialize(token, packer), ClientStarter::deserializeVoid);
+    }
 
     /**
      * Resume a refresh
@@ -60,7 +73,9 @@ public enum Refresh {;
      * @return a future.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
-    public static CompletableFuture<Void> resume(final CoreClient client, final RefreshToken token) { return Main.future(); }
+    public static CompletableFuture<Void> resume(final CoreClient client, final RefreshToken token) {
+        return ClientStarter.client(client, Functions.RefreshResume, packer -> RefreshToken.serialize(token, packer), ClientStarter::deserializeVoid);
+    }
 
     /**
      * Get the progress of refresh.
@@ -70,7 +85,9 @@ public enum Refresh {;
      * @return a future, with the progress of refresh.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
-    public static CompletableFuture<RefreshProgress> progress(final CoreClient client, final RefreshToken token) { return Main.future(); }
+    public static CompletableFuture<RefreshProgress> progress(final CoreClient client, final RefreshToken token) {
+        return ClientStarter.client(client, Functions.RefreshProgress, packer -> RefreshToken.serialize(token, packer), RefreshProgress::deserialize);
+    }
 
     /**
      * Check the refresh state.
@@ -82,5 +99,7 @@ public enum Refresh {;
      * @return a future, true means the refresh is finished, false means the refresh is in progress.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
-    public static CompletableFuture<Boolean> check(final CoreClient client, final RefreshToken token) { return Main.future(); }
+    public static CompletableFuture<Boolean> check(final CoreClient client, final RefreshToken token) {
+        return ClientStarter.client(client, Functions.RefreshCheck, packer -> RefreshToken.serialize(token, packer), MessageUnpacker::unpackBoolean);
+    }
 }
