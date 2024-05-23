@@ -29,7 +29,7 @@ public final class Marks {
     /**
      * The core api version.
      */
-    public static final String CORE_API_VERSION = "1.15";
+    public static final String CORE_API_VERSION = "1.15.1";
     /**
      * The core api impl version.
      */
