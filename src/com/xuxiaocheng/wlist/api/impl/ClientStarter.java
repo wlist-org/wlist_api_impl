@@ -218,7 +218,8 @@ public final class ClientStarter {
         T unpack(final MessageUnpacker unpacker) throws IOException;
     }
 
-    public static Void deserializeVoid(final MessageUnpacker ignoredUnpacker) {
+    public static Void deserializeVoid(final MessageUnpacker unpacker) throws IOException {
+        unpacker.unpackNil();
         return null;
     }
 

@@ -203,7 +203,8 @@ public final class ServerStarter {
         void returnAndPack(final T returned, final MessagePacker packer) throws IOException;
     }
 
-    public static void serializeVoid(final Void ignored, final MessagePacker ignoredPacker) {
+    public static void serializeVoid(final Void ignored, final MessagePacker packer) throws IOException {
+        packer.packNil();
     }
 
     public static <T> CompletableFuture<ByteBuf> server(final UnpackAndCallFunction<? extends T> unpackFunction, final ReturnAndPackFunction<T> packFunction) {
