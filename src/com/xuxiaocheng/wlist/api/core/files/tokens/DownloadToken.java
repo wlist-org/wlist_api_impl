@@ -6,7 +6,9 @@ import java.io.Serializable;
 
 /**
  * The download token.
+ * Note that it will be expired if the download is finished/canceled or the server is closed.
+ * @param storage the source storage.
  * @param token internal token.
  */
-public record DownloadToken(String token) implements Serializable, Recyclable {
+public record DownloadToken(long storage, String token) implements Serializable, Recyclable {
 }
