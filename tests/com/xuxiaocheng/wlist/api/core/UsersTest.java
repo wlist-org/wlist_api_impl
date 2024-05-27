@@ -22,8 +22,8 @@ public class UsersTest {
     @Test
     @DisplayName("normally")
     public void test() throws ExecutionException, InterruptedException {
-        final CoreClient client = MainTest.connect();
-        final String password = MainTest.password();
+        final CoreClient client = Basic.connect();
+        final String password = Basic.password();
 
         final String token = Client.login(client, "admin", password).get();
         final String ignoredToken = Client.refresh(client, token).get();
