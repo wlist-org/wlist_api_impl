@@ -1,6 +1,7 @@
 package com.xuxiaocheng.wlist.api.impl.enums;
 
 import com.xuxiaocheng.wlist.api.common.exceptions.IncorrectArgumentException;
+import com.xuxiaocheng.wlist.api.common.exceptions.InternalException;
 import com.xuxiaocheng.wlist.api.common.exceptions.MatchFrequencyControlException;
 import com.xuxiaocheng.wlist.api.common.exceptions.NetworkException;
 import com.xuxiaocheng.wlist.api.common.exceptions.PasswordMismatchedException;
@@ -31,7 +32,8 @@ import org.msgpack.core.MessageUnpacker;
 import java.io.IOException;
 
 public enum Exceptions {
-    Internal(unpacker -> new NetworkException("Server error.")),
+    Internal(unpacker -> new InternalException("Server error.")),
+    Network(NetworkException::deserialize),
 
     UnavailableApiVersion(UnavailableApiVersionException::deserialize),
     MatchFrequencyControl(MatchFrequencyControlException::deserialize),

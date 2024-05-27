@@ -41,6 +41,7 @@ import java.net.InetSocketAddress;
 import java.net.SocketException;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionException;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public final class ServerStarter {
@@ -223,6 +224,8 @@ public final class ServerStarter {
                             packer.packBoolean(true);
                             packFunction.returnAndPack(value, packer);
                         } else {
+                            if (throwable instanceof final CompletionException exception)
+                                throwable = exception.getCause();
                             packer.packBoolean(false);
                             if (throwable instanceof final Exceptions.CustomExceptions exceptions) {
                                 packer.packString(exceptions.identifier().name());
