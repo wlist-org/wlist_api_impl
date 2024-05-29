@@ -1,5 +1,8 @@
 package com.xuxiaocheng.wlist.api.core;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.function.Executable;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
@@ -42,5 +45,10 @@ public enum Basic {;
             }
         }
         return token;
+    }
+
+    public static <T extends Throwable> T assertThrowsExactlyExecution(final Class<T> expected, final Executable executable) {
+        final ExecutionException exception = Assertions.assertThrowsExactly(ExecutionException.class, executable);
+        return Assertions.assertThrowsExactly(expected, () -> { throw exception.getCause(); });
     }
 }
