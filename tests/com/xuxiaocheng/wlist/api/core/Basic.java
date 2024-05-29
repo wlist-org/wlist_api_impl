@@ -1,8 +1,17 @@
 package com.xuxiaocheng.wlist.api.core;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.extension.ExtensionContext;
+import org.junit.jupiter.api.extension.ParameterContext;
+import org.junit.jupiter.api.extension.ParameterResolutionException;
+import org.junit.jupiter.api.extension.ParameterResolver;
 import org.junit.jupiter.api.function.Executable;
 
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
@@ -40,11 +49,42 @@ public enum Basic {;
         synchronized (Basic.token) {
             token = Basic.token.get();
             if (token == null) {
-                token = Client.login(client, "admin", Basic.password()).get();
+                token = Client.login(client == null ? Basic.connect() : client, "admin", Basic.password()).get();
                 Basic.token.set(token);
             }
         }
         return token;
+    }
+
+
+    @Target(ElementType.PARAMETER)
+    @Retention(RetentionPolicy.RUNTIME)
+    @Documented
+    public @interface CoreToken {
+    }
+
+    public static class ClientArguments implements ParameterResolver {
+        @Override
+        public boolean supportsParameter(final ParameterContext parameterContext, final ExtensionContext extensionContext) throws ParameterResolutionException {
+            final int index = parameterContext.getIndex();
+            final Class<?> type = parameterContext.getParameter().getType();
+            return (index == 0 && type == CoreClient.class) ||
+                    (index == 1 && type == String.class && parameterContext.findAnnotation(Basic.CoreToken.class).isPresent());
+        }
+
+        @Override
+        public Object resolveParameter(final ParameterContext parameterContext, final ExtensionContext extensionContext) throws ParameterResolutionException {
+            final int index = parameterContext.getIndex();
+            try {
+                if (index == 0)
+                    return Basic.connect();
+                if (index == 1)
+                    return Basic.token(null);
+            } catch (final ExecutionException | InterruptedException e) {
+                throw new ParameterResolutionException("During connecting/logging", e);
+            }
+            return null;
+        }
     }
 
     public static <T extends Throwable> T assertThrowsExactlyExecution(final Class<T> expected, final Executable executable) {
