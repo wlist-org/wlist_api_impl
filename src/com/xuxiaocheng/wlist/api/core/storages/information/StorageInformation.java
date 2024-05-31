@@ -20,7 +20,7 @@ import java.time.Instant;
  * @param updateTime the time when updated.
  * @param rootDirectoryId the root directory id of the storage.
  */
-public record StorageInformation(long id, String name, boolean readOnly, StorageType type, boolean available,
+public record StorageInformation(long id, String name, boolean readOnly, StorageType<?> type, boolean available,
                                  Instant createTime, Instant updateTime, long rootDirectoryId)
         implements Serializable, Recyclable {
     public static void serialize(final StorageInformation self, final MessagePacker packer) throws IOException {

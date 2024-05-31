@@ -3,6 +3,7 @@ package com.xuxiaocheng.wlist.api.core.storages.types;
 import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.storages.configs.LanzouConfig;
+import com.xuxiaocheng.wlist.api.core.storages.information.StorageInformation;
 
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
@@ -14,7 +15,7 @@ public enum Lanzou implements StorageType<LanzouConfig> {
     /** The instance. */ Instance;
 
     @Override
-    public CompletableFuture<Long> add(final CoreClient client, final String token, final String storage, final LanzouConfig config) { return Main.future(); }
+    public CompletableFuture<StorageInformation> add(final CoreClient client, final String token, final String storage, final LanzouConfig config) { return Main.future(); }
 
     @Override
     public CompletableFuture<Void> update(final CoreClient client, final String token, final long storage, final LanzouConfig config) { return Main.future(); }
