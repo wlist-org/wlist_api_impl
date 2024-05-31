@@ -14,10 +14,7 @@ import org.junit.jupiter.params.provider.CsvFileSource;
 import java.io.IOException;
 import java.util.Optional;
 
-public final class LanzouTest {
-    private LanzouTest() {
-    }
-
+public class LanzouTest {
     @BeforeAll
     public static void initialize() {
         MainTest.initialize();
@@ -25,6 +22,10 @@ public final class LanzouTest {
     @AfterAll
     public static void uninitialize() {
         MainTest.uninitialize();
+    }
+
+    @Test
+    public void _placeholder() {
     }
 
     @Nested

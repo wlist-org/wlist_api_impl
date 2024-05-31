@@ -3,6 +3,7 @@ package com.xuxiaocheng.wlist.api.impl.enums;
 import com.xuxiaocheng.wlist.api.impl.functions.Client;
 import com.xuxiaocheng.wlist.api.impl.functions.Refresh;
 import com.xuxiaocheng.wlist.api.impl.functions.Storage;
+import com.xuxiaocheng.wlist.api.impl.functions.types.Lanzou;
 import io.netty.buffer.ByteBuf;
 import org.msgpack.core.MessageUnpacker;
 
@@ -17,6 +18,10 @@ public enum Functions {
     StorageRemove(Storage::remove),
     StorageRename(Storage::rename),
     StorageSetReadonly(Storage::setReadonly),
+
+    StorageLanzouAdd(Lanzou::add),
+    StorageLanzouUpdate(Lanzou::update),
+    StorageLanzouCheckConfig(Lanzou::checkConfig),
 
     RefreshRequest(Refresh::refresh),
     RefreshCancel(Refresh::cancel),

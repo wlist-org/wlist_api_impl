@@ -1,12 +1,10 @@
 package com.xuxiaocheng.wlist.api.core.storages.types;
 
-import com.xuxiaocheng.wlist.api.Main;
-import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.storages.configs.LanzouConfig;
-import com.xuxiaocheng.wlist.api.core.storages.information.StorageInformation;
+import com.xuxiaocheng.wlist.api.impl.ClientStarter;
+import com.xuxiaocheng.wlist.api.impl.enums.Functions;
 
 import java.util.Set;
-import java.util.concurrent.CompletableFuture;
 
 /**
  * The core lanzou storage API.
@@ -15,13 +13,25 @@ public enum Lanzou implements StorageType<LanzouConfig> {
     /** The instance. */ Instance;
 
     @Override
-    public CompletableFuture<StorageInformation> add(final CoreClient client, final String token, final String storage, final LanzouConfig config) { return Main.future(); }
+    public Functions functionAdd() {
+        return Functions.StorageLanzouAdd;
+    }
 
     @Override
-    public CompletableFuture<Void> update(final CoreClient client, final String token, final long storage, final LanzouConfig config) { return Main.future(); }
+    public Functions functionUpdate() {
+        return Functions.StorageLanzouUpdate;
+    }
 
     @Override
-    public CompletableFuture<Void> checkConfig(final CoreClient client, final String token, final LanzouConfig config) { return Main.future(); }
+    public Functions functionCheck() {
+        return Functions.StorageLanzouCheckConfig;
+    }
+
+    @Override
+    public ClientStarter.PackFunction configPacker(final LanzouConfig config) {
+        return packer -> LanzouConfig.serialize(config, packer);
+    }
+
 
     @Override
     public boolean isPrivate() {
