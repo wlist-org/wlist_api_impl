@@ -3,6 +3,8 @@ package com.xuxiaocheng.wlist.api.core.storages.types;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.storages.configs.Config;
 import com.xuxiaocheng.wlist.api.core.storages.information.StorageInformation;
+import com.xuxiaocheng.wlist.api.impl.ClientStarter;
+import com.xuxiaocheng.wlist.api.impl.enums.Functions;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -14,6 +16,13 @@ import java.util.concurrent.CompletableFuture;
  * (e.g., An enumeration class with only {@code Instance}.)
  */
 public sealed interface StorageType<C extends Config> extends Serializable permits Lanzou {
+    Functions functionAdd();
+    Functions functionUpdate();
+    Functions functionCheck();
+
+    ClientStarter.PackFunction configPacker(final C config);
+
+
     /**
      * Add a new storage.
      * @param client the core client.
@@ -26,7 +35,13 @@ public sealed interface StorageType<C extends Config> extends Serializable permi
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.InvalidStorageConfigException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      */
-    CompletableFuture<StorageInformation> add(final CoreClient client, final String token, final String storage, final C config);
+    default CompletableFuture<StorageInformation> add(final CoreClient client, final String token, final String storage, final C config) {
+        return ClientStarter.client(client, this.functionAdd(), packer -> {
+            packer.packString(token);
+            packer.packString(storage);
+            this.configPacker(config).pack(packer);
+        }, StorageInformation::deserialize);
+    }
 
     /**
      * Reset the config of the storage.
@@ -41,7 +56,13 @@ public sealed interface StorageType<C extends Config> extends Serializable permi
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageInLockException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      */
-    CompletableFuture<Void> update(final CoreClient client, final String token, final long storage, final C config);
+    default CompletableFuture<Void> update(final CoreClient client, final String token, final long storage, final C config) {
+        return ClientStarter.client(client, this.functionUpdate(), packer -> {
+            packer.packString(token);
+            packer.packLong(storage);
+            this.configPacker(config).pack(packer);
+        }, ClientStarter::deserializeVoid);
+    }
 
     /**
      * Check whether the configuration is valid.
@@ -53,7 +74,12 @@ public sealed interface StorageType<C extends Config> extends Serializable permi
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.InvalidStorageConfigException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      */
-    CompletableFuture<Void> checkConfig(final CoreClient client, final String token, final C config);
+    default CompletableFuture<Void> checkConfig(final CoreClient client, final String token, final C config) {
+        return ClientStarter.client(client, this.functionCheck(), packer -> {
+            packer.packString(token);
+            this.configPacker(config).pack(packer);
+        }, ClientStarter::deserializeVoid);
+    }
 
     /**
      * Return true means the storage is private. (User's personal account.)
@@ -67,14 +93,14 @@ public sealed interface StorageType<C extends Config> extends Serializable permi
      */
     default boolean isShared() { return !this.isPrivate(); }
 
-    static StorageType instanceOf(final String name) {
+    static StorageType<?> instanceOf(final String name) {
         return switch (name) {
             case "lanzou" -> Lanzou.Instance;
             default -> throw new IllegalArgumentException("Unknown storage type: " + name);
         };
     }
 
-    static String name(final StorageType type) {
+    static String name(final StorageType<?> type) {
         return switch (type.getClass().getCanonicalName()) {
             case "Lanzou" -> "lanzou";
             default -> throw new IllegalStateException("Unexpected value: " + type.getClass().getCanonicalName());

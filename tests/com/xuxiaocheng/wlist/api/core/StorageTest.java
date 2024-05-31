@@ -6,7 +6,6 @@ import com.xuxiaocheng.wlist.api.core.storages.exceptions.StorageNotFoundExcepti
 import com.xuxiaocheng.wlist.api.core.storages.information.StorageListInformation;
 import com.xuxiaocheng.wlist.api.core.storages.options.Filter;
 import com.xuxiaocheng.wlist.api.core.storages.options.ListStorageOptions;
-import com.xuxiaocheng.wlist.api.core.storages.types.Lanzou;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;

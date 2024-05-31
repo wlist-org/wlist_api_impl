@@ -87,6 +87,7 @@ public enum Basic {;
         }
     }
 
+
     public static <T extends Throwable> T assertThrowsExactlyExecution(final Class<T> expected, final Executable executable) {
         final ExecutionException exception = Assertions.assertThrowsExactly(ExecutionException.class, executable);
         return Assertions.assertThrowsExactly(expected, () -> { throw exception.getCause(); });
