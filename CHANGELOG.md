@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.17.2] - 2024-5-31
+
+### Changed
+
+* add storage 时返回 StorageInformation
+
 ## [1.17.1] - 2024-5-23
 
 ### Changed
