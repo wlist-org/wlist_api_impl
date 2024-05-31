@@ -2,6 +2,7 @@ package com.xuxiaocheng.wlist.api.core.storages.types;
 
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.storages.configs.Config;
+import com.xuxiaocheng.wlist.api.core.storages.information.StorageInformation;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -19,13 +20,13 @@ public sealed interface StorageType<C extends Config> extends Serializable permi
      * @param token the core token.
      * @param storage the name of the storage to add.
      * @param config the storage configuration.
-     * @return a future, with the id of the new storage.
+     * @return a future, with the information of the new storage.
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.DuplicateStorageException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.IncorrectStorageAccountException
      * @see com.xuxiaocheng.wlist.api.core.storages.exceptions.InvalidStorageConfigException
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TooLargeDataException
      */
-    CompletableFuture<Long> add(final CoreClient client, final String token, final String storage, final C config);
+    CompletableFuture<StorageInformation> add(final CoreClient client, final String token, final String storage, final C config);
 
     /**
      * Reset the config of the storage.
