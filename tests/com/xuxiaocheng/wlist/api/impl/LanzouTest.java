@@ -33,15 +33,13 @@ public class LanzouTest {
     public class Login {
         @ParameterizedTest
         @CsvFileSource(files = "tester/lanzou/login.csv")
-        @DisplayName("correct")
-        public void test(final String passport, final String password) throws IOException {
+        public void correct(final String passport, final String password) throws IOException {
             final Optional<Lanzou.Tokens> tokens = Lanzou.login(passport, password);
             Assertions.assertTrue(tokens.isPresent());
 //            System.out.println(tokens);
         }
 
         @Test
-        @DisplayName("incorrect")
         public void incorrect() throws IOException {
             final Optional<Lanzou.Tokens> tokens = Lanzou.login("12345674567", "123456");
             Assertions.assertFalse(tokens.isPresent());
