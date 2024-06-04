@@ -45,26 +45,31 @@ public class StorageTest {
             Assertions.assertEquals(0, information.total());
             Assertions.assertEquals(0, information.filtered());
             Assertions.assertEquals(List.of(), information.storages());
+            Client.close(client);
         }
 
         @Test
         public void get(final CoreClient client, final @Basic.CoreToken String token) {
             Basic.assertThrowsExactlyExecution(StorageNotFoundException.class, () -> Storage.get(client, token, 1, false).get());
+            Client.close(client);
         }
 
         @Test
         public void remove(final CoreClient client, final @Basic.CoreToken String token) {
             Basic.assertThrowsExactlyExecution(StorageNotFoundException.class, () -> Storage.remove(client, token, 1).get());
+            Client.close(client);
         }
 
         @Test
         public void rename(final CoreClient client, final @Basic.CoreToken String token) {
             Basic.assertThrowsExactlyExecution(StorageNotFoundException.class, () -> Storage.rename(client, token, 1, "").get());
+            Client.close(client);
         }
 
         @Test
         public void readonly(final CoreClient client, final @Basic.CoreToken String token) {
             Basic.assertThrowsExactlyExecution(StorageNotFoundException.class, () -> Storage.setReadonly(client, token, 1, false).get());
+            Client.close(client);
         }
     }
 }

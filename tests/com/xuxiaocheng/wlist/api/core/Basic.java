@@ -49,7 +49,9 @@ public enum Basic {;
         synchronized (Basic.token) {
             token = Basic.token.get();
             if (token == null) {
-                token = Client.login(client == null ? Basic.connect() : client, "admin", Basic.password()).get();
+                final CoreClient nonnullClient = client == null ? Basic.connect() : client;
+                token = Client.login(nonnullClient, "admin", Basic.password()).get();
+                if (client == null) nonnullClient.close();
                 Basic.token.set(token);
             }
         }

@@ -2,6 +2,7 @@ package com.xuxiaocheng.wlist.api.core.types;
 
 import com.xuxiaocheng.wlist.api.MainTest;
 import com.xuxiaocheng.wlist.api.core.Basic;
+import com.xuxiaocheng.wlist.api.core.Client;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.storages.Storage;
 import com.xuxiaocheng.wlist.api.core.storages.configs.LanzouConfig;
@@ -53,6 +54,7 @@ public class LanzouTest {
             }
 
             Storage.remove(client, token, storage).get();
+            Client.close(client);
         }
     }
 
@@ -67,6 +69,7 @@ public class LanzouTest {
 
             final LanzouConfig config = new LanzouConfig(passport, password, -1);
             Assertions.assertDoesNotThrow(() -> Lanzou.Instance.checkConfig(client, token, config).get());
+            Client.close(client);
         }
 
         @Test
@@ -74,6 +77,7 @@ public class LanzouTest {
             final LanzouConfig config = new LanzouConfig("12345674567", "123456", -2);
             final InvalidStorageConfigException exception = Basic.assertThrowsExactlyExecution(InvalidStorageConfigException.class, () -> Lanzou.Instance.checkConfig(client, token, config).get());
             Assertions.assertNotNull(exception.getMessages().get("rootDirectoryId"));
+            Client.close(client);
         }
     }
 }
