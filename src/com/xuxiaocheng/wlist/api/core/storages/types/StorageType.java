@@ -102,7 +102,7 @@ public sealed interface StorageType<C extends Config> extends Serializable permi
 
     static String name(final StorageType<?> type) {
         return switch (type.getClass().getCanonicalName()) {
-            case "Lanzou" -> "lanzou";
+            case "com.xuxiaocheng.wlist.api.core.storages.types.Lanzou" -> "lanzou";
             default -> throw new IllegalStateException("Unexpected value: " + type.getClass().getCanonicalName());
         };
     }

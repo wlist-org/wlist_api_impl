@@ -3,8 +3,10 @@ package com.xuxiaocheng.wlist.api.core.types;
 import com.xuxiaocheng.wlist.api.MainTest;
 import com.xuxiaocheng.wlist.api.core.Basic;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
+import com.xuxiaocheng.wlist.api.core.storages.Storage;
 import com.xuxiaocheng.wlist.api.core.storages.configs.LanzouConfig;
 import com.xuxiaocheng.wlist.api.core.storages.exceptions.InvalidStorageConfigException;
+import com.xuxiaocheng.wlist.api.core.storages.information.StorageInformation;
 import com.xuxiaocheng.wlist.api.core.storages.types.Lanzou;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -35,6 +37,26 @@ public class LanzouTest {
     }
 
     @Nested
+    @DisplayName("add")
+    public class Add {
+        @ParameterizedTest
+        @CsvFileSource(files = "tester/lanzou/login.csv")
+        public void correct(final String passport, final String password) throws ExecutionException, InterruptedException {
+            final CoreClient client = Basic.connect();
+            final String token = Basic.token(client);
+
+            final LanzouConfig config = new LanzouConfig(passport, password, -1);
+            final long storage;
+            try (final StorageInformation information = Assertions.assertDoesNotThrow(() -> Lanzou.Instance.add(client, token, "lanzou", config).get())) {
+                Assertions.assertEquals(Lanzou.Instance, information.type());
+                storage = information.id();
+            }
+
+            Storage.remove(client, token, storage).get();
+        }
+    }
+
+    @Nested
     @DisplayName("config")
     public class Config {
         @ParameterizedTest
@@ -49,7 +71,7 @@ public class LanzouTest {
 
         @Test
         public void incorrect(final CoreClient client, final @Basic.CoreToken String token) {
-            final LanzouConfig config = new LanzouConfig("12300000000", "1", -2);
+            final LanzouConfig config = new LanzouConfig("12345674567", "123456", -2);
             final InvalidStorageConfigException exception = Basic.assertThrowsExactlyExecution(InvalidStorageConfigException.class, () -> Lanzou.Instance.checkConfig(client, token, config).get());
             Assertions.assertNotNull(exception.getMessages().get("rootDirectoryId"));
         }

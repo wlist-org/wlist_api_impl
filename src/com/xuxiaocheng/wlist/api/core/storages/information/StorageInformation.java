@@ -38,7 +38,7 @@ public record StorageInformation(long id, String name, boolean readOnly, Storage
         final long id = unpacker.unpackLong();
         final String name = unpacker.unpackString();
         final boolean readOnly = unpacker.unpackBoolean();
-        final StorageType type = StorageType.instanceOf(unpacker.unpackString());
+        final StorageType<?> type = StorageType.instanceOf(unpacker.unpackString());
         final boolean available = unpacker.unpackBoolean();
         final Instant createTime = unpacker.unpackTimestamp();
         final Instant updateTime = unpacker.unpackTimestamp();
