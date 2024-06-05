@@ -1,6 +1,7 @@
 package com.xuxiaocheng.wlist.api.core.types;
 
 import com.xuxiaocheng.wlist.api.MainTest;
+import com.xuxiaocheng.wlist.api.common.exceptions.PasswordMismatchedException;
 import com.xuxiaocheng.wlist.api.core.Basic;
 import com.xuxiaocheng.wlist.api.core.Client;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
@@ -54,6 +55,21 @@ public class LanzouTest {
             }
 
             Storage.remove(client, token, storage).get();
+            Client.close(client);
+        }
+
+        @Test
+        public void incorrect(final CoreClient client, final @Basic.CoreToken String token) {
+            final LanzouConfig config = new LanzouConfig("12345674567", "123456", -1);
+            Basic.assertThrowsExactlyExecution(PasswordMismatchedException.class, () -> Lanzou.Instance.add(client, token, "lanzou-incorrect", config).get());
+            Client.close(client);
+        }
+
+        @Test
+        public void incorrectConfig(final CoreClient client, final @Basic.CoreToken String token) {
+            final LanzouConfig config = new LanzouConfig("12345674567", "123456", -2);
+            final InvalidStorageConfigException exception = Basic.assertThrowsExactlyExecution(InvalidStorageConfigException.class, () -> Lanzou.Instance.add(client, token, "lanzou-incorrect", config).get());
+            Assertions.assertNotNull(exception.getMessages().get("rootDirectoryId"));
             Client.close(client);
         }
     }
