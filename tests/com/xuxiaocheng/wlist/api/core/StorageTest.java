@@ -9,6 +9,7 @@ import com.xuxiaocheng.wlist.api.core.storages.options.ListStorageOptions;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -31,6 +32,7 @@ public class StorageTest {
     }
 
     @Test
+    @Disabled
     public void _placeholder() {
     }
 
