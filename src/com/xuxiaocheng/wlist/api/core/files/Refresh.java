@@ -11,7 +11,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * The core refresh API.
  * Only after refreshing, the files/directories are indexed.
- * <p>For example: <pre> {@code
+ * <p>For a normal example: <pre> {@code
  * final RefreshConfirmation confirmation = Refresh.refresh(client, token, location).get();
  * Refresh.confirm(client, confirmation.token()).get();
  * while (true) {
@@ -50,7 +50,8 @@ public enum Refresh {;
     public static CompletableFuture<Void> cancel(final CoreClient client, final RefreshToken token) { return Main.future(); }
 
     /**
-     * Confirm a refresh. Then the refresh is automatically resumed.
+     * Confirm a refresh. (Then the refresh is automatically resumed.)
+     * Note only after being confirmed, the refresh token will be valid (not expired) (except cancel).
      * @param client the core client.
      * @param token the refresh token.
      * @return a future.
@@ -79,6 +80,15 @@ public enum Refresh {;
     public static CompletableFuture<Void> resume(final CoreClient client, final RefreshToken token) { return Main.future(); }
 
     /**
+     * Check whether a refresh is paused.
+     * @param client the core client.
+     * @param token the refresh token.
+     * @return a future.
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
+     */
+    public static CompletableFuture<Boolean> isPaused(final CoreClient client, final RefreshToken token) { return Main.future(); }
+
+    /**
      * Get the progress of refresh.
      * Note that if the refresh is finished/canceled, it will complete exceptionally with {@link com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException}.
      * @param client the core client.
@@ -95,7 +105,7 @@ public enum Refresh {;
      * If this method returned true, the next time call will throw {@code TokenExpiredException}.
      * @param client the core client.
      * @param token the refresh token.
-     * @return a future, true means the refresh is finished, false means the refresh is in progress.
+     * @return a future, true means the refresh is finished, false means the refresh is in progress (or be paused).
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
     public static CompletableFuture<Boolean> check(final CoreClient client, final RefreshToken token) { return Main.future(); }
