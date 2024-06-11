@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.18.0] - 2024-6-12
+
+### Changed
+
+* 优化 Refresh 注释
+* 标记 core 中 Refresh 为 Stable
+
+### Added
+
+* 添加 Refresh 示例
+* Refresh 添加 isPaused 方法
+
 ## [1.17.2] - 2024-5-31
 
 ### Changed
