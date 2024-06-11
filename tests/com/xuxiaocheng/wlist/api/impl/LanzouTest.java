@@ -31,9 +31,10 @@ public class LanzouTest {
     @Nested
     @DisplayName("login")
     public class Login {
-        @ParameterizedTest
-        @CsvFileSource(files = "tester/lanzou/login.csv")
-        public void correct(final String passport, final String password) throws IOException {
+        @Test
+        public void correct() throws IOException {
+            final String passport = com.xuxiaocheng.wlist.api.core.types.LanzouTest.passport;
+            final String password = com.xuxiaocheng.wlist.api.core.types.LanzouTest.password;
             final Optional<Lanzou.Tokens> tokens = Lanzou.login(passport, password);
             Assertions.assertTrue(tokens.isPresent());
 //            System.out.println(tokens);
