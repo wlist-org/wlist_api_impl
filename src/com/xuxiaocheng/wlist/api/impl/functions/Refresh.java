@@ -52,6 +52,14 @@ public enum Refresh {;
         }, ServerStarter::serializeVoid);
     }
 
+    private static native CompletableFuture<Boolean> isPaused0(final String id, final RefreshToken token);
+    public static CompletableFuture<ByteBuf> isPaused(final String id, final MessageUnpacker unpacker) {
+        return ServerStarter.server(() -> {
+            final RefreshToken token = RefreshToken.deserialize(unpacker);
+            return Refresh.isPaused0(id, token);
+        }, (b, packer) -> packer.packBoolean(b));
+    }
+
     private static native CompletableFuture<RefreshProgress> progress0(final String id, final RefreshToken token);
     public static CompletableFuture<ByteBuf> progress(final String id, final MessageUnpacker unpacker) {
         return ServerStarter.server(() -> {

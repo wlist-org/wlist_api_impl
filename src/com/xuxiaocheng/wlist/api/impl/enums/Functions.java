@@ -28,6 +28,7 @@ public enum Functions {
     RefreshConfirm(Refresh::confirm),
     RefreshPause(Refresh::pause),
     RefreshResume(Refresh::resume),
+    RefreshIsPaused(Refresh::isPaused),
     RefreshProgress(Refresh::progress),
     RefreshCheck(Refresh::check),
 

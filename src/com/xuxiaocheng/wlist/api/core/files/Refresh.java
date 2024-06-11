@@ -1,6 +1,5 @@
 package com.xuxiaocheng.wlist.api.core.files;
 
-import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.Stable;
 import com.xuxiaocheng.wlist.api.common.StableModule;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
@@ -105,7 +104,9 @@ public enum Refresh {;
      * @return a future.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
-    public static CompletableFuture<Boolean> isPaused(final CoreClient client, final RefreshToken token) { return Main.future(); }
+    public static CompletableFuture<Boolean> isPaused(final CoreClient client, final RefreshToken token) {
+        return ClientStarter.client(client, Functions.RefreshIsPaused, packer -> RefreshToken.serialize(token, packer), MessageUnpacker::unpackBoolean);
+    }
 
     /**
      * Get the progress of refresh.
