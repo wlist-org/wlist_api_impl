@@ -1,6 +1,8 @@
 package com.xuxiaocheng.wlist.api.core.files;
 
 import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.common.Stable;
+import com.xuxiaocheng.wlist.api.common.StableModule;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.progresses.RefreshProgress;
@@ -28,6 +30,7 @@ import java.util.concurrent.CompletableFuture;
  * // Assertions.assertTrue(finished);
  * }</pre>
  */
+@Stable(since = "1.18.0", module = StableModule.Core)
 public enum Refresh {;
     /**
      * Refresh the directory.
