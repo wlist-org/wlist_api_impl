@@ -1,5 +1,8 @@
 package com.xuxiaocheng.wlist.api.core.files;
 
+import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.common.Stable;
+import com.xuxiaocheng.wlist.api.common.StableModule;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.progresses.RefreshProgress;
@@ -13,7 +16,24 @@ import java.util.concurrent.CompletableFuture;
 /**
  * The core refresh API.
  * Only after refreshing, the files/directories are indexed.
+ * <p>For a normal example: <pre> {@code
+ * final RefreshConfirmation confirmation = Refresh.refresh(client, token, location).get();
+ * Refresh.confirm(client, confirmation.token()).get();
+ * while (true) {
+ *   try {
+ *     final RefreshProgress ignoredProgress = Refresh.progress(client, confirmation.token()).get();
+ *     TimeUnit.SECONDS.sleep(1);
+ *   } catch (final ExecutionException exception) {
+ *     if (exception.getCause() instanceof TokenExpiredException)
+ *       break;
+ *     throw exception;
+ *   }
+ * }
+ * final boolean finished = Refresh.check(client, confirmation.token()).get();
+ * // Assertions.assertTrue(finished);
+ * }</pre>
  */
+@Stable(since = "1.18.0", module = StableModule.Core)
 public enum Refresh {;
     /**
      * Refresh the directory.
@@ -43,10 +63,11 @@ public enum Refresh {;
     }
 
     /**
-     * Confirm a refresh.
+     * Confirm a refresh. (Then the refresh is automatically resumed.)
+     * Note only after being confirmed, the refresh token will be valid (not expired) (except cancel).
      * @param client the core client.
      * @param token the refresh token.
-     * @return a future. It will be complete after finishing, even it's paused.
+     * @return a future.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
     public static CompletableFuture<Void> confirm(final CoreClient client, final RefreshToken token) {
@@ -67,7 +88,7 @@ public enum Refresh {;
 
     /**
      * Resume a refresh
-     * Note that if refresh has been running, the method will return normally.
+     * Note that if refresh has been resumed, the method will return normally.
      * @param client the core client.
      * @param token the refresh token.
      * @return a future.
@@ -76,6 +97,15 @@ public enum Refresh {;
     public static CompletableFuture<Void> resume(final CoreClient client, final RefreshToken token) {
         return ClientStarter.client(client, Functions.RefreshResume, packer -> RefreshToken.serialize(token, packer), ClientStarter::deserializeVoid);
     }
+
+    /**
+     * Check whether a refresh is paused.
+     * @param client the core client.
+     * @param token the refresh token.
+     * @return a future.
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
+     */
+    public static CompletableFuture<Boolean> isPaused(final CoreClient client, final RefreshToken token) { return Main.future(); }
 
     /**
      * Get the progress of refresh.
@@ -96,7 +126,7 @@ public enum Refresh {;
      * If this method returned true, the next time call will throw {@code TokenExpiredException}.
      * @param client the core client.
      * @param token the refresh token.
-     * @return a future, true means the refresh is finished, false means the refresh is in progress.
+     * @return a future, true means the refresh is finished, false means the refresh is in progress (or be paused).
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
     public static CompletableFuture<Boolean> check(final CoreClient client, final RefreshToken token) {
