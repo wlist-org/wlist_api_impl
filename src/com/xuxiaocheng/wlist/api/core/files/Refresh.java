@@ -11,6 +11,22 @@ import java.util.concurrent.CompletableFuture;
 /**
  * The core refresh API.
  * Only after refreshing, the files/directories are indexed.
+ * <p>For example: <pre> {@code
+ * final RefreshConfirmation confirmation = Refresh.refresh(client, token, location).get();
+ * Refresh.confirm(client, confirmation.token()).get();
+ * while (true) {
+ *   try {
+ *     final RefreshProgress ignoredProgress = Refresh.progress(client, confirmation.token()).get();
+ *     TimeUnit.SECONDS.sleep(1);
+ *   } catch (final ExecutionException exception) {
+ *     if (exception.getCause() instanceof TokenExpiredException)
+ *       break;
+ *     throw exception;
+ *   }
+ * }
+ * final boolean finished = Refresh.check(client, confirmation.token()).get();
+ * // Assertions.assertTrue(finished);
+ * }</pre>
  */
 public enum Refresh {;
     /**
