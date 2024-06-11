@@ -34,10 +34,10 @@ public enum Refresh {;
     public static CompletableFuture<Void> cancel(final CoreClient client, final RefreshToken token) { return Main.future(); }
 
     /**
-     * Confirm a refresh.
+     * Confirm a refresh. Then the refresh is automatically resumed.
      * @param client the core client.
      * @param token the refresh token.
-     * @return a future. It will be complete after finishing, even it's paused.
+     * @return a future.
      * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
     public static CompletableFuture<Void> confirm(final CoreClient client, final RefreshToken token) { return Main.future(); }
@@ -54,7 +54,7 @@ public enum Refresh {;
 
     /**
      * Resume a refresh
-     * Note that if refresh has been running, the method will return normally.
+     * Note that if refresh has been resumed, the method will return normally.
      * @param client the core client.
      * @param token the refresh token.
      * @return a future.
