@@ -1,6 +1,7 @@
 package com.xuxiaocheng.wlist.api.impl.enums;
 
 import com.xuxiaocheng.wlist.api.impl.functions.Client;
+import com.xuxiaocheng.wlist.api.impl.functions.File;
 import com.xuxiaocheng.wlist.api.impl.functions.Refresh;
 import com.xuxiaocheng.wlist.api.impl.functions.Storage;
 import com.xuxiaocheng.wlist.api.impl.functions.types.Lanzou;
@@ -22,6 +23,14 @@ public enum Functions {
     StorageLanzouAdd(Lanzou::add),
     StorageLanzouUpdate(Lanzou::update),
     StorageLanzouCheckConfig(Lanzou::checkConfig),
+
+    FileList(File::list),
+    FileGet(File::get),
+    FileCheckName(File::checkName),
+    FileMkdir(File::mkdir),
+    FileCopy(File::copy),
+    FileMove(File::move),
+    FileRename(File::rename),
 
     RefreshRequest(Refresh::refresh),
     RefreshCancel(Refresh::cancel),
