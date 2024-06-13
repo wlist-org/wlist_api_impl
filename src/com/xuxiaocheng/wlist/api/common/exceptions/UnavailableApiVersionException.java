@@ -19,8 +19,12 @@ public class UnavailableApiVersionException extends RuntimeException implements 
     /**
      * Internal constructor.
      */
-    public UnavailableApiVersionException() {
+    private UnavailableApiVersionException() {
         super("Current api version is unavailable");
+    }
+
+    public UnavailableApiVersionException(final Throwable cause) {
+        super("Message format error", cause);
     }
 
     @Override
