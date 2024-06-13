@@ -5,13 +5,13 @@ import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
 import org.junit.jupiter.api.extension.ParameterResolver;
-import org.junit.jupiter.api.function.Executable;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
@@ -90,8 +90,12 @@ public enum Basic {;
     }
 
 
-    public static <T extends Throwable> T assertThrowsExactlyExecution(final Class<T> expected, final Executable executable) {
-        final ExecutionException exception = Assertions.assertThrowsExactly(ExecutionException.class, executable);
+    public static <T> T get(final CompletableFuture<T> future) {
+        return Assertions.assertDoesNotThrow(() -> future.get());
+    }
+
+    public static <T extends Throwable> T thrown(final Class<T> expected, final CompletableFuture<?> future) {
+        final ExecutionException exception = Assertions.assertThrowsExactly(ExecutionException.class, () -> future.get());
         return Assertions.assertThrowsExactly(expected, () -> { throw exception.getCause(); });
     }
 }
