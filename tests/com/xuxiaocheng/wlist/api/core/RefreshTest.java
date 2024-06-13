@@ -6,6 +6,7 @@ import com.xuxiaocheng.wlist.api.core.files.FileLocation;
 import com.xuxiaocheng.wlist.api.core.files.Refresh;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.progresses.RefreshProgress;
+import com.xuxiaocheng.wlist.api.core.files.tokens.RefreshToken;
 import com.xuxiaocheng.wlist.api.core.storages.Storage;
 import com.xuxiaocheng.wlist.api.core.types.LanzouTest;
 import org.junit.jupiter.api.AfterAll;
@@ -14,6 +15,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -88,12 +90,11 @@ public abstract class RefreshTest {
         Client.close(client);
     }
 
-    public static void refresh(final CoreClient client, final String token, final FileLocation directory) {
-        final RefreshConfirmation confirmation = Basic.get(Refresh.refresh(client, token, directory));
-        Basic.get(Refresh.confirm(client, confirmation.token()));
+    public static void refresh(final CoreClient client, final RefreshToken token) {
+        Basic.get(Refresh.confirm(client, token));
         while (true) {
             try {
-                final RefreshProgress progress = Refresh.progress(client, confirmation.token()).get();
+                final RefreshProgress progress = Refresh.progress(client, token).get();
                 Assertions.assertTrue(() -> progress.loadedFiles() <= progress.totalFiles());
                 Assertions.assertTrue(() -> progress.loadedDirectories() <= progress.totalDirectories());
 //                System.out.println("Progress: " + progress);
@@ -106,23 +107,27 @@ public abstract class RefreshTest {
                 Assertions.fail(exception);
             }
         }
-        Assertions.assertTrue(Basic.get(Refresh.check(client, confirmation.token())));
+        Assertions.assertTrue(Basic.get(Refresh.check(client, token)));
     }
 
     @Test
     @Tag("empty")
     @DisplayName("finish: empty")
+    @Disabled("the same tested in ListTest")
     public void finishEmpty(final CoreClient client, final @Basic.CoreToken String token) {
         final FileLocation location = new FileLocation(this.storage, this.rootEmpty, true);
-        RefreshTest.refresh(client, token, location);
+        final RefreshConfirmation confirmation = Basic.get(Refresh.refresh(client, token, location));
+        RefreshTest.refresh(client, confirmation.token());
         Client.close(client);
     }
 
     @Test
     @DisplayName("finish: standard")
+    @Disabled("the same tested in ListTest")
     public void finishStandard(final CoreClient client, final @Basic.CoreToken String token) {
         final FileLocation location = new FileLocation(this.storage, this.rootStandard, true);
-        RefreshTest.refresh(client, token, location);
+        final RefreshConfirmation confirmation = Basic.get(Refresh.refresh(client, token, location));
+        RefreshTest.refresh(client, confirmation.token());
         Client.close(client);
     }
 
