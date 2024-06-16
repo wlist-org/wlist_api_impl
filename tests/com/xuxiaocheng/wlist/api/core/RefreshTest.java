@@ -97,6 +97,7 @@ public abstract class RefreshTest {
                 final RefreshProgress progress = Refresh.progress(client, token).get();
                 Assertions.assertTrue(() -> progress.loadedFiles() <= progress.totalFiles());
                 Assertions.assertTrue(() -> progress.loadedDirectories() <= progress.totalDirectories());
+                Assertions.assertFalse(Basic.get(Refresh.isPaused(client, token)));
 //                System.out.println("Progress: " + progress);
                 TimeUnit.MILLISECONDS.sleep(500);
             } catch (final ExecutionException exception) {
