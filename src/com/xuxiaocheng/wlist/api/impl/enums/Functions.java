@@ -1,6 +1,7 @@
 package com.xuxiaocheng.wlist.api.impl.enums;
 
 import com.xuxiaocheng.wlist.api.impl.functions.Client;
+import com.xuxiaocheng.wlist.api.impl.functions.Download;
 import com.xuxiaocheng.wlist.api.impl.functions.File;
 import com.xuxiaocheng.wlist.api.impl.functions.Refresh;
 import com.xuxiaocheng.wlist.api.impl.functions.Storage;
@@ -40,6 +41,13 @@ public enum Functions {
     RefreshIsPaused(Refresh::isPaused),
     RefreshProgress(Refresh::progress),
     RefreshCheck(Refresh::check),
+
+    DownloadRequest(Download::request),
+    DownloadCancel(Download::cancel),
+    DownloadConfirm(Download::confirm),
+    DownloadDownload(Download::download),
+    DownloadDownloadCallback(Download::downloadCallback),
+    DownloadFinish(Download::finish),
 
     // TODO
     ;

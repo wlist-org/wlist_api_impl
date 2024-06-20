@@ -34,6 +34,8 @@ module com.xuxiaocheng.wlist.api {
     exports com.xuxiaocheng.wlist.api.web;
 
     exports com.xuxiaocheng.wlist.api.impl;
+    exports com.xuxiaocheng.wlist.api.impl.data;
     exports com.xuxiaocheng.wlist.api.impl.enums;
     exports com.xuxiaocheng.wlist.api.impl.functions;
+    exports com.xuxiaocheng.wlist.api.impl.functions.types;
 }
