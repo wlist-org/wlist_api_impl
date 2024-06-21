@@ -112,9 +112,9 @@ public enum Lanzou {;
                 final HtmlPage frame = (HtmlPage) page.<HtmlInlineFrame>querySelector(".ifr2").getEnclosedPage();
                 downloading = frame.getHtmlElementById("tourl");
             }
+            final String downloadUrl = downloading.<HtmlAnchor>querySelector("a").getAttribute("href");
+            return new FileUrls(true, true, downloadUrl);
         }
-        final String downloadUrl = downloading.<HtmlAnchor>querySelector("a").getAttribute("href");
-        return new FileUrls(true, true, downloadUrl);
     }
 
 
