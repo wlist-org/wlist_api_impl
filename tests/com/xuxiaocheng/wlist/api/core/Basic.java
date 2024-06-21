@@ -11,6 +11,9 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -95,7 +98,21 @@ public enum Basic {;
     }
 
     public static <T extends Throwable> T thrown(final Class<T> expected, final CompletableFuture<?> future) {
-        final ExecutionException exception = Assertions.assertThrowsExactly(ExecutionException.class, () -> future.get());
+        final ExecutionException exception = Assertions.assertThrowsExactly(ExecutionException.class, future::get);
         return Assertions.assertThrowsExactly(expected, () -> { throw exception.getCause(); });
+    }
+
+
+    public static MessageDigest getMd5() {
+        try {
+            return MessageDigest.getInstance("MD5");
+        } catch (final NoSuchAlgorithmException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    public static String digestMd5(final MessageDigest md5) {
+        final BigInteger i = new BigInteger(1, md5.digest());
+        return String.format("%32s", i.toString(16)).replace(' ', '0');
     }
 }
