@@ -51,8 +51,10 @@ public final class BrowserUtil {
                 break;
     }
 
-    public static void waitStartedJavaScriptCompleted(final WebClient client) {
-        client.waitForBackgroundJavaScriptStartingBefore(0);
+    public static void waitJavaScriptLeft(final WebClient client, final int left) {
+        while (true)
+            if (client.waitForBackgroundJavaScript(300) <= left)
+                break;
     }
 
 
