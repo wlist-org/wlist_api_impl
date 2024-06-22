@@ -24,7 +24,7 @@ import java.util.concurrent.ExecutionException;
  * <pre>{@literal
  * root (rootIdStandard)
  *  |-- chunk.txt (4k size, context="@wlist small chunk 32 origin len" * 128, md5="fc6cb96d6681a62e22a2bbd32e5e0519")
- *  |-- large.txt (12m size, context="@wlist large file 32 origin len\n" * 393216, md5="a755aeccea7e39b4b2b0fa76dcd1e54b")
+ *  |-- large.txt (12m size, context="@wlist large file 32 origin len\n" (no \r) * 393216, md5="99f7ad3d42ac3318dcc92b64beecb179")
  *  |-- empty (rootIdEmpty)
  *  |-- hello
  *      `-- hello.txt (12 size, context="hello world!", md5="fc3ff98e8c6a0d3087d515c0473f8677")

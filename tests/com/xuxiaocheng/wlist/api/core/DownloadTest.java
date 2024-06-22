@@ -107,11 +107,37 @@ public abstract class DownloadTest {
             final ByteBuffer buf = buffer.slice((int) info.start(), (int) info.size());
             Basic.get(Download.download(client, confirmation.token(), i, buf, 0, new AtomicBoolean(true)));
         }
+        Basic.get(Download.finish(client, confirmation.token()));
         for (int i = 0; i < 128; ++i) {
             final byte[] bytes = new byte[32];
             buffer.get(bytes);
             final String content = new String(bytes);
             Assertions.assertEquals("@wlist small chunk 32 origin len", content);
+        }
+    }
+
+    @Test
+    public void large(final CoreClient client, final @Basic.CoreToken String token) {
+        final ListFileOptions options = new ListFileOptions(Filter.Both, new LinkedHashMap<>(Map.of(Order.Name, Direction.ASCEND)), 0, 4);
+        final FileLocation root = new FileLocation(this.storage, this.root, true);
+        final FileListInformation list = ListTest.list(client, token, root, options);
+        final FileLocation large = new FileLocation(this.storage, list.files().get(3).id(), false);
+        final DownloadConfirmation confirmation = Basic.get(Download.request(client, token, large, 0, Long.MAX_VALUE));
+        Assertions.assertEquals(12 << 20, confirmation.size());
+        final DownloadInformation information = Basic.get(Download.confirm(client, confirmation.token()));
+        DownloadTest.ensureChunksCovered(12 << 20, information);
+        final ByteBuffer buffer = ByteBuffer.allocateDirect(12 << 20);
+        for (int i = 0, chunksSize = information.chunks().size(); i < chunksSize; i++) {
+            final DownloadChunkInformation info = information.chunks().get(i);
+            final ByteBuffer buf = buffer.slice((int) info.start(), (int) info.size());
+            Basic.get(Download.download(client, confirmation.token(), i, buf, 0, new AtomicBoolean(true)));
+        }
+        Basic.get(Download.finish(client, confirmation.token()));
+        for (int i = 0; i < 393216; ++i) {
+            final byte[] bytes = new byte[32];
+            buffer.get(bytes);
+            final String content = new String(bytes);
+            Assertions.assertEquals("@wlist large file 32 origin len\n", content);
         }
     }
 
@@ -130,6 +156,7 @@ public abstract class DownloadTest {
                 final ByteBuffer buf = buffer.slice((int) info.start(), (int) info.size());
                 Basic.get(Download.download(client, confirmation.token(), i, buf, 0, new AtomicBoolean(true)));
             }
+            Basic.get(Download.finish(client, confirmation.token()));
             final MessageDigest md5 = Basic.getMd5();
             md5.update(buffer);
             Assertions.assertEquals("fc6cb96d6681a62e22a2bbd32e5e0519", Basic.digestMd5(md5));
