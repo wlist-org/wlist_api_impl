@@ -7,6 +7,7 @@ import com.xuxiaocheng.wlist.api.core.files.FileLocation;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.DownloadConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.information.DownloadChunkInformation;
 import com.xuxiaocheng.wlist.api.core.files.information.DownloadInformation;
+import com.xuxiaocheng.wlist.api.core.files.information.FileInformation;
 import com.xuxiaocheng.wlist.api.core.files.information.FileListInformation;
 import com.xuxiaocheng.wlist.api.core.files.options.Filter;
 import com.xuxiaocheng.wlist.api.core.files.options.ListFileOptions;
@@ -32,7 +33,9 @@ import java.nio.file.StandardOpenOption;
 import java.security.MessageDigest;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -73,6 +76,23 @@ public abstract class DownloadTest {
             }
         }
         return chunk;
+    }
+
+    private final AtomicReference<FileLocation> largeLocation = new AtomicReference<>();
+    protected FileLocation largeLocation(final CoreClient client, final String token) {
+        FileLocation large;
+        synchronized (this.largeLocation) {
+            large = this.largeLocation.get();
+            if (large == null) {
+                final ListFileOptions options = new ListFileOptions(Filter.Both, new LinkedHashMap<>(Map.of(Order.Name, Direction.ASCEND)), 3, 1);
+                final FileLocation root = new FileLocation(this.storage, this.root, true);
+                final FileListInformation list = ListTest.list(client, token, root, options);
+                final long id = list.files().get(0).id();
+                large = new FileLocation(this.storage, id, false);
+                this.largeLocation.set(large);
+            }
+        }
+        return large;
     }
 
     @Test
@@ -118,10 +138,7 @@ public abstract class DownloadTest {
 
     @Test
     public void large(final CoreClient client, final @Basic.CoreToken String token) {
-        final ListFileOptions options = new ListFileOptions(Filter.Both, new LinkedHashMap<>(Map.of(Order.Name, Direction.ASCEND)), 0, 4);
-        final FileLocation root = new FileLocation(this.storage, this.root, true);
-        final FileListInformation list = ListTest.list(client, token, root, options);
-        final FileLocation large = new FileLocation(this.storage, list.files().get(3).id(), false);
+        final FileLocation large = this.largeLocation(client, token);
         final DownloadConfirmation confirmation = Basic.get(Download.request(client, token, large, 0, Long.MAX_VALUE));
         Assertions.assertEquals(12 << 20, confirmation.size());
         final DownloadInformation information = Basic.get(Download.confirm(client, confirmation.token()));
@@ -139,6 +156,20 @@ public abstract class DownloadTest {
             final String content = new String(bytes);
             Assertions.assertEquals("@wlist large file 32 origin len\n", content);
         }
+    }
+
+    @Test
+    public void empty(final CoreClient client, final @Basic.CoreToken String token) {
+        final ListFileOptions options = new ListFileOptions(Filter.Both, new LinkedHashMap<>(Map.of(Order.Name, Direction.ASCEND)), 0, 10);
+        final FileListInformation root = ListTest.list(client, token, new FileLocation(this.storage, this.root, true), options);
+        final FileListInformation special = ListTest.list(client, token, new FileLocation(this.storage, root.files().get(5).id(), true), options);
+        final Optional<FileInformation> empty = special.files().parallelStream().filter(f -> "empty.txt".equals(f.name())).findAny();
+        Assumptions.assumeTrue(empty.isPresent());
+        final DownloadConfirmation confirmation = Basic.get(Download.request(client, token, new FileLocation(this.storage, empty.get().id(), false), 0, Long.MAX_VALUE));
+        Assertions.assertEquals(0, confirmation.size());
+        final DownloadInformation information = Basic.get(Download.confirm(client, confirmation.token()));
+        Assertions.assertEquals(0, information.chunks().size());
+        Basic.get(Download.finish(client, confirmation.token()));
     }
 
     @Test
@@ -161,6 +192,53 @@ public abstract class DownloadTest {
             md5.update(buffer);
             Assertions.assertEquals("fc6cb96d6681a62e22a2bbd32e5e0519", Basic.digestMd5(md5));
         }
+    }
+
+    @Test
+    public void range(final CoreClient client, final @Basic.CoreToken String token) {
+        final FileLocation chunk = this.chunkLocation(client, token);
+        final DownloadConfirmation confirmation = Basic.get(Download.request(client, token, chunk, 0, Long.MAX_VALUE));
+        final DownloadInformation information = Basic.get(Download.confirm(client, confirmation.token()));
+        final Optional<DownloadChunkInformation> info = information.chunks().parallelStream().filter(c -> c.range() && c.size() > 1).findAny();
+        Assumptions.assumeTrue(info.isPresent());
+        final int id = information.chunks().indexOf(info.get());
+        final int size = Math.min(31, (int) info.get().size() - 1);
+        final ByteBuffer buffer = ByteBuffer.allocateDirect(size);
+        Basic.get(Download.download(client, confirmation.token(), id, buffer, 1, new AtomicBoolean(true)));
+        buffer.rewind();
+        Basic.get(Download.finish(client, confirmation.token()));
+        final byte[] bytes = new byte[size];
+        buffer.get(bytes);
+        final String content = new String(bytes);
+        final int start = ((int) info.get().start() + 1) % 32;
+        Assertions.assertEquals("@wlist small chunk 32 origin len".repeat(2).substring(start, start + size), content);
+    }
+
+    @Test
+    public void pause(final CoreClient client, final @Basic.CoreToken String token) throws InterruptedException {
+        final FileLocation large = this.largeLocation(client, token);
+        final DownloadConfirmation confirmation = Basic.get(Download.request(client, token, large, 0, Long.MAX_VALUE));
+        final DownloadInformation information = Basic.get(Download.confirm(client, confirmation.token()));
+        final DownloadChunkInformation info = information.chunks().get(0);
+        final ByteBuffer buffer = ByteBuffer.allocateDirect((int) info.size());
+        final AtomicBoolean controller = new AtomicBoolean(true);
+        final Thread thread = new Thread(() -> Basic.get(Download.download(client, confirmation.token(), 0, buffer, 0, controller)));
+        thread.start();
+        int a = buffer.position();
+        TimeUnit.MILLISECONDS.sleep(700);
+        int b = buffer.position();
+        Assertions.assertNotEquals(a, b);
+        controller.set(false);
+        TimeUnit.MILLISECONDS.sleep(700);
+        a = buffer.position();
+        TimeUnit.MILLISECONDS.sleep(700);
+        b = buffer.position();
+        Assertions.assertEquals(a, b);
+        controller.set(true);
+        TimeUnit.MILLISECONDS.sleep(700);
+        a = buffer.position();
+        Assertions.assertNotEquals(b, a);
+        Basic.get(Download.cancel(client, confirmation.token()));
     }
 
 

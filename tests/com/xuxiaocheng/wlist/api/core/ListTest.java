@@ -297,6 +297,9 @@ public abstract class ListTest {
             Assertions.assertEquals(1, innerList.files().size());
             Assertions.assertEquals("recursion.txt", innerList.files().get(0).name());
 
+            final FileLocation special = new FileLocation(ListTest.this.storage, list.files().get(5).id(), true);
+            ListTest.list(client, token, special, options);
+
             Client.close(client);
         }
 
