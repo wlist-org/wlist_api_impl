@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.18.1] - 2024-6-23
+
+### Changed
+
+* 优化 Download 注释
+* 标记 core 中 Download 为 Stable
+
+### Added
+
+* 添加 Download 示例
+
 ## [1.18.0] - 2024-6-12
 
 ### Changed
