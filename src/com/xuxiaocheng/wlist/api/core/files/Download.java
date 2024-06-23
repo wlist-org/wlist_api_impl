@@ -12,6 +12,34 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * The core download API.
+ * <p>For a normal example: <pre> {@code
+ * final DownloadConfirmation confirmation = Download.request(client, token, location, 0, Long.MAX_VALUE).get();
+ * Assumptions.assumeTrue(confirmation.size() <= Integer.MAX_VALUE);
+ * final DownloadInformation information = Download.confirm(client, confirmation.token()).get();
+ * final ByteBuffer buffer = ByteBuffer.allocateDirect(confirmation.size());
+ * for (int i = 0, chunksSize = information.chunks().size(); i < chunksSize; ++i) {
+ *   final DownloadChunkInformation info = information.chunks().get(i);
+ *   final ByteBuffer buf = buffer.slice((int) info.start(), (int) info.size());
+ *   Download.download(client, confirmation.token(), i, buf, 0, new AtomicBoolean(true)).get();
+ * }
+ * Download.finish(client, confirmation.token()).get();
+ * }</pre>
+ * <p>For a file example: <pre> {@code
+ * Assumptions.assumeTrue(file.createNewFile());
+ * final DownloadConfirmation confirmation = Download.request(client, token, location, 0, Long.MAX_VALUE).get();
+ * Assumptions.assumeTrue(confirmation.size() <= Integer.MAX_VALUE);
+ * final DownloadInformation information = Download.confirm(client, confirmation.token()).get();
+ * try (final FileChannel channel = FileChannel.open(file.toPath(), StandardOpenOption.READ, StandardOpenOption.WRITE);
+ *      final FileLock ignoredLock = channel.lock(0, confirmation.size(), false)) {
+ *   final MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_WRITE, 0, confirmation.size());
+ *   for (int i = 0, chunksSize = information.chunks().size(); i < chunksSize; ++i) {
+ *     final DownloadChunkInformation info = information.chunks().get(i);
+ *     final ByteBuffer buf = buffer.slice((int) info.start(), (int) info.size());
+ *     Download.download(client, confirmation.token(), i, buf, 0, new AtomicBoolean(true)).get();
+ *   }
+ *   Download.finish(client, confirmation.token()).get();
+ * }
+ * }</pre>
  */
 public enum Download {;
     /**
@@ -60,6 +88,7 @@ public enum Download {;
      * (Not real-time, but at a small interval. Mainly based on HTTP chunk/frame.)
      * <p>You can set the controller to pause or resume the upload.
      * (false means pause, true means resume.)
+     * (Internally, use polling every 300ms.)
      * @param client the core client.
      * @param token the download token.
      * @param id the download chunk id. (id >= 0)
