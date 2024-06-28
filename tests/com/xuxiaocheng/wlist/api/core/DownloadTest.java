@@ -122,7 +122,7 @@ public abstract class DownloadTest {
         final DownloadInformation information = Basic.get(Download.confirm(client, confirmation.token()));
         DownloadTest.ensureChunksCovered(4 << 10, information);
         final ByteBuffer buffer = ByteBuffer.allocateDirect(4 << 10);
-        for (int i = 0, chunksSize = information.chunks().size(); i < chunksSize; i++) {
+        for (int i = 0, chunksSize = information.chunks().size(); i < chunksSize; ++i) {
             final DownloadChunkInformation info = information.chunks().get(i);
             final ByteBuffer buf = buffer.slice((int) info.start(), (int) info.size());
             Basic.get(Download.download(client, confirmation.token(), i, buf, 0, new AtomicBoolean(true)));
@@ -144,7 +144,7 @@ public abstract class DownloadTest {
         final DownloadInformation information = Basic.get(Download.confirm(client, confirmation.token()));
         DownloadTest.ensureChunksCovered(12 << 20, information);
         final ByteBuffer buffer = ByteBuffer.allocateDirect(12 << 20);
-        for (int i = 0, chunksSize = information.chunks().size(); i < chunksSize; i++) {
+        for (int i = 0, chunksSize = information.chunks().size(); i < chunksSize; ++i) {
             final DownloadChunkInformation info = information.chunks().get(i);
             final ByteBuffer buf = buffer.slice((int) info.start(), (int) info.size());
             Basic.get(Download.download(client, confirmation.token(), i, buf, 0, new AtomicBoolean(true)));
@@ -182,7 +182,7 @@ public abstract class DownloadTest {
         try (final FileChannel channel = FileChannel.open(chunk.toPath(), StandardOpenOption.READ, StandardOpenOption.WRITE);
              final FileLock ignoredLock = channel.lock(0, confirmation.size(), false)) {
             final MappedByteBuffer buffer = channel.map(FileChannel.MapMode.READ_WRITE, 0, confirmation.size());
-            for (int i = 0, chunksSize = information.chunks().size(); i < chunksSize; i++) {
+            for (int i = 0, chunksSize = information.chunks().size(); i < chunksSize; ++i) {
                 final DownloadChunkInformation info = information.chunks().get(i);
                 final ByteBuffer buf = buffer.slice((int) info.start(), (int) info.size());
                 Basic.get(Download.download(client, confirmation.token(), i, buf, 0, new AtomicBoolean(true)));

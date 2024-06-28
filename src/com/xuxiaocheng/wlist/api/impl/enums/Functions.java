@@ -5,6 +5,7 @@ import com.xuxiaocheng.wlist.api.impl.functions.Download;
 import com.xuxiaocheng.wlist.api.impl.functions.File;
 import com.xuxiaocheng.wlist.api.impl.functions.Refresh;
 import com.xuxiaocheng.wlist.api.impl.functions.Storage;
+import com.xuxiaocheng.wlist.api.impl.functions.Upload;
 import com.xuxiaocheng.wlist.api.impl.functions.types.Lanzou;
 import io.netty.buffer.ByteBuf;
 import org.msgpack.core.MessageUnpacker;
@@ -48,6 +49,13 @@ public enum Functions {
     DownloadDownload(Download::download),
     DownloadDownloadCallback(Download::downloadCallback),
     DownloadFinish(Download::finish),
+
+    UploadRequest(Upload::request),
+    UploadCancel(Upload::cancel),
+    UploadConfirm(Upload::confirm),
+    UploadUpload(Upload::upload),
+    UploadUploadCallback(Upload::uploadCallback),
+    UploadFinish(Upload::finish),
 
     // TODO
     ;

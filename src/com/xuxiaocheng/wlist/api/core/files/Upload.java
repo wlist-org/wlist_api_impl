@@ -1,12 +1,16 @@
 package com.xuxiaocheng.wlist.api.core.files;
 
-import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.UploadConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.information.FileInformation;
 import com.xuxiaocheng.wlist.api.core.files.information.UploadInformation;
 import com.xuxiaocheng.wlist.api.core.files.options.Duplicate;
 import com.xuxiaocheng.wlist.api.core.files.tokens.UploadToken;
+import com.xuxiaocheng.wlist.api.impl.ClientStarter;
+import com.xuxiaocheng.wlist.api.impl.data.InternalUploadInformation;
+import com.xuxiaocheng.wlist.api.impl.data.InternalUploadInformationCallback;
+import com.xuxiaocheng.wlist.api.impl.data.UploadInformationExtra;
+import com.xuxiaocheng.wlist.api.impl.enums.Functions;
 
 import java.nio.ByteBuffer;
 import java.util.Optional;
@@ -38,7 +42,20 @@ public enum Upload {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.IllegalSuffixException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static CompletableFuture<UploadConfirmation> request(final CoreClient client, final String token, final FileLocation parent, final String name, final long size, final String md5, final String[] md5s, final Duplicate duplicate) { return Main.future(); }
+    public static CompletableFuture<UploadConfirmation> request(final CoreClient client, final String token, final FileLocation parent, final String name, final long size, final String md5, final String[] md5s, final Duplicate duplicate) {
+        return ClientStarter.client(client, Functions.UploadRequest, packer -> {
+            packer.packString(token);
+            FileLocation.serialize(parent, packer);
+            packer.packString(name);
+            packer.packLong(size);
+            packer.packString(name);
+            packer.packString(md5);
+            packer.packArrayHeader(md5s.length);
+            for (final String s: md5s)
+                packer.packString(s);
+            packer.packString(duplicate.name());
+        }, UploadConfirmation::deserialize);
+    }
 
     /**
      * Cancel a upload.
@@ -46,7 +63,10 @@ public enum Upload {;
      * @param token the upload token.
      * @return a future.
      */
-    public static CompletableFuture<Void> cancel(final CoreClient client, final UploadToken token) { return Main.future(); }
+    public static CompletableFuture<Void> cancel(final CoreClient client, final UploadToken token) {
+        return ClientStarter.client(client, Functions.UploadCancel, packer -> UploadToken.serialize(token, packer), ClientStarter::deserializeVoid)
+                .thenCompose(ignored -> com.xuxiaocheng.wlist.api.impl.functions.Upload.cancelClient(token));
+    }
 
     /**
      * Confirm a upload.
@@ -54,7 +74,10 @@ public enum Upload {;
      * @param token the upload token.
      * @return a future, with the upload confirmation.
      */
-    public static CompletableFuture<UploadInformation> confirm(final CoreClient client, final UploadToken token) { return Main.future(); }
+    public static CompletableFuture<UploadInformation> confirm(final CoreClient client, final UploadToken token) {
+        return ClientStarter.client(client, Functions.UploadConfirm, packer -> UploadToken.serialize(token, packer), UploadInformationExtra::deserialize)
+                .thenCompose(extra -> com.xuxiaocheng.wlist.api.impl.functions.Upload.confirmClient(token, extra).thenApply(ignored -> extra.information()));
+    }
 
     /**
      * Upload the file chunk.
@@ -72,7 +95,19 @@ public enum Upload {;
      * @return a future, with a sha256 hash of the uploaded chunk data.
      *                   The hash is optional because the chunk may upload incompletely.
      */
-    public static CompletableFuture<Optional<String>> upload(final CoreClient client, final UploadToken token, final int id, final ByteBuffer buffer, final AtomicBoolean controller) { return Main.future(); }
+    public static CompletableFuture<Optional<String>> upload(final CoreClient client, final UploadToken token, final int id, final ByteBuffer buffer, final AtomicBoolean controller) {
+        return CompletableFuture.completedFuture(null)
+                .thenCompose(ignored -> ClientStarter.client(client, Functions.UploadUpload, packer -> {
+                    UploadToken.serialize(token, packer);
+                    packer.packInt(id);
+                }, InternalUploadInformation::deserialize))
+                .thenCompose(information -> com.xuxiaocheng.wlist.api.impl.functions.Upload.uploadClient(token, information, buffer, controller))
+                .thenCompose(callback -> ClientStarter.client(client, Functions.UploadUploadCallback, packer -> {
+                    UploadToken.serialize(token, packer);
+                    packer.packInt(id);
+                    InternalUploadInformationCallback.serialize(callback, packer);
+                }, ClientStarter::deserializeVoid).thenApply(ignored -> Optional.ofNullable(callback.optionalSha256())));
+    }
 
     /**
      * Finish an upload.
@@ -81,5 +116,8 @@ public enum Upload {;
      * @return a future, with the information of the new file.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.UploadChunkIncompleteException
      */
-    public static CompletableFuture<FileInformation> finish(final CoreClient client, final UploadToken token) { return Main.future(); }
+    public static CompletableFuture<FileInformation> finish(final CoreClient client, final UploadToken token) {
+        return ClientStarter.client(client, Functions.UploadFinish, packer -> UploadToken.serialize(token, packer), FileInformation::deserialize)
+                .thenCompose(information -> com.xuxiaocheng.wlist.api.impl.functions.Upload.cancelClient(token).thenApply(ignored -> information));
+    }
 }
