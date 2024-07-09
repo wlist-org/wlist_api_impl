@@ -48,7 +48,6 @@ public enum Upload {;
             FileLocation.serialize(parent, packer);
             packer.packString(name);
             packer.packLong(size);
-            packer.packString(name);
             packer.packString(md5);
             packer.packArrayHeader(md5s.length);
             for (final String s: md5s)

@@ -115,4 +115,17 @@ public enum Basic {;
         final BigInteger i = new BigInteger(1, md5.digest());
         return String.format("%32s", i.toString(16)).replace(' ', '0');
     }
+
+    public static MessageDigest getSha256() {
+        try {
+            return MessageDigest.getInstance("Sha256");
+        } catch (final NoSuchAlgorithmException exception) {
+            throw new RuntimeException(exception);
+        }
+    }
+
+    public static String digestSha256(final MessageDigest sha256) {
+        final BigInteger i = new BigInteger(1, sha256.digest());
+        return String.format("%64s", i.toString(16)).replace(' ', '0');
+    }
 }

@@ -3,6 +3,7 @@ package com.xuxiaocheng.wlist.api.core;
 import com.xuxiaocheng.wlist.api.MainTest;
 import com.xuxiaocheng.wlist.api.common.Direction;
 import com.xuxiaocheng.wlist.api.common.either.Either;
+import com.xuxiaocheng.wlist.api.core.files.Download;
 import com.xuxiaocheng.wlist.api.core.files.File;
 import com.xuxiaocheng.wlist.api.core.files.FileLocation;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
@@ -247,7 +248,7 @@ public abstract class ListTest {
         }
     }
 
-    protected static void assertMd5(final String expected, final String actual) {
+    public static void assertMd5(final String expected, final String actual) {
         Assertions.assertTrue(actual == null || Objects.equals(expected, actual), "expected md5 '" + expected + "' != actual '" + actual + '\'');
     }
 
@@ -312,17 +313,23 @@ public abstract class ListTest {
             Assertions.assertEquals(list.files().get(0), chunk.basic()); // chunk.txt
             Assertions.assertEquals(List.of(), chunk.path());
             ListTest.assertMd5("fc6cb96d6681a62e22a2bbd32e5e0519", chunk.optionalMd5());
+            if (chunk.optionalThumbnail() != null)
+                Basic.get(Download.cancel(client, chunk.optionalThumbnail().token()));
 
             final FileDetailsInformation large = ListTest.get(client, token, ListTest.this.root, new FileLocation(ListTest.this.storage, list.files().get(3).id(), false), false);
             Assertions.assertEquals(list.files().get(3), large.basic()); // large.txt
             Assertions.assertEquals(List.of(), large.path());
             ListTest.assertMd5("a755aeccea7e39b4b2b0fa76dcd1e54b", large.optionalMd5());
+            if (large.optionalThumbnail() != null)
+                Basic.get(Download.cancel(client, large.optionalThumbnail().token()));
 
             final FileLocation helloLocation = new FileLocation(ListTest.this.storage, list.files().get(2).id(), true);
             final FileDetailsInformation helloDirectory = ListTest.get(client, token, ListTest.this.root, helloLocation, false);
             Assertions.assertEquals(list.files().get(2), helloDirectory.basic()); // hello
             Assertions.assertEquals(List.of(), helloDirectory.path());
             ListTest.assertMd5(null, helloDirectory.optionalMd5());
+            if (helloDirectory.optionalThumbnail() != null)
+                Basic.get(Download.cancel(client, helloDirectory.optionalThumbnail().token()));
 
             final FileListInformation helloList = ListTest.list(client, token, helloLocation, options);
 
@@ -330,6 +337,8 @@ public abstract class ListTest {
             Assertions.assertEquals(helloList.files().get(0), hello.basic()); // hello.txt
             Assertions.assertEquals(List.of("hello"), hello.path());
             ListTest.assertMd5("fc3ff98e8c6a0d3087d515c0473f8677", hello.optionalMd5());
+            if (hello.optionalThumbnail() != null)
+                Basic.get(Download.cancel(client, hello.optionalThumbnail().token()));
         }
     }
 
