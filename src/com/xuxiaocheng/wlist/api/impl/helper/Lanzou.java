@@ -1,5 +1,6 @@
 package com.xuxiaocheng.wlist.api.impl.helper;
 
+import com.xuxiaocheng.wlist.api.common.exceptions.InternalException;
 import com.xuxiaocheng.wlist.api.core.trashes.information.TrashDetailsInformation;
 import com.xuxiaocheng.wlist.api.core.trashes.information.TrashInformation;
 import org.htmlunit.ElementNotFoundException;
@@ -114,6 +115,8 @@ public enum Lanzou {;
             }
             final String downloadUrl = downloading.<HtmlAnchor>querySelector("a").getAttribute("href");
             return new FileUrls(true, true, downloadUrl);
+        } catch (final NullPointerException exception) {
+            throw new InternalException("lanzou: internal getSingleShareFileDownloadUrl error", exception);
         }
     }
 
