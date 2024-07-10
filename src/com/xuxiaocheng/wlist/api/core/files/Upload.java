@@ -1,6 +1,8 @@
 package com.xuxiaocheng.wlist.api.core.files;
 
 import com.xuxiaocheng.wlist.api.Main;
+import com.xuxiaocheng.wlist.api.common.Stable;
+import com.xuxiaocheng.wlist.api.common.StableModule;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.UploadConfirmation;
 import com.xuxiaocheng.wlist.api.core.files.information.FileInformation;
@@ -34,6 +36,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * final FileInformation information = Basic.get(Upload.finish(client, confirmation.token()));
  * }</pre>
  */
+@Stable(since = "1.19.0", module = StableModule.Core)
 public enum Upload {;
     /**
      * Request to upload a new file.
