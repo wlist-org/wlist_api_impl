@@ -18,6 +18,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
+import java.util.random.RandomGenerator;
 
 public enum Basic {;
     private static final AtomicInteger port = new AtomicInteger(0);
@@ -100,6 +101,14 @@ public enum Basic {;
     public static <T extends Throwable> T thrown(final Class<T> expected, final CompletableFuture<?> future) {
         final ExecutionException exception = Assertions.assertThrowsExactly(ExecutionException.class, future::get);
         return Assertions.assertThrowsExactly(expected, () -> { throw exception.getCause(); });
+    }
+
+
+    public static String generateRandomString(final String origin, final int len) {
+        return RandomGenerator.getDefault().ints(len, 0, origin.length())
+                .boxed().map(origin::charAt)
+                .collect(StringBuilder::new, StringBuilder::append, StringBuilder::append)
+                .toString();
     }
 
 
