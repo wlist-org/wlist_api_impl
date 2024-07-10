@@ -45,6 +45,7 @@ public enum Upload {;
      * @param client the core client.
      * @param token the upload token.
      * @return a future.
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
     public static CompletableFuture<Void> cancel(final CoreClient client, final UploadToken token) { return Main.future(); }
 
@@ -53,6 +54,7 @@ public enum Upload {;
      * @param client the core client.
      * @param token the upload token.
      * @return a future, with the upload confirmation.
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
     public static CompletableFuture<UploadInformation> confirm(final CoreClient client, final UploadToken token) { return Main.future(); }
 
@@ -61,16 +63,20 @@ public enum Upload {;
      * Note that the buffer needn't be large enough to contain the entire chunk.
      * You can call this method multiple times to upload the rest data,
      * but please ensure that the buffer start position corresponds to the previous end position.
-     * <p>You can call {@code buffer.position()} to get the uploading progress. (Not real-time, but at a small interval. Maybe hundreds to thousands of bytes)</p>
+     * <p>You can call {@code buffer.position()} to get the uploading progress.
+     * (Not real-time, but at a small interval. Chunked in 16 bytes.)</p>
      * <p>If the returned hash isn't matched, you may cancel the upload and request a new one.</p>
      * <p>You can set the controller to pause or resume the upload.</p>
+     * (false means pause, true means resume.)
+     * (Internally, use polling every 300ms.)
      * @param client the core client.
      * @param token the upload token.
-     * @param id the upload chunk id.
+     * @param id the upload chunk id. (id >= 0)
      * @param buffer the buffer containing the chunk data.
      * @param controller false means pause, true means resume.
      * @return a future, with a sha256 hash of the uploaded chunk data.
      *                   The hash is optional because the chunk may upload incompletely.
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
     public static CompletableFuture<Optional<String>> upload(final CoreClient client, final UploadToken token, final int id, final ByteBuffer buffer, final AtomicBoolean controller) { return Main.future(); }
 
@@ -80,6 +86,7 @@ public enum Upload {;
      * @param token the upload token.
      * @return a future, with the information of the new file.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.UploadChunkIncompleteException
+     * @see com.xuxiaocheng.wlist.api.common.exceptions.TokenExpiredException
      */
     public static CompletableFuture<FileInformation> finish(final CoreClient client, final UploadToken token) { return Main.future(); }
 }
