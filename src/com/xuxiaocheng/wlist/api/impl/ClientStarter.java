@@ -12,7 +12,6 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufAllocator;
 import io.netty.buffer.ByteBufInputStream;
 import io.netty.buffer.ByteBufOutputStream;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelHandlerContext;
@@ -235,8 +234,7 @@ public final class ClientStarter {
                     }
                     return buffer;
                 }, Main.InternalEventLoopGroup)
-                .thenCompose(buffer -> client.send(buffer).thenApply(ignored -> Unpooled.EMPTY_BUFFER))
-                .thenCompose(ignored -> client.recv())
+                .thenCompose(client::send).thenCompose(ignored -> client.recv())
                 .thenApplyAsync(buffer -> {
                     try (final MessageUnpacker unpacker = MessagePack.newDefaultUnpacker(new ByteBufInputStream(buffer))) {
                         final boolean success = unpacker.unpackBoolean();
