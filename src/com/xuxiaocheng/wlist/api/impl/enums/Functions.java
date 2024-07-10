@@ -5,6 +5,7 @@ import com.xuxiaocheng.wlist.api.impl.functions.Download;
 import com.xuxiaocheng.wlist.api.impl.functions.File;
 import com.xuxiaocheng.wlist.api.impl.functions.Refresh;
 import com.xuxiaocheng.wlist.api.impl.functions.Storage;
+import com.xuxiaocheng.wlist.api.impl.functions.Trash;
 import com.xuxiaocheng.wlist.api.impl.functions.Upload;
 import com.xuxiaocheng.wlist.api.impl.functions.types.Lanzou;
 import io.netty.buffer.ByteBuf;
@@ -56,6 +57,14 @@ public enum Functions {
     UploadUpload(Upload::upload),
     UploadUploadCallback(Upload::uploadCallback),
     UploadFinish(Upload::finish),
+
+    TrashList(Trash::list),
+    TrashRefresh(Trash::refresh),
+    TrashGet(Trash::get),
+    TrashTrash(Trash::trash),
+    TrashRestore(Trash::restore),
+    TrashDelete(Trash::delete),
+    TrashDeleteAll(Trash::deleteAll),
 
     // TODO
     ;

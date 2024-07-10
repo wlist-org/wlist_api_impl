@@ -1,6 +1,5 @@
 package com.xuxiaocheng.wlist.api.core.trashes;
 
-import com.xuxiaocheng.wlist.api.Main;
 import com.xuxiaocheng.wlist.api.common.either.Either;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.FileLocation;
@@ -10,6 +9,8 @@ import com.xuxiaocheng.wlist.api.core.trashes.information.TrashDetailsInformatio
 import com.xuxiaocheng.wlist.api.core.trashes.information.TrashInformation;
 import com.xuxiaocheng.wlist.api.core.trashes.information.TrashListInformation;
 import com.xuxiaocheng.wlist.api.core.trashes.options.ListTrashOptions;
+import com.xuxiaocheng.wlist.api.impl.ClientStarter;
+import com.xuxiaocheng.wlist.api.impl.enums.Functions;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -24,7 +25,12 @@ public enum Trash {;
      * @param options the options for the list operation.
      * @return a future, with the list result or the refresh token.
      */
-    public static CompletableFuture<Either<TrashListInformation, RefreshConfirmation>> list(final CoreClient client, final String token, final ListTrashOptions options) { return Main.future(); }
+    public static CompletableFuture<Either<TrashListInformation, RefreshConfirmation>> list(final CoreClient client, final String token, final ListTrashOptions options) {
+        return ClientStarter.client(client, Functions.TrashList, packer -> {
+            packer.packString(token);
+            ListTrashOptions.serialize(options, packer);
+        }, unpacker -> unpacker.unpackBoolean() ? Either.left(TrashListInformation.deserialize(unpacker)) : Either.right(RefreshConfirmation.deserialize(unpacker)));
+    }
 
     /**
      * Refresh the trash.
@@ -32,7 +38,9 @@ public enum Trash {;
      * @param token the core token.
      * @return a future, with the refresh confirmation.
      */
-    public static CompletableFuture<RefreshConfirmation> refresh(final CoreClient client, final String token) { return Main.future(); }
+    public static CompletableFuture<RefreshConfirmation> refresh(final CoreClient client, final String token) {
+        return ClientStarter.client(client, Functions.TrashRefresh, packer -> packer.packString(token), RefreshConfirmation::deserialize);
+    }
 
     /**
      * Get the file/directory information.
@@ -43,7 +51,13 @@ public enum Trash {;
      * @return a future, with the file/directory information.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      */
-    public static CompletableFuture<TrashDetailsInformation> get(final CoreClient client, final String token, final FileLocation file, final boolean check) { return Main.future(); }
+    public static CompletableFuture<TrashDetailsInformation> get(final CoreClient client, final String token, final FileLocation file, final boolean check) {
+        return ClientStarter.client(client, Functions.TrashGet, packer -> {
+            packer.packString(token);
+            FileLocation.serialize(file, packer);
+            packer.packBoolean(check);
+        }, TrashDetailsInformation::deserialize);
+    }
 
     /**
      * Trash the file/directory.
@@ -56,7 +70,12 @@ public enum Trash {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileInLockException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static CompletableFuture<TrashInformation> trash(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
+    public static CompletableFuture<TrashInformation> trash(final CoreClient client, final String token, final FileLocation file) {
+        return ClientStarter.client(client, Functions.TrashTrash, packer -> {
+            packer.packString(token);
+            FileLocation.serialize(file, packer);
+        }, TrashInformation::deserialize);
+    }
 
     /**
      * Restore the trashed file/directory.
@@ -69,7 +88,13 @@ public enum Trash {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileInLockException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static CompletableFuture<FileInformation> restore(final CoreClient client, final String token, final FileLocation file, final FileLocation parent) { return Main.future(); }
+    public static CompletableFuture<FileInformation> restore(final CoreClient client, final String token, final FileLocation file, final FileLocation parent) {
+        return ClientStarter.client(client, Functions.TrashRestore, packer -> {
+            packer.packString(token);
+            FileLocation.serialize(file, packer);
+            FileLocation.serialize(parent, packer);
+        }, FileInformation::deserialize);
+    }
 
     /**
      * Delete the trashed file/directory.
@@ -80,7 +105,12 @@ public enum Trash {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static CompletableFuture<Void> delete(final CoreClient client, final String token, final FileLocation file) { return Main.future(); }
+    public static CompletableFuture<Void> delete(final CoreClient client, final String token, final FileLocation file) {
+        return ClientStarter.client(client, Functions.TrashDelete, packer -> {
+            packer.packString(token);
+            FileLocation.serialize(file, packer);
+        }, ClientStarter::deserializeVoid);
+    }
 
     /**
      * Delete all the trashed files and directories.
@@ -89,5 +119,7 @@ public enum Trash {;
      * @return a future.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static CompletableFuture<Void> deleteAll(final CoreClient client, final String token) { return Main.future(); }
+    public static CompletableFuture<Void> deleteAll(final CoreClient client, final String token) {
+        return ClientStarter.client(client, Functions.TrashDeleteAll, packer -> packer.packString(token), ClientStarter::deserializeVoid);
+    }
 }
