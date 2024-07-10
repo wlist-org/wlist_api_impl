@@ -15,6 +15,24 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
  * The core upload API.
+ * <p>For a basic example: <pre> {@code
+ * Assumptions.assumeTrue(size <= Integer.MAX_VALUE);
+ * final UploadConfirmation confirmation = Upload.request(client, token, root, filename, size, md5, md5s, Duplicate.Error).get();
+ * if (!confirmation.done()) {
+ *   final UploadInformation information = Upload.confirm(client, token).get();
+ *   for (int i = 0, chunksSize = information.chunks().size(); i < chunksSize; ++i) {
+ *     final UploadChunkInformation chunk = information.chunks().get(i);
+ *     final ByteBuffer buf = content.slice((int) chunk.start(), (int) chunk.size());
+ *     final MessageDigest sha256 = MessageDigest.getInstance("Sha256");
+ *     sha256.update(buf);
+ *     final BigInteger h = new BigInteger(1, sha256.digest());
+ *     final String hash = String.format("%64s", h.toString(16)).replace(' ', '0');
+ *     final Optional<String> res = Upload.upload(client, token, i, buf.rewind(), new AtomicBoolean(true)).get();
+ *     Assertions.assertEquals(Optional.of(hash), res); // handle error (retry)
+ *   }
+ * }
+ * final FileInformation information = Basic.get(Upload.finish(client, confirmation.token()));
+ * }</pre>
  */
 public enum Upload {;
     /**
