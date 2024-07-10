@@ -21,18 +21,20 @@ public enum Trash {;
      * List the files in trash.
      * @param client the core client.
      * @param token the core token.
+     * @param storage the id of the storage.
      * @param options the options for the list operation.
      * @return a future, with the list result or the refresh token.
      */
-    public static CompletableFuture<Either<TrashListInformation, RefreshConfirmation>> list(final CoreClient client, final String token, final ListTrashOptions options) { return Main.future(); }
+    public static CompletableFuture<Either<TrashListInformation, RefreshConfirmation>> list(final CoreClient client, final String token, final long storage, final ListTrashOptions options) { return Main.future(); }
 
     /**
      * Refresh the trash.
      * @param client the core client.
      * @param token the core token.
+     * @param storage the id of the storage.
      * @return a future, with the refresh confirmation.
      */
-    public static CompletableFuture<RefreshConfirmation> refresh(final CoreClient client, final String token) { return Main.future(); }
+    public static CompletableFuture<RefreshConfirmation> refresh(final CoreClient client, final String token, final long storage) { return Main.future(); }
 
     /**
      * Get the file/directory information.
@@ -63,13 +65,13 @@ public enum Trash {;
      * @param client the core client.
      * @param token the core token.
      * @param file the location of the file/directory to restore.
-     * @param parent the parent location the file/directory restored to.
+     * @param parent the parent directory id the file/directory restored to.
      * @return a future, with the restored file information.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileNotFoundException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.FileInLockException
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static CompletableFuture<FileInformation> restore(final CoreClient client, final String token, final FileLocation file, final FileLocation parent) { return Main.future(); }
+    public static CompletableFuture<FileInformation> restore(final CoreClient client, final String token, final FileLocation file, final long parent) { return Main.future(); }
 
     /**
      * Delete the trashed file/directory.
@@ -86,8 +88,9 @@ public enum Trash {;
      * Delete all the trashed files and directories.
      * @param client the core client.
      * @param token the core token.
+     * @param storage the id of the storage.
      * @return a future.
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
-    public static CompletableFuture<Void> deleteAll(final CoreClient client, final String token) { return Main.future(); }
+    public static CompletableFuture<Void> deleteAll(final CoreClient client, final String token, final long storage) { return Main.future(); }
 }
