@@ -29,6 +29,7 @@ public enum Trash {;
     public static CompletableFuture<Either<TrashListInformation, RefreshConfirmation>> list(final CoreClient client, final String token, final long storage, final ListTrashOptions options) {
         return ClientStarter.client(client, Functions.TrashList, packer -> {
             packer.packString(token);
+            packer.packLong(storage);
             ListTrashOptions.serialize(options, packer);
         }, unpacker -> unpacker.unpackBoolean() ? Either.left(TrashListInformation.deserialize(unpacker)) : Either.right(RefreshConfirmation.deserialize(unpacker)));
     }
@@ -41,7 +42,7 @@ public enum Trash {;
      * @return a future, with the refresh confirmation.
      */
     public static CompletableFuture<RefreshConfirmation> refresh(final CoreClient client, final String token, final long storage) {
-        return ClientStarter.client(client, Functions.TrashRefresh, packer -> packer.packString(token), RefreshConfirmation::deserialize);
+        return ClientStarter.client(client, Functions.TrashRefresh, packer -> packer.packString(token).packLong(storage), RefreshConfirmation::deserialize);
     }
 
     /**
@@ -94,7 +95,7 @@ public enum Trash {;
         return ClientStarter.client(client, Functions.TrashRestore, packer -> {
             packer.packString(token);
             FileLocation.serialize(file, packer);
-            FileLocation.serialize(parent, packer);
+            packer.packLong(parent);
         }, FileInformation::deserialize);
     }
 
@@ -123,6 +124,6 @@ public enum Trash {;
      * @see com.xuxiaocheng.wlist.api.core.files.exceptions.limitations.ReadOnlyStorageException
      */
     public static CompletableFuture<Void> deleteAll(final CoreClient client, final String token, final long storage) {
-        return ClientStarter.client(client, Functions.TrashDeleteAll, packer -> packer.packString(token), ClientStarter::deserializeVoid);
+        return ClientStarter.client(client, Functions.TrashDeleteAll, packer -> packer.packString(token).packLong(storage), ClientStarter::deserializeVoid);
     }
 }

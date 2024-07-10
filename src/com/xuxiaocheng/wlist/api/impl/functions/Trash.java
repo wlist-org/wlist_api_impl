@@ -15,12 +15,13 @@ import org.msgpack.core.MessageUnpacker;
 import java.util.concurrent.CompletableFuture;
 
 public enum Trash {;
-    private static native CompletableFuture<Either<TrashListInformation, RefreshConfirmation>> list0(final String id, final String token, final ListTrashOptions options);
+    private static native CompletableFuture<Either<TrashListInformation, RefreshConfirmation>> list0(final String id, final String token, final long storage, final ListTrashOptions options);
     public static CompletableFuture<ByteBuf> list(final String id, final MessageUnpacker unpacker) {
         return ServerStarter.server(() -> {
             final String token = unpacker.unpackString();
+            final long storage = unpacker.unpackLong();
             final ListTrashOptions options = ListTrashOptions.deserialize(unpacker);
-            return Trash.list0(id, token, options);
+            return Trash.list0(id, token, storage, options);
         }, (either, packer) -> {
             if (either.isLeft()) {
                 packer.packBoolean(true);
@@ -34,11 +35,12 @@ public enum Trash {;
         });
     }
 
-    private static native CompletableFuture<RefreshConfirmation> refresh0(final String id, final String token);
+    private static native CompletableFuture<RefreshConfirmation> refresh0(final String id, final String token, final long storage);
     public static CompletableFuture<ByteBuf> refresh(final String id, final MessageUnpacker unpacker) {
         return ServerStarter.server(() -> {
             final String token = unpacker.unpackString();
-            return Trash.refresh0(id, token);
+            final long storage = unpacker.unpackLong();
+            return Trash.refresh0(id, token, storage);
         }, RefreshConfirmation::serialize);
     }
 
@@ -61,12 +63,12 @@ public enum Trash {;
         }, TrashInformation::serialize);
     }
 
-    private static native CompletableFuture<FileInformation> restore0(final String id, final String token, final FileLocation file, final FileLocation parent);
+    private static native CompletableFuture<FileInformation> restore0(final String id, final String token, final FileLocation file, final long parent);
     public static CompletableFuture<ByteBuf> restore(final String id, final MessageUnpacker unpacker) {
         return ServerStarter.server(() -> {
             final String token = unpacker.unpackString();
             final FileLocation file = FileLocation.deserialize(unpacker);
-            final FileLocation parent = FileLocation.deserialize(unpacker);
+            final long parent = unpacker.unpackLong();
             return Trash.restore0(id, token, file, parent);
         }, FileInformation::serialize);
     }
@@ -80,11 +82,12 @@ public enum Trash {;
         }, ServerStarter::serializeVoid);
     }
 
-    private static native CompletableFuture<Void> deleteAll0(final String id, final String token);
+    private static native CompletableFuture<Void> deleteAll0(final String id, final String token, final long storage);
     public static CompletableFuture<ByteBuf> deleteAll(final String id, final MessageUnpacker unpacker) {
         return ServerStarter.server(() -> {
             final String token = unpacker.unpackString();
-            return Trash.deleteAll0(id, token);
+            final long storage = unpacker.unpackLong();
+            return Trash.deleteAll0(id, token, storage);
         }, ServerStarter::serializeVoid);
     }
 }
