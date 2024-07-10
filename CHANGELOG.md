@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.19.0] - 2024-7-10
+
+### Changed
+
+* 优化 Upload 注释
+* 标记 core 中 Upload 为 Stable
+
+### Added
+
+* 添加 Upload 示例
+
 ## [1.18.1] - 2024-6-23
 
 ### Changed
