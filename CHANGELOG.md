@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.20.0] - 2024-7-15
+
+### Changed
+
+* 标记 core 中 Move 为 Stable
+* 标记 core 中 Trash 为 Stable
+
+### Fix
+
+* 修正一些 Api 参数错误或遗漏
+
 ## [1.19.0] - 2024-7-10
 
 ### Changed
