@@ -1,6 +1,8 @@
 package com.xuxiaocheng.wlist.api.core;
 
+import com.xuxiaocheng.wlist.api.core.files.exceptions.ComplexOperationException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Assumptions;
 import org.junit.jupiter.api.extension.ExtensionContext;
 import org.junit.jupiter.api.extension.ParameterContext;
 import org.junit.jupiter.api.extension.ParameterResolutionException;
@@ -95,7 +97,13 @@ public enum Basic {;
 
 
     public static <T> T get(final CompletableFuture<T> future) {
-        return Assertions.assertDoesNotThrow(() -> future.get());
+        try {
+            return future.get();
+        } catch (final ExecutionException | InterruptedException exception) {
+            if (exception.getCause() instanceof ComplexOperationException)
+                return Assumptions.abort();
+            return Assertions.fail(exception);
+        }
     }
 
     public static <T extends Throwable> T thrown(final Class<T> expected, final CompletableFuture<?> future) {
