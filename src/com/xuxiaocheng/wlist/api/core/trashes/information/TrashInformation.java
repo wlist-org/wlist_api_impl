@@ -28,7 +28,7 @@ public record TrashInformation(long id, String name, boolean isDirectory, long s
         packer.packLong(self.size);
         if (self.createTime == null) packer.packBoolean(false);
         else packer.packBoolean(true).packTimestamp(self.createTime);
-        if (self.createTime == null) packer.packBoolean(false);
+        if (self.updateTime == null) packer.packBoolean(false);
         else packer.packBoolean(true).packTimestamp(self.updateTime);
         if (self.trashTime == null) packer.packBoolean(false);
         else packer.packBoolean(true).packTimestamp(self.trashTime);
