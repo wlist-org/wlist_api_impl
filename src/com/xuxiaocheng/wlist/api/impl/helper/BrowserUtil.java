@@ -19,6 +19,10 @@ public final class BrowserUtil {
         super();
     }
 
+    static {
+        System.setProperty("org.apache.commons.logging.Log", "org.apache.commons.logging.impl.NoOpLog");
+    }
+
     private static final Cache SharedCache = new Cache(); static {
         SharedCache.setMaxSize(64);
     }
