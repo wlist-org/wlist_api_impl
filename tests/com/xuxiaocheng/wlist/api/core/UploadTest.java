@@ -33,7 +33,7 @@ import java.util.Optional;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-@DisplayName("files - Refresh")
+@DisplayName("files - Upload")
 @ExtendWith(Basic.ClientArguments.class)
 public abstract class UploadTest {
     protected final long storage;
