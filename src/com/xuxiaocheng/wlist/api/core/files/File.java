@@ -1,5 +1,7 @@
 package com.xuxiaocheng.wlist.api.core.files;
 
+import com.xuxiaocheng.wlist.api.common.Stable;
+import com.xuxiaocheng.wlist.api.common.StableModule;
 import com.xuxiaocheng.wlist.api.common.either.Either;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation;
@@ -16,6 +18,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * The core file API.
  */
+@Stable(since = "1.16.1", module = StableModule.Core)
 public enum File {;
     /**
      * List the files in directory.

@@ -1,5 +1,7 @@
 package com.xuxiaocheng.wlist.api.core.trashes;
 
+import com.xuxiaocheng.wlist.api.common.Stable;
+import com.xuxiaocheng.wlist.api.common.StableModule;
 import com.xuxiaocheng.wlist.api.common.either.Either;
 import com.xuxiaocheng.wlist.api.core.CoreClient;
 import com.xuxiaocheng.wlist.api.core.files.FileLocation;
@@ -17,6 +19,7 @@ import java.util.concurrent.CompletableFuture;
 /**
  * The core trash API.
  */
+@Stable(since = "1.20.0", module = StableModule.Core)
 public enum Trash {;
     /**
      * List the files in trash.
