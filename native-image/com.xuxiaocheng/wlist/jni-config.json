@@ -1,0 +1,387 @@
+[
+  {
+    "name": "java.lang.Boolean",
+    "methods": [{"name": "valueOf", "parameterTypes": ["boolean"]}]
+  },
+  {
+    "name": "java.util.Optional",
+    "methods": [{"name": "isEmpty"}, {"name": "get"}]
+  },
+  {
+    "name": "java.time.Instant",
+    "methods": [
+      {"name": "ofEpochSecond", "parameterTypes": ["long", "long"]},
+      {"name": "getEpochSecond"}, {"name": "getNano"}
+    ],
+    "fields": [{"name": "MAX"}, {"name": "MIN"}]
+  },
+  {
+    "name": "java.time.Duration",
+    "methods": [{"name": "ofSeconds", "parameterTypes": ["long", "long"]}],
+    "fields": [{"name": "ZERO"}]
+  },
+  {
+    "name": "java.util.ArrayList",
+    "methods": [
+      {"name": "<init>", "parameterTypes": ["int"]},
+      {"name": "add", "parameterTypes": ["java.lang.Object"]}
+    ]
+  },
+  {
+    "name": "java.util.List",
+    "methods": [{"name": "iterator"}]
+  },
+  {
+    "name": "java.util.Iterator",
+    "methods": [{"name": "hasNext"}, {"name": "next"}]
+  },
+  {
+    "name": "java.util.HashMap",
+    "methods": [
+      {"name": "<init>", "parameterTypes": ["int"]},
+      {"name": "put", "parameterTypes": ["java.lang.Object", "java.lang.Object"]}
+    ]
+  },
+  {
+    "name": "java.util.Map",
+    "methods": [{"name": "entrySet"}]
+  },
+  {
+    "name": "java.util.Set",
+    "methods": [{"name": "iterator"}]
+  },
+  {
+    "name": "java.util.Map$Entry",
+    "methods": [{"name": "getKey"}, {"name": "getValue"}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.common.either.Either",
+    "methods": [
+      {"name": "left", "parameterTypes": ["java.lang.Object"]},
+      {"name": "right", "parameterTypes": ["java.lang.Object"]}
+    ]
+  },
+
+  {
+    "name": "com.xuxiaocheng.wlist.api.common.Direction",
+    "methods": [{"name": "name"}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.storages.types.StorageType",
+    "methods": [
+      {"name": "instanceOf", "parameterTypes": ["java.lang.String"]},
+      {"name": "name", "parameterTypes": ["com.xuxiaocheng.wlist.api.core.storages.types.StorageType"]}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.storages.information.StorageInformation",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "long", "java.lang.String", "boolean", "com.xuxiaocheng.wlist.api.core.storages.types.StorageType", "boolean",
+          "java.time.Instant", "java.time.Instant", "long"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.storages.information.StorageDetailsInformation",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "com.xuxiaocheng.wlist.api.core.storages.information.StorageInformation", "long", "long", "long",
+          "long", "java.time.Instant", "java.time.Instant",
+          "long", "java.time.Instant", "java.time.Instant",
+          "long"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.storages.information.StorageListInformation",
+    "methods": [{"name": "<init>", "parameterTypes": ["long", "long", "java.util.List"]}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.storages.options.Filter",
+    "methods": [{"name": "name"}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.storages.options.Order",
+    "methods": [{"name": "name"}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.storages.options.ListStorageOptions",
+    "methods": [{"name": "filter"}, {"name": "orders"}, {"name": "offset"}, {"name": "limit"}]
+  },
+
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.FileLocation",
+    "methods": [
+      {"name": "<init>", "parameterTypes": ["long", "long", "boolean"]},
+      {"name": "storage"}, {"name": "fileId"}, {"name": "isDirectory"}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.information.FileInformation",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "long", "long", "java.lang.String", "boolean", "long",
+          "java.time.Instant", "java.time.Instant"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.information.FileDetailsInformation",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "com.xuxiaocheng.wlist.api.core.files.information.FileInformation",
+          "java.util.List",
+          "java.lang.String",
+          "com.xuxiaocheng.wlist.api.core.files.confirmations.DownloadConfirmation"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.information.FileListInformation",
+    "methods": [{"name": "<init>", "parameterTypes": ["long", "long", "java.util.List"]}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.information.DownloadChunkInformation",
+    "methods": [
+      {"name": "<init>", "parameterTypes": ["boolean","long", "long"]},
+      {"name": "range"}, {"name": "start"}, {"name": "size"}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.information.DownloadInformation",
+    "methods": [
+      {"name": "<init>", "parameterTypes": ["java.util.List", "java.time.Instant"]},
+      {"name": "chunks"}, {"name": "expire"}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.information.UploadChunkInformation",
+    "methods": [
+      {"name": "<init>", "parameterTypes": ["long", "long"]},
+      {"name": "start"}, {"name": "size"}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.information.UploadInformation",
+    "methods": [
+      {"name": "<init>", "parameterTypes": ["java.util.List", "java.time.Instant"]},
+      {"name": "chunks"}, {"name": "expire"}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.information.ShareInformation",
+    "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String", "java.lang.String", "java.time.Instant"]}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.options.Filter",
+    "methods": [{"name": "name"}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.options.Order",
+    "methods": [{"name": "name"}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.options.ListFileOptions",
+    "methods": [{"name": "filter"}, {"name": "orders"}, {"name": "offset"}, {"name": "limit"}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.options.Duplicate",
+    "methods": [{"name": "name"}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.options.Pattern",
+    "methods": [{"name": "name"}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.options.SearchOptions",
+    "methods": [{"name": "keyword"}, {"name": "pattern"}, {"name": "recursive"}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.tokens.RefreshToken",
+    "methods": [
+      {"name": "<init>", "parameterTypes": ["long", "java.lang.String"]},
+      {"name": "storage"}, {"name": "token"}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.tokens.DownloadToken",
+    "methods": [
+      {"name": "<init>", "parameterTypes": ["long", "com.xuxiaocheng.wlist.api.core.storages.types.StorageType", "java.lang.String"]},
+      {"name": "storage"}, {"name": "type"}, {"name": "token"}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.tokens.UploadToken",
+    "methods": [
+      {"name": "<init>", "parameterTypes": ["long", "com.xuxiaocheng.wlist.api.core.storages.types.StorageType", "java.lang.String"]},
+      {"name": "storage"}, {"name": "type"}, {"name": "token"}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.confirmations.RefreshConfirmation",
+    "methods": [{"name": "<init>", "parameterTypes": ["long", "long", "com.xuxiaocheng.wlist.api.core.files.tokens.RefreshToken"]}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.confirmations.DownloadConfirmation",
+    "methods": [{"name": "<init>", "parameterTypes": ["long", "com.xuxiaocheng.wlist.api.core.files.tokens.DownloadToken"]}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.confirmations.UploadConfirmation",
+    "methods": [{"name": "<init>", "parameterTypes": ["boolean", "com.xuxiaocheng.wlist.api.core.files.tokens.UploadToken"]}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.files.progresses.RefreshProgress",
+    "methods": [{"name": "<init>", "parameterTypes": ["long", "long", "long", "long"]}]
+  },
+
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.trashes.information.TrashInformation",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "long", "java.lang.String", "boolean", "long",
+          "java.time.Instant", "java.time.Instant", "java.time.Instant"
+        ]
+      },
+      {"name": "id"}, {"name": "name"}, {"name": "isDirectory"}, {"name": "size"},
+      {"name": "createTime"}, {"name": "updateTime"}, {"name": "trashTime"}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.trashes.information.TrashDetailsInformation",
+    "methods": [
+      {"name": "<init>", "parameterTypes": ["com.xuxiaocheng.wlist.api.core.trashes.information.TrashInformation", "java.lang.String"]},
+      {"name": "basic"}, {"name": "optionalMd5"}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.trashes.information.TrashListInformation",
+    "methods": [{"name": "<init>", "parameterTypes": ["long", "long", "java.util.List"]}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.trashes.options.Order",
+    "methods": [{"name": "name"}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.trashes.options.ListTrashOptions",
+    "methods": [{"name": "filter"}, {"name": "orders"}, {"name": "offset"}, {"name": "limit"}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.trashes.options.SearchOptions",
+    "methods": [{"name": "keyword"}, {"name": "pattern"}]
+  },
+
+  {
+    "name": "com.xuxiaocheng.wlist.api.impl.data.DownloadInformationExtra",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "com.xuxiaocheng.wlist.api.core.files.FileLocation",
+          "com.xuxiaocheng.wlist.api.core.files.information.DownloadInformation",
+          "java.lang.String",
+          "java.lang.String",
+          "byte[]"
+        ]
+      },
+      {"name": "location"}, {"name": "information"}, {"name": "optionalUrl"}, {"name": "optionalToken"}, {"name": "optionalExtra"}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.impl.data.InternalDownloadInformation",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "long",
+          "long",
+          "com.xuxiaocheng.wlist.api.core.files.information.DownloadChunkInformation",
+          "java.lang.String",
+          "java.lang.String",
+          "byte[]"
+        ]
+      },
+      {"name": "start"}, {"name": "len"}, {"name": "chunk"}, {"name": "optionalUrl"}, {"name": "optionalToken"}, {"name": "optionalExtra"}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.impl.data.InternalDownloadInformationCallback",
+    "methods": [{"name": "<init>", "parameterTypes": ["byte[]"]}, {"name": "optionalExtra"}]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.impl.data.UploadInformationExtra",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "com.xuxiaocheng.wlist.api.core.files.FileLocation",
+          "com.xuxiaocheng.wlist.api.core.files.information.UploadInformation",
+          "java.lang.String",
+          "java.lang.String",
+          "byte[]"
+        ]
+      },
+      {"name": "parent"}, {"name": "information"}, {"name": "optionalUrl"}, {"name": "optionalToken"}, {"name": "optionalExtra"}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.impl.data.InternalUploadInformation",
+    "methods": [
+      {
+        "name": "<init>",
+        "parameterTypes": [
+          "long",
+          "long",
+          "com.xuxiaocheng.wlist.api.core.files.information.UploadChunkInformation",
+          "java.lang.String",
+          "java.lang.String",
+          "byte[]"
+        ]
+      },
+      {"name": "start"}, {"name": "len"}, {"name": "chunk"}, {"name": "optionalUrl"}, {"name": "optionalToken"}, {"name": "optionalExtra"}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.impl.data.InternalUploadInformationCallback",
+    "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String", "byte[]"]}, {"name": "optionalSha256"}, {"name": "optionalExtra"}]
+  },
+
+  {
+    "name": "com.xuxiaocheng.wlist.api.web.Version",
+    "allPublicFields": true
+  },
+
+  {
+    "name": "com.xuxiaocheng.wlist.api.core.storages.configs.LanzouConfig",
+    "methods": [
+      {"name": "<init>", "parameterTypes": ["java.lang.String", "java.lang.String", "long"]},
+      {"name": "phoneNumber"}, {"name": "password"}, {"name": "rootDirectoryId"}
+    ]
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.impl.helper.Lanzou",
+    "allPublicMethods": true
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.impl.helper.Lanzou$Tokens",
+    "allPublicMethods": true
+  },
+  {
+    "name": "com.xuxiaocheng.wlist.api.impl.helper.Lanzou$FileUrls",
+    "allPublicMethods": true
+  }
+]
