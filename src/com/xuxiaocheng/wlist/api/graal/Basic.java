@@ -21,6 +21,9 @@ public final class Basic {
         super();
     }
 
+    public static void main(final String[] args) {
+    }
+
     @CFunction("allocate_cstring")
     private static native CCharPointer allocateString(final UnsignedWord length);
 

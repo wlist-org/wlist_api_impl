@@ -7,7 +7,7 @@ import java.util.List;
 public final class BasicDirective implements CContext.Directives {
     @Override
     public List<String> getLibraries() {
-        return List.of("basic");
+        return List.of("ntdll", "basic");
     }
 
     @Override

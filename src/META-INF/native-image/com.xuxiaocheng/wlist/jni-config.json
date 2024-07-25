@@ -61,11 +61,11 @@
       {"name": "right", "parameterTypes": ["java.lang.Object"]}
     ]
   },
-
   {
-    "name": "com.xuxiaocheng.wlist.api.common.Direction",
+    "name": "java.lang.Enum",
     "methods": [{"name": "name"}]
   },
+
   {
     "name": "com.xuxiaocheng.wlist.api.core.storages.types.StorageType",
     "methods": [
@@ -102,14 +102,6 @@
   {
     "name": "com.xuxiaocheng.wlist.api.core.storages.information.StorageListInformation",
     "methods": [{"name": "<init>", "parameterTypes": ["long", "long", "java.util.List"]}]
-  },
-  {
-    "name": "com.xuxiaocheng.wlist.api.core.storages.options.Filter",
-    "methods": [{"name": "name"}]
-  },
-  {
-    "name": "com.xuxiaocheng.wlist.api.core.storages.options.Order",
-    "methods": [{"name": "name"}]
   },
   {
     "name": "com.xuxiaocheng.wlist.api.core.storages.options.ListStorageOptions",
@@ -186,24 +178,8 @@
     "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String", "java.lang.String", "java.time.Instant"]}]
   },
   {
-    "name": "com.xuxiaocheng.wlist.api.core.files.options.Filter",
-    "methods": [{"name": "name"}]
-  },
-  {
-    "name": "com.xuxiaocheng.wlist.api.core.files.options.Order",
-    "methods": [{"name": "name"}]
-  },
-  {
     "name": "com.xuxiaocheng.wlist.api.core.files.options.ListFileOptions",
     "methods": [{"name": "filter"}, {"name": "orders"}, {"name": "offset"}, {"name": "limit"}]
-  },
-  {
-    "name": "com.xuxiaocheng.wlist.api.core.files.options.Duplicate",
-    "methods": [{"name": "name"}]
-  },
-  {
-    "name": "com.xuxiaocheng.wlist.api.core.files.options.Pattern",
-    "methods": [{"name": "name"}]
   },
   {
     "name": "com.xuxiaocheng.wlist.api.core.files.options.SearchOptions",
@@ -271,10 +247,6 @@
   {
     "name": "com.xuxiaocheng.wlist.api.core.trashes.information.TrashListInformation",
     "methods": [{"name": "<init>", "parameterTypes": ["long", "long", "java.util.List"]}]
-  },
-  {
-    "name": "com.xuxiaocheng.wlist.api.core.trashes.options.Order",
-    "methods": [{"name": "name"}]
   },
   {
     "name": "com.xuxiaocheng.wlist.api.core.trashes.options.ListTrashOptions",

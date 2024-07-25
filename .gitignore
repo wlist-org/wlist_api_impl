@@ -16,4 +16,4 @@
 
 ## graalvm ##
 !/basic
-!/native-image
+!/build.bat
