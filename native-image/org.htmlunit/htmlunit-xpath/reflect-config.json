@@ -1,0 +1,137 @@
+[
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncLast",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncPosition",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncCount",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncId",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncLocalPart",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncNamespace",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncQname",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncNot",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncTrue",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncFalse",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncBoolean",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncLang",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncNumber",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncFloor",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncCeiling",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncRound",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncSum",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncString",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncStartsWith",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncContains",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncSubstringBefore",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncSubstringAfter",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncNormalizeSpace",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncTranslate",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncConcat",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncSubstring",
+    "methods": [{"name": "<init>"}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.xpath.compiler.FunctionTable"},
+    "name": "org.htmlunit.xpath.functions.FuncStringLength",
+    "methods": [{"name": "<init>"}]
+  }
+]

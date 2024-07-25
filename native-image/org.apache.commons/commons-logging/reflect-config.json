@@ -1,0 +1,40 @@
+[
+  {
+    "condition": {"typeReachable": "org.apache.commons.logging.LogFactory"},
+    "name": "org.apache.commons.logging.LogFactory"
+  },
+
+  {
+    "condition": {"typeReachable": "org.apache.commons.logging.LogFactory"},
+    "name": "org.apache.commons.logging.impl.LogFactoryImpl",
+    "methods": [{"name": "<init>"}]
+  },
+
+  {
+    "condition": {"typeReachable": "org.apache.commons.logging.LogFactory"},
+    "name": "org.apache.commons.logging.impl.WeakHashtable",
+    "methods": [{"name": "<init>"}]
+  },
+
+  {
+    "condition": {"typeReachable": "org.apache.commons.logging.impl.LogFactoryImpl"},
+    "name": "org.apache.commons.logging.impl.Jdk14Logger",
+    "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String"]}]
+  },
+
+  {
+    "condition": {"typeReachable": "org.apache.commons.logging.impl.LogFactoryImpl"},
+    "name": "org.apache.commons.logging.impl.NoOpLog",
+    "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.apache.commons.logging.impl.LogFactoryImpl"},
+    "name": "org.apache.commons.logging.impl.SimpleLog",
+    "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.apache.commons.logging.impl.LogFactoryImpl"},
+    "name": "org.apache.commons.logging.impl.Jdk14Logger",
+    "methods": [{"name": "<init>", "parameterTypes": ["java.lang.String"]}]
+  }
+]

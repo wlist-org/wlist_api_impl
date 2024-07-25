@@ -1,0 +1,277 @@
+[
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLAnchorElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLAppletElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLAreaElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLBaseElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLBaseFontElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLQuoteElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLBodyElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLBRElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLButtonElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLModElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLDirectoryElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLDivElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLDListElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLFieldSetElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLFontElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLFormElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLFrameElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLFrameSetElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLHeadElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLHeadingElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLHRElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLHtmlElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLIFrameElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLImageElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLInputElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLModElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLIsIndexElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLLabelElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLLegendElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLLIElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLLinkElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLMapElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLMenuElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLMetaElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLObjectElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLOListElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLOptGroupElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLOptionElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLParagraphElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLParamElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLPreElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLQuoteElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLScriptElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLSelectElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLStyleElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLTableElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLTableCaptionElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLTableCellElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLTableColElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLTableRowElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLTableSectionElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLTextAreaElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLTitleElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  },
+  {
+    "condition": {"typeReachable": "org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl"},
+    "name": "org.htmlunit.cyberneko.html.dom.HTMLUListElementImpl",
+    "methods": [{"name": "<init>", "parameterTypes": ["org.htmlunit.cyberneko.html.dom.HTMLDocumentImpl", "java.lang.String"]}]
+  }
+]

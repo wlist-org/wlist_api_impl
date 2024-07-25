@@ -1,0 +1,19 @@
+[
+  {
+    "condition": {"typeReachable": "org.apache.commons.io.input.ByteBufferCleaner$Java8Cleaner"},
+    "name": "sun.misc.Cleaner",
+    "methods": [{"name": "clean"}]
+  },
+  {
+    "condition": {"typeReachable": "org.apache.commons.io.input.ByteBufferCleaner$Java8Cleaner"},
+    "name": "sun.nio.ch.DirectBuffer",
+    "methods": [{"name": "cleaner"}]
+  },
+
+  {
+    "condition": {"typeReachable": "org.apache.commons.io.input.ByteBufferCleaner$Java9Cleaner"},
+    "name": "sun.misc.Unsafe",
+    "fields": [{"name": "theUnsafe"}],
+    "methods": [{"name": "invokeCleaner", "parameterTypes": ["java.nio.ByteBuffer"]}]
+  }
+]

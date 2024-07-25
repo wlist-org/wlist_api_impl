@@ -1,0 +1,26 @@
+{
+  "resources": {
+    "includes": [
+      {
+        "condition": {"typeReachable": "org.htmlunit.cyberneko.HTMLNamedEntitiesParser"},
+        "pattern": "org\\\\htmlunit\\\\cyberneko\\\\HTMLNamedEntitiesParser\\\\html_entities.properties"
+      }
+    ]
+  },
+  "bundles": [
+    {
+      "condition": {"typeReachable": "org.htmlunit.cyberneko.HTMLConfiguration$ErrorReporter"},
+      "name": "org/htmlunit/cyberneko/res/ErrorMessages"
+    },
+    {
+      "condition": {"typeReachable": "org.htmlunit.cyberneko.xerces.dom.DOMMessageFormatter"},
+      "name": "org.htmlunit.cyberneko.xerces.impl.msg.DOMMessages",
+      "locales": [""]
+    },
+    {
+      "condition": {"typeReachable": "org.htmlunit.cyberneko.xerces.util.SAXMessageFormatter"},
+      "name": "org.htmlunit.cyberneko.xerces.impl.msg.SAXMessages",
+      "locales": [""]
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "resources": {
+    "includes": [
+      {
+        "condition": {"typeReachable": "org.htmlunit.corejs.javascript.SecureCaller"},
+        "pattern": "org\\\\htmlunit\\\\corejs\\\\javascript\\\\SecureCaller\\\\SecureCallerImpl.clazz"
+      },
+      {
+        "condition": {"typeReachable": "org.htmlunit.corejs.classfile.ClassFileWriter"},
+        "pattern": "org\\\\htmlunit\\\\corejs\\\\classfile\\\\ClassFileWriter\\\\ClassFileWriter.class"
+      }
+    ]
+  },
+  "bundles": [
+    {
+      "condition": {"typeReachable": "org.htmlunit.corejs.javascript.ScriptRuntime$DefaultMessageProvider"},
+      "name": "org.htmlunit.corejs.javascript.resources.Messages",
+      "locales": ["", "en", "fr"]
+    },
+    {
+      "condition": {"typeReachable": "org.htmlunit.corejs.javascript.tools.ToolErrorReporter"},
+      "name": "org.htmlunit.corejs.javascript.tools.resources.Messages"
+    }
+  ]
+}

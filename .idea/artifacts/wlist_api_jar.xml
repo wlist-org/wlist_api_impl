@@ -57,6 +57,9 @@
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-net/commons-net/3.11.1/commons-net-3.11.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/commons-codec/commons-codec/1.17.0/commons-codec-1.17.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/brotli/dec/0.1.2/dec-0.1.2.jar" path-in-jar="/" />
+      <element id="directory" name="META-INF">
+        <element id="dir-copy" path="$PROJECT_DIR$/native-image" />
+      </element>
     </root>
   </artifact>
 </component>
