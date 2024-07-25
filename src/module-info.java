@@ -8,6 +8,7 @@ module com.xuxiaocheng.wlist.api {
     requires io.netty.buffer;
     requires msgpack.core;
     requires htmlunit;
+    requires org.graalvm.sdk;
 
     exports com.xuxiaocheng.wlist.api;
     exports com.xuxiaocheng.wlist.api.common;
