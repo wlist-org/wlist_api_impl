@@ -11,5 +11,5 @@ cpp_compat = true
 [export]
 include = [
     "allocate_cstring",
-    "CTime",
+    "free_cstring",
 ]
